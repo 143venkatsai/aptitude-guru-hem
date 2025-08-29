@@ -8,7 +8,7 @@ import testImage4 from "../assets/testImage4.png";
 import trendingImage1 from "../assets/trendingImage1.png";
 import trendingImage2 from "../assets/trendingImage2.png";
 import trendingImage3 from "../assets/trendingImage3.png";
-import learningLogo from "../assets/learningLogo.png";
+import learningLogo from "../assets/LearningLogo.png";
 import image from "../assets/image.png";
 
 const learningDetails = [
