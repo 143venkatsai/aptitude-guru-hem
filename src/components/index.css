@@ -1,0 +1,37 @@
+.hero-section {
+  background-image: linear-gradient(to right, #f564f6, #ef5231);
+}
+
+.enroll {
+  background-image: linear-gradient(to bottom, #ff9900, #eeb257, #ff9900);
+}
+
+.text-shadow {
+  text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.register-color {
+  background-color: #fc2947;
+}
+
+.featured {
+  background-image: linear-gradient(to bottom, #989fff, #7a82ff);
+}
+
+.footer {
+  background-color: #262626;
+}
+
+.footer-icon {
+  background-color: #2d2f34;
+  transition: 1s ease-in-out;
+  cursor: pointer;
+}
+
+.footer-icon:hover {
+  background-color: #fc2947;
+}
+
+.footer-button {
+  background-color: #fc2947;
+}
