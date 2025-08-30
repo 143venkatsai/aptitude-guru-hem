@@ -81,7 +81,7 @@ export const TestType = styled.div`
 export const TestRoundContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.2rem;
+  gap: 0.6rem;
   @media (min-width: 1024px) {
     gap: 0.8rem;
   }
