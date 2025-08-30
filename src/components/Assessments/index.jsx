@@ -40,6 +40,7 @@ const tabLinks = [
 
 const Assessments = () => {
   const [activeTab, setActiveTab] = useState(1);
+  const [searchInput, setSearchInput] = useState("");
 
   const activeTestId = tabLinks.find((tab) => tab.id === activeTab)?.testId;
   console.log(activeTestId);
@@ -63,7 +64,11 @@ const Assessments = () => {
           </TabContainerLgDevices>
           <SearchContainer>
             <SearchIcon icon={faMagnifyingGlass} />
-            <input type="text" placeholder="Search Here..." />
+            <input
+              type="text"
+              placeholder="Search Here..."
+              onChange={(e) => setSearchInput(e.target.value)}
+            />
           </SearchContainer>
           <TabContainer>
             {tabLinks.map((eachTab) => (
@@ -79,7 +84,7 @@ const Assessments = () => {
         </AssessmentNavContainer>
 
         {/* test details */}
-        <TestDetails activeTestId={activeTestId} />
+        <TestDetails activeTestId={activeTestId} searchInput={searchInput} />
       </AssessmentContainer>
     </>
   );

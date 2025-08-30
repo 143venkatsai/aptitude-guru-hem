@@ -36,11 +36,15 @@ import {
 } from "./styledComponents";
 
 const TestDetails = (props) => {
-  const { activeTestId } = props;
+  const { activeTestId, searchInput } = props;
 
-  const filterTestDetails = testDetails.filter(
-    (test) => test.testTabId === activeTestId
-  );
+  const filterTestDetails = testDetails.filter((test) => {
+    const matchesTab = test.testTabId === activeTestId;
+    const matchesSearch =
+      searchInput.trim() === "" ||
+      test.testName.toLowerCase().includes(searchInput.toLowerCase());
+    return matchesTab && matchesSearch;
+  });
 
   console.log(filterTestDetails);
   console.log(activeTestId);
