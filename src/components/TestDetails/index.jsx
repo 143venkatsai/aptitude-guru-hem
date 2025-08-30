@@ -143,7 +143,7 @@ const TestDetails = (props) => {
                         icon={faCircleCheck}
                         style={{ color: resultBg }}
                       />
-                      <TestInfo style={{ color: resultBg }}>
+                      <TestInfo style={{ color: resultBg, fontWeight: 600 }}>
                         Your Marks : {testItem.score}
                       </TestInfo>
                     </TestInfoContainer>
