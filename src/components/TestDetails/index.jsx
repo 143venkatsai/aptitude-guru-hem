@@ -57,7 +57,7 @@ const TestDetails = (props) => {
       if (test.score > 14) {
         return { text: "Completed", bg: "#ECECEC", color: "#4D4D4D" };
       }
-      return { text: "Reattempt", bg: "#FC2947", color: "#ffffff" };
+      return { text: "Reattempt", bg: "#3C9BD9", color: "#ffffff" };
     }
     if (test.testTabId === "missed") {
       return { text: "Locked", bg: "#ECECEC", color: "#4D4D4D" };
@@ -68,10 +68,10 @@ const TestDetails = (props) => {
 
   const getResultConfiguration = (test) => {
     if (test.result === "Pass") {
-      return { resultBg: "#00AA72" };
+      return { resultBg: "#00AA72", resultColor: "#00AA72" };
     }
     if (test.result === "Failed") {
-      return { resultBg: "#FC2947" };
+      return { resultBg: "#FC2947", resultColor: "#FC2947" };
     }
   };
 
@@ -95,7 +95,8 @@ const TestDetails = (props) => {
           const { text, bg, color } = getButtonConfiguration(testItem);
 
           const statusText = testItem.testTabId === "attempted";
-          const { resultBg } = getResultConfiguration(testItem) || {};
+          const { resultBg, resultColor } =
+            getResultConfiguration(testItem) || {};
           console.log(resultBg);
           console.log(statusText);
 
@@ -119,7 +120,7 @@ const TestDetails = (props) => {
                   </TestRoundContainer>
                 </TestTopLeftContainer>
                 {statusText && (
-                  <StatusButton style={{ backgroundColor: resultBg }}>
+                  <StatusButton style={{ backgroundColor: resultColor }}>
                     {testItem.result}
                   </StatusButton>
                 )}
