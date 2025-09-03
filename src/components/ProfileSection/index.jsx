@@ -3,10 +3,10 @@ import Header from "../Header";
 
 import { ProfileContainer } from "./styledComponents";
 import ProfileCard from "../ProfileCard";
-import PerformanceOverview from "../PerformanceOverView";
 import Streak from "../Streak";
 import HeatMapSection from "../HeatMapSection";
 import DashboardTabs from "../DashboardTabs";
+import PerformanceOverview from "../PerformanceOverview";
 
 const ProfileSection = () => {
   return (
