@@ -16,6 +16,14 @@ const navLinks = [
   { to: "/leaderboard", label: "Leaderboard" },
 ];
 
+const navLinksMobile = [
+  { to: "/", label: "Home" },
+  { to: "/practice", label: "Practice" },
+  { to: "/assessments", label: "Assessment" },
+  { to: "/leaderboard", label: "Leaderboard" },
+  { to: "/profile", label: "Profile" },
+];
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -62,16 +70,18 @@ const Header = () => {
             <MdKeyboardArrowDown className="ml-1" />
           </li>
         </ul>
+        <NavLink to="/profile">
+          <div className="hidden lg:flex items-center">
+            <img
+              src={profileLogo}
+              alt="Profile"
+              style={{ width: "34px", height: "34px", borderRadius: "50%" }}
+            />
+            <span className="ml-2 text-base">Hi, Muskan</span>
 
-        <div className="hidden lg:flex items-center">
-          <img
-            src={profileLogo}
-            alt="Profile"
-            style={{ width: "34px", height: "34px", borderRadius: "50%" }}
-          />
-          <span className="ml-2 text-base">Hi, Muskan</span>
-          <IoMdArrowDropdown className="ml-1" />
-        </div>
+            <IoMdArrowDropdown className="ml-1" />
+          </div>
+        </NavLink>
 
         {/* Mobile Menu Icon */}
         <div
@@ -87,7 +97,7 @@ const Header = () => {
       </nav>
       {isMenuOpen && (
         <ul className="lg:hidden flex flex-col items-start gap-4 px-6 py-4 border-b border-gray-300 bg-white shadow-md animate-slideDown">
-          {navLinks.map((item) => (
+          {navLinksMobile.map((item) => (
             <li key={item.to} className="w-full">
               <NavLink
                 to={item.to}
