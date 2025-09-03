@@ -68,7 +68,7 @@ export const Title = styled.h1`
 export const Flex = styled.div`
   display: flex;
   align-items: cener;
-  gap: px;
+  gap: 5px;
   cursor: pointer;
   @media (min-width: 1024px) {
     gap: 20px;
@@ -210,7 +210,6 @@ export const LegendScore = styled.h1`
 
 export const TitleMobile = styled.h1`
   display: none;
-
   @media (min-width: 1024px) {
     display: block;
     font-size: 14px;
