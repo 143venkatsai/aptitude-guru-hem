@@ -5,10 +5,9 @@ import {
   Line,
   XAxis,
   YAxis,
-  Tooltip,
-  Legend,
   ResponsiveContainer,
   CartesianGrid,
+  Area,
 } from "recharts";
 
 import {
@@ -45,7 +44,6 @@ const buttons = [
   { id: 2, name: "College Assessment" },
 ];
 
-// Data definitions remain same
 const assessmentData = {
   legend: [
     { name: "Aptitude", color: "#228BE6" },
@@ -104,7 +102,6 @@ const assessmentData = {
       "Tech E-learning": 30,
     },
   ],
-  analogy: { scored: 15, total: 20, test: 4 },
 };
 
 const collegeAssessmentData = {
@@ -129,15 +126,11 @@ const collegeAssessmentData = {
     { name: "Test 4", Aptitude: 55, Technical: 65 },
     { name: "Test 5", Aptitude: 85, Technical: 75 },
   ],
-  analogy: { scored: 15, total: 20, test: 4 },
 };
 
 const PerformanceOverview = () => {
   const [activeButton, setActiveButton] = useState(1);
-
   const [selectedMetric, setSelectedMetric] = useState("");
-  const [averageScore, setAverageScore] = useState();
-  const [assessmentScore, setAssessmentScore] = useState();
 
   const data = activeButton === 1 ? assessmentData : collegeAssessmentData;
   const title =
@@ -147,35 +140,14 @@ const PerformanceOverview = () => {
     setSelectedMetric(data.legend[0].name);
   }, [activeButton]);
 
-  useEffect(() => {
-    const avg =
-      data.summary.averageScore.find((sc) => sc.name === selectedMetric) || {};
-    const assess =
-      data.summary.assessment.find((sc) => sc.name === selectedMetric) || {};
-    setAverageScore(avg.score !== undefined ? avg.score : null);
-    setAssessmentScore(
-      assess.score !== undefined
-        ? { score: assess.score, total: assess.total }
-        : null
-    );
-  }, [selectedMetric, activeButton]);
-
-  const handleScoreData = (item) => {
-    setSelectedMetric(item.name);
-  };
-
-  const isAssessmentEmpty = assessmentData.chartData.length === 0;
-  const isCollegeAssessmentEmpty = collegeAssessmentData.chartData.length === 0;
-
-  //  both tabs have no data, render the empty state
-  const showEmptyState = true;
-  (activeButton === 1 && isAssessmentEmpty) ||
-    (activeButton === 2 && isCollegeAssessmentEmpty);
-  console.log(showEmptyState);
+  const avg =
+    data.summary.averageScore.find((sc) => sc.name === selectedMetric) || {};
+  const assess =
+    data.summary.assessment.find((sc) => sc.name === selectedMetric) || {};
 
   const PerformanceEmptyState = () => (
     <PerformanceEmptyContainer>
-      <EmptyHeading>Performance Overview</EmptyHeading>
+      <EmptyHeading>{title}</EmptyHeading>
       <EmptyImage src={chatGpt2} alt="Empty State" />
       <EmptyInfo>No Activity Recorded</EmptyInfo>
       <EmptyMessage>
@@ -186,105 +158,110 @@ const PerformanceOverview = () => {
   );
 
   return (
-    <>
-      <PerformanceContainer>
-        <ButtonsContainer>
-          {buttons.map((btn) => (
-            <Button
-              key={btn.id}
-              active={activeButton === btn.id}
-              onClick={() => setActiveButton(btn.id)}
-            >
-              {btn.name}
-            </Button>
-          ))}
-        </ButtonsContainer>
+    <PerformanceContainer>
+      <ButtonsContainer>
+        {buttons.map((btn) => (
+          <Button
+            key={btn.id}
+            active={activeButton === btn.id}
+            onClick={() => setActiveButton(btn.id)}
+          >
+            {btn.name}
+          </Button>
+        ))}
+      </ButtonsContainer>
 
-        {!showEmptyState ? (
-          <PerformanceEmptyState />
-        ) : (
-          <Card>
-            <CardTopContainer>
-              <div>
-                <Title>{title}</Title>
-                <LegendStyled>
-                  {data.legend.map((item) => (
-                    <Flex key={item.name} onClick={() => handleScoreData(item)}>
-                      <Emoji color={item.color}></Emoji>
-                      <LegendTitle isActive={selectedMetric === item.name}>
-                        {item.name}
-                      </LegendTitle>
-                    </Flex>
-                  ))}
-                </LegendStyled>
-              </div>
-              <div>
-                <TitleMobile>{selectedMetric}</TitleMobile>
-                <MobileContainer>
-                  <AverageScoreContainer>
-                    <AverageIconContainer>
-                      <AverageAssessmentIcon icon={faBullseye} />
-                    </AverageIconContainer>
-                    <div>
-                      <LegendScoreHeading>Average Score</LegendScoreHeading>
-                      <LegendScore>
-                        {averageScore !== undefined && averageScore !== null
-                          ? `${averageScore}%`
-                          : "--"}
-                      </LegendScore>
-                    </div>
-                  </AverageScoreContainer>
-                  <AverageScoreContainer>
-                    <AssessmentIconContainer>
-                      <AverageAssessmentIcon icon={faCheck} />
-                    </AssessmentIconContainer>
-                    <div>
-                      <LegendScoreHeading>Assessment</LegendScoreHeading>
-                      <LegendScore>
-                        {assessmentScore !== null &&
-                        assessmentScore !== undefined
-                          ? `${assessmentScore.score}/${assessmentScore.total}`
-                          : "--"}
-                      </LegendScore>
-                    </div>
-                  </AverageScoreContainer>
-                </MobileContainer>
-              </div>
-            </CardTopContainer>
-            <ResponsiveContainer width="100%" height={350}>
-              <LineChart
-                data={
-                  activeButton === 1
-                    ? assessmentData.chartData
-                    : collegeAssessmentData.chartData
-                }
-                margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
-              >
-                <XAxis dataKey="name" axisLine={false} tickLine={false} />
-                <YAxis axisLine={false} tickLine={false} />
-                {/* <Tooltip /> */}
-                {/* <Legend /> */}
-                <CartesianGrid strokeDasharray="4 4" vertical={false} />{" "}
-                {(activeButton === 1
-                  ? assessmentData.legend
-                  : collegeAssessmentData.legend
-                ).map((item) => (
-                  <Line
+      {data.chartData.length === 0 ? (
+        <PerformanceEmptyState />
+      ) : (
+        <Card>
+          <CardTopContainer>
+            <div>
+              <Title>{title}</Title>
+              <LegendStyled>
+                {data.legend.map((item) => (
+                  <Flex
                     key={item.name}
-                    type="linear"
-                    dataKey={item.name}
-                    stroke={item.color}
-                    strokeWidth={2}
-                    dot={false}
-                    activeDot={false}
-                  />
+                    onClick={() => setSelectedMetric(item.name)}
+                  >
+                    <Emoji color={item.color}></Emoji>
+                    <LegendTitle isActive={selectedMetric === item.name}>
+                      {item.name}
+                    </LegendTitle>
+                  </Flex>
                 ))}
-              </LineChart>
-            </ResponsiveContainer>
-          </Card>
-        )}
-      </PerformanceContainer>
-    </>
+              </LegendStyled>
+            </div>
+            <div>
+              <TitleMobile>{selectedMetric}</TitleMobile>
+              <MobileContainer>
+                <AverageScoreContainer>
+                  <AverageIconContainer>
+                    <AverageAssessmentIcon icon={faBullseye} />
+                  </AverageIconContainer>
+                  <div>
+                    <LegendScoreHeading>Average Score</LegendScoreHeading>
+                    <LegendScore>
+                      {avg.score !== undefined ? `${avg.score}%` : "--"}
+                    </LegendScore>
+                  </div>
+                </AverageScoreContainer>
+                <AverageScoreContainer>
+                  <AssessmentIconContainer>
+                    <AverageAssessmentIcon icon={faCheck} />
+                  </AssessmentIconContainer>
+                  <div>
+                    <LegendScoreHeading>Assessment</LegendScoreHeading>
+                    <LegendScore>
+                      {assess.score !== undefined
+                        ? `${assess.score}/${assess.total}`
+                        : "--"}
+                    </LegendScore>
+                  </div>
+                </AverageScoreContainer>
+              </MobileContainer>
+            </div>
+          </CardTopContainer>
+
+          <ResponsiveContainer width="100%" height={350}>
+            <LineChart
+              data={data.chartData}
+              margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
+            >
+              <XAxis dataKey="name" axisLine={false} tickLine={false} />
+              <YAxis domain={[0, 100]} axisLine={false} tickLine={false} />
+              <CartesianGrid strokeDasharray="4 4" vertical={false} />
+
+              {data.legend.map((item) =>
+                selectedMetric === item.name ? (
+                  <Area
+                    key={`${item.name}-area`}
+                    type="monotone"
+                    dataKey={item.name}
+                    stroke="none"
+                    fill={item.color}
+                    fillOpacity={0.15}
+                  />
+                ) : null
+              )}
+
+              {data.legend.map((item) => (
+                <Line
+                  key={item.name}
+                  type="linear"
+                  dataKey={item.name}
+                  stroke={item.color}
+                  strokeWidth={selectedMetric === item.name ? 3 : 2}
+                  dot={false}
+                  opacity={selectedMetric === item.name ? 1 : 0.3}
+                  activeDot={{ r: 6 }}
+                />
+              ))}
+            </LineChart>
+          </ResponsiveContainer>
+        </Card>
+      )}
+    </PerformanceContainer>
   );
 };
 

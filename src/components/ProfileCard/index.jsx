@@ -45,6 +45,8 @@ import {
   EmptyImage,
   EmptyHeading,
   EmptyMessage,
+  RankContainer,
+  Rank,
 } from "./styledComponents";
 
 const Languages = [
@@ -100,6 +102,11 @@ const ProfileCard = () => {
             <ProfileUniversity>SRM University</ProfileUniversity>
           </ProfileNameContainer>
         </ProfileDetails>
+
+        {/* Rank Container */}
+        <RankContainer>
+          <Rank>Rank 56</Rank>
+        </RankContainer>
 
         {/* Certificates and Badges */}
         <ProfileCertificates>

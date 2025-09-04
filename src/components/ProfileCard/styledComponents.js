@@ -8,10 +8,27 @@ export const ProfileCardContainer = styled.section`
   border-radius: 16px;
   padding: 1rem;
   width: 100%;
+  position: relative;
   @media (min-width: 1024px) {
     padding: 1.5rem;
     width: 400px;
   }
+`;
+
+export const RankContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(to right, #204ea3, #2d74f7);
+  border-top-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  padding: 0.5rem 1rem;
+`;
+
+export const Rank = styled.h2`
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
 `;
 
 export const ProfileDetails = styled.div`
@@ -32,7 +49,7 @@ export const ProfileImage = styled.img`
 export const ProfileNameContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 1rem;
+  margin-left: 0.8rem;
 `;
 
 export const ProfileName = styled.h2`

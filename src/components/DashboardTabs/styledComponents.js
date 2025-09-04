@@ -103,18 +103,16 @@ export const Question = styled.h1`
   font-weight: 500;
   color: #3c9bd9;
 
-  /* Desktop styles */
   @media (min-width: 1024px) {
     font-size: 18px;
     font-weight: 500;
   }
 
-  /* Mobile truncation */
   @media (max-width: 1023px) {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 140px; /* Adjust this width to approx 20 chars */
+    max-width: 140px;
   }
 `;
 
@@ -167,7 +165,7 @@ export const CoursesList = styled.ul`
   list-style: none;
   display: flex;
   gap: 16px;
-  width: max-content; /* allow horizontal scroll*/
+  width: max-content;
   margin: 0;
   padding: 0;
 
@@ -251,16 +249,13 @@ export const CoursesListWrapper = styled.div`
   width: 100%;
   padding-bottom: 12px;
 
-  /* Hide scrollbar - Webkit browsers */
   &::-webkit-scrollbar {
     display: none;
   }
-  /* Hide scrollbar - Firefox */
   scrollbar-width: none;
-  /* Hide scrollbar - IE and Edge */
   -ms-overflow-style: none;
 
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
 
   @media (min-width: 1024px) {
     overflow-x: hidden;

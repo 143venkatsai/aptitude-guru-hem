@@ -101,7 +101,7 @@ const courses = [
 const tabContent = [
   {
     id: "recent",
-    value: "Recent Updates",
+    value: "Recent Accepted",
     image: faRotateRight,
   },
   { id: "courses", value: "Continue Learning", image: faBook },
