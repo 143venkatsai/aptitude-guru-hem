@@ -44,6 +44,7 @@ const buttons = [
   { id: 2, name: "College Assessment" },
 ];
 
+// --- Data definitions ---
 const assessmentData = {
   legend: [
     { name: "Aptitude", color: "#228BE6" },
