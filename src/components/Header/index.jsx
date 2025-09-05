@@ -326,7 +326,12 @@ const Header = () => {
             <FontAwesomeIcon
               icon={faMoon}
               alt="Dark theme"
-              style={{ color: "#848382", marginRight: "16px" }}
+              style={{
+                color: "#848382",
+                marginRight: "16px",
+                height: "24px",
+                width: "24px",
+              }}
             />
             <OptionText>Dark theme</OptionText>
             <RadioOuter selected={theme === "dark"}>
