@@ -249,6 +249,10 @@ export const DropdownIconMobile = styled(StyledIcon)`
   transform: rotate(270deg);
 `;
 
+export const Logout = styled.div`
+  margin-top: auto;
+`;
+
 export const MobileLogoutContainer = styled.div`
   background-color: #fc2947;
   padding: 0.5rem 1rem;

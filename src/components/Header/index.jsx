@@ -47,6 +47,7 @@ import {
   ItemWithIcon,
   ListItem,
   LogoImg,
+  Logout,
   MenuIconContainer,
   MenuItem,
   MobileCollegeName,
@@ -280,7 +281,7 @@ const Header = () => {
               <Underline />
             </div>
           </MobileMenuList>
-          <div>
+          <Logout>
             <MobileLogoutContainer>
               <MobileLogoutButton>Logout</MobileLogoutButton>
               <img
@@ -293,7 +294,7 @@ const Header = () => {
                 }}
               />
             </MobileLogoutContainer>
-          </div>
+          </Logout>
         </MobileMenu>
       )}
 
