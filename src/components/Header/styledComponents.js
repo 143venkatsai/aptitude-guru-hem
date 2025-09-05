@@ -371,8 +371,6 @@ export const ThemeIcon = styled.img`
 export const MoonIcon = styled(FontAwesomeIcon)`
   height: 22px;
   width: 22px;
-  color: ${({ isTheme }) => (isTheme ? "#ffffff" : "initial")};
-  fill: ${({ isTheme }) => (isTheme ? "#ffffff" : "initial")};
   background-color: ${({ isTheme }) => (isTheme ? "#000000" : "transparent")};
   border-radius: 50%; 
   padding: 2px; ss
