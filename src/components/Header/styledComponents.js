@@ -147,7 +147,7 @@ export const MobileMenu = styled.div`
   position: fixed;
   top: 10; /* MUST have units */
   left: 0;
-  height: 100vh;
+  //   height: 100vh;
   width: 280px;
   background: white;
   box-shadow: 10px 0 8px rgba(0, 0, 0, 0.1);
@@ -257,6 +257,7 @@ export const MobileLogoutContainer = styled.div`
   align-items: center;
   margin: 0.75rem 1.5rem;
   border-radius: 4px;
+  margin-top: auto;
 `;
 
 export const MobileLogoutButton = styled.button`
