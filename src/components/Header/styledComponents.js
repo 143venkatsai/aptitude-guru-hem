@@ -404,7 +404,7 @@ export const AppearanceHeader = styled.div`
   align-items: center;
   font-weight: 500;
   font-size: 18px;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   gap: 12px;
 `;
 
