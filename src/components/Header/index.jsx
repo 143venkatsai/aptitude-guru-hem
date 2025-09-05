@@ -280,18 +280,21 @@ const Header = () => {
               <Underline />
             </div>
           </MobileMenuList>
-          <MobileLogoutContainer>
-            <MobileLogoutButton>Logout</MobileLogoutButton>
-            <img
-              src={mobileIcon8}
-              alt="Logout"
-              style={{
-                width: "1.25rem",
-                height: "1.25rem",
-                objectFit: "contain",
-              }}
-            />
-          </MobileLogoutContainer>
+          <div>
+            {" "}
+            <MobileLogoutContainer>
+              <MobileLogoutButton>Logout</MobileLogoutButton>
+              <img
+                src={mobileIcon8}
+                alt="Logout"
+                style={{
+                  width: "1.25rem",
+                  height: "1.25rem",
+                  objectFit: "contain",
+                }}
+              />
+            </MobileLogoutContainer>
+          </div>
         </MobileMenu>
       )}
 

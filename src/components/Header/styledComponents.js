@@ -403,7 +403,7 @@ export const AppearanceModal = styled.div`
 export const AppearanceHeader = styled.div`
   display: flex;
   align-items: center;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 18px;
   margin-bottom: 32px;
   gap: 12px;
