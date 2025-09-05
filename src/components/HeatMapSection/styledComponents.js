@@ -123,10 +123,3 @@ export const MonthBlock = styled.div`
   align-items: center;
   min-width: max-content;
 `;
-
-export const MonthLabel = styled.div`
-  font-size: 1rem;
-  color: #888;
-  margin-top: 2px;
-  font-weight: 500;
-`;
