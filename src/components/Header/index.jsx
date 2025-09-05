@@ -19,7 +19,7 @@ import header2 from "../../assets/header2.png";
 
 // import logo from "../../assets/headerLogo.png";
 import profileLogo from "../../assets/profileLogo.png";
-import mobileIcon1 from "../../assets/mobileIcon1.png";
+import mobileIcon1 from "../../assets/mobileicon1.png";
 import mobileIcon2 from "../../assets/mobileIcon2.png";
 import mobileIcon3 from "../../assets/mobileIcon3.png";
 import mobileIcon4 from "../../assets/mobileIcon4.png";
