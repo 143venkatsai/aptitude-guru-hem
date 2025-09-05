@@ -1,6 +1,5 @@
 import React from "react";
 
-import Header from "./Header";
 import HeroCard from "./HeroCard";
 import Courses from "./Courses";
 import TrendingTest from "./TrendingTest";
@@ -8,6 +7,7 @@ import Learning from "./Learning";
 import Events from "./Events";
 import Community from "./Community";
 import Footer from "./Footer";
+import Header from "./Header";
 
 const Home = () => {
   return (
