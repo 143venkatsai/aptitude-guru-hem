@@ -270,8 +270,8 @@ const Header = () => {
                   alt="Appearance"
                   style={{
                     marginRight: "0.75rem",
-                    width: "1.25rem",
-                    height: "1.25rem",
+                    width: "24px",
+                    height: "24px",
                     objectFit: "contain",
                   }}
                 />
