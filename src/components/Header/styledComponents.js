@@ -172,7 +172,9 @@ export const MobileProfile = styled.div`
   flex-direction: column;
   padding: 0rem 1.5rem;
   padding-top: 1rem;
+  padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
+  border-bottom: 1px solid #e2e4e5;
 `;
 
 export const MobileProfileImage = styled.img`
@@ -208,9 +210,9 @@ export const MenuItem = styled.li`
 export const StyledNavLinkProfile = styled(NavLink)`
   display: flex;
   align-items: center;
-  font-size: 0.875rem; 
-  padding: 0.75rem 1.5rem;
-  color: #374151; 
+  font-size: 18px; 
+  padding: 1rem 1.5rem;
+  color: ##0F0F0F; 
 
   &.active {
     background-color: #f5f5f5;
@@ -221,10 +223,10 @@ export const StyledNavLinkProfile = styled(NavLink)`
 export const StyledNavLinkProfileApperance = styled.div`
   display: flex;
   align-items: center;
-  font-size: 0.875rem;
-  padding: 0.75rem 1.5rem;
+  font-size: 18px;
+  padding: 1rem 1.5rem;
   transition: color 0.3s, background-color 0.3s;
-  color: #374151;
+  color: #0f0f0f;
 
   &.active {
     background-color: #f5f5f5;
@@ -253,8 +255,9 @@ export const MobileLogoutContainer = styled.div`
   display: inline-flex;
   flex-direction: row;
   align-items: center;
-  margin: 0rem 1rem;
+  margin: 0.75rem 1.5rem;
   border-radius: 4px;
+  margin-top: auto;
 `;
 
 export const MobileLogoutButton = styled.button`
@@ -266,7 +269,7 @@ export const MobileLogoutButton = styled.button`
 export const Underline = styled.div`
   position: relative;
   width: 100%;
-  height: 1.5px;
+  height: 1px;
 
   &::after {
     content: "";
@@ -346,27 +349,31 @@ export const ThemeContainer = styled.div`
   border-radius: 999px;
   padding: 2px 4px;
   background: #fff;
-  width: 64px;
-  height: 32px;
+  width: 75px;
+  height: 36px;
+  box-shadow: 0 6px 20px rgba(60, 60, 60, 0.18);
 `;
 
 export const ThemeButton = styled.button`
   cursor: pointer;
   border-radius: 50%;
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   padding: 2px;
   justify-content: center;
   transition: background 0.2s;
+  background-color: ${({ theme }) =>
+    theme === "light" ? "#FD6A7F" : "transparent"};
 `;
 
 export const ThemeIcon = styled.img`
   height: 22px;
   width: 22px;
-  background-color: ${({ isTheme }) => (isTheme ? "#FD6A7F" : "#ffffff")};
   color: ${({ isTheme }) => (isTheme ? "#ffffff" : "#000000")};
+  filter: ${({ isTheme }) => (isTheme ? "brightness(0) invert(1)" : "none")};
+
   border-radius: 50%;
   padding: 2px;
 `;
@@ -377,7 +384,7 @@ export const MoonIcon = styled(FontAwesomeIcon)`
   color: ${({ isTheme }) => (isTheme ? "#ffffff" : "#000000")};
   background-color: ${({ isTheme }) => (isTheme ? "#000000" : "#ffffff")};
   border-radius: 50%;
-  padding: 2px;
+  padding: 4px;
   transition: background-color 0.3s, color 0.3s;
 `;
 

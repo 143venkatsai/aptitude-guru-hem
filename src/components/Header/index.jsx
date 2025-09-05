@@ -29,6 +29,7 @@ import mobileIcon7 from "../../assets/mobileIcon7.png";
 import mobileIcon8 from "../../assets/mobileIcon8.png";
 import deviceTheme from "../../assets/deviceTheme.png";
 import backArrow from "../../assets/backArrow.png";
+// import sun from "../../assets/sun.png";
 // import footerLogo3 from "../../assets/footerLogo3.png";
 
 import {
@@ -121,6 +122,12 @@ const Header = () => {
     };
   }, [isMenuOpen]);
 
+  const collegeName = "MEENAKSHI RAMASWAMY ENGINEERING COLLEGE, Ariyalur";
+  console.log(collegeName.length);
+
+  const sliceCollegeName = collegeName.slice(0, 40);
+  console.log(sliceCollegeName);
+
   return (
     <>
       <NavContainer bgColor={bgColor}>
@@ -190,12 +197,12 @@ const Header = () => {
                     active={theme === "light"}
                     aria-label="Light theme"
                     onClick={() => setTheme("light")}
+                    theme={theme}
                   >
                     <ThemeIcon
                       src={mobileIcon7}
                       alt="Light Theme"
                       style={{ width: "22px", height: "22px" }}
-                      isTheme={theme === "light"}
                     />
                   </ThemeButton>
                   <ThemeButton
@@ -220,9 +227,7 @@ const Header = () => {
           <MobileProfile>
             <MobileProfileImage src={profileLogo} alt="Profile image" />
             <MobileProfileName>Muskan Verma</MobileProfileName>
-            <MobileCollegeName>
-              MEENAKSHI RAMASWAMY ENGINEERING COLLEGE, Ariyalur
-            </MobileCollegeName>
+            <MobileCollegeName>{sliceCollegeName} ....</MobileCollegeName>
           </MobileProfile>
           <MobileMenuList>
             {navLinksMobile.map((item) => (
@@ -237,8 +242,8 @@ const Header = () => {
                       alt={`${item.label} icon`}
                       style={{
                         marginRight: "0.75rem",
-                        width: "1.25rem",
-                        height: "1.25rem",
+                        width: "24px",
+                        height: "24px",
                         objectFit: "contain",
                       }}
                     />
