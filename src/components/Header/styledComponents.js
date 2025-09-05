@@ -353,27 +353,31 @@ export const ThemeContainer = styled.div`
 export const ThemeButton = styled.button`
   cursor: pointer;
   border-radius: 50%;
-  width: 24px; s
+  width: 24px;
   height: 24px;
   display: flex;
   align-items: center;
   padding: 2px;
   justify-content: center;
-  background: ${({ active }) => (active ? "#fc2947" : "transparent")};
   transition: background 0.2s;
 `;
 
 export const ThemeIcon = styled.img`
-  cursor: pointer;
-  filter: ${({ isTheme }) => (isTheme ? "brightness(0) invert(1)" : "none")};
+  height: 22px;
+  width: 22px;
+  background-color: ${({ isTheme }) => (isTheme ? "#FD6A7F" : "#ffffff")};
+  color: ${({ isTheme }) => (isTheme ? "#ffffff" : "#000000")};
+  border-radius: 50%;
+  padding: 2px;
 `;
 
 export const MoonIcon = styled(FontAwesomeIcon)`
   height: 22px;
   width: 22px;
-  background-color: ${({ isTheme }) => (isTheme ? "#000000" : "transparent")};
-  border-radius: 50%; 
-  padding: 2px; ss
+  color: ${({ isTheme }) => (isTheme ? "#ffffff" : "#000000")};
+  background-color: ${({ isTheme }) => (isTheme ? "#000000" : "#ffffff")};
+  border-radius: 50%;
+  padding: 2px;
   transition: background-color 0.3s, color 0.3s;
 `;
 

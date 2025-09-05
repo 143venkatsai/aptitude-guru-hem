@@ -18,7 +18,6 @@ import {
   HeatMapScrollWrapper,
   MonthBlockContainer,
   MonthBlock,
-  MonthLabel,
   SelectContainer,
 } from "./styledComponents";
 

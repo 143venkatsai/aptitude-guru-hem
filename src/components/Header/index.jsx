@@ -194,7 +194,7 @@ const Header = () => {
                     <ThemeIcon
                       src={mobileIcon7}
                       alt="Light Theme"
-                      style={{ width: 22, height: 22 }}
+                      style={{ width: "22px", height: "22px" }}
                       isTheme={theme === "light"}
                     />
                   </ThemeButton>
