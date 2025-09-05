@@ -281,7 +281,6 @@ const Header = () => {
             </div>
           </MobileMenuList>
           <div>
-            {" "}
             <MobileLogoutContainer>
               <MobileLogoutButton>Logout</MobileLogoutButton>
               <img

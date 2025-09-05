@@ -257,7 +257,6 @@ export const MobileLogoutContainer = styled.div`
   align-items: center;
   margin: 0.75rem 1.5rem;
   border-radius: 4px;
-  margin-top: auto;
 `;
 
 export const MobileLogoutButton = styled.button`
