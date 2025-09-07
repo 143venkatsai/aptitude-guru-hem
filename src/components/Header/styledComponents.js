@@ -95,6 +95,7 @@ export const DownArrowIcon = styled(FontAwesomeIcon)`
 
 export const ProfileLink = styled.div`
   text-decoration: none;
+  position: relative;
 `;
 
 export const ProfileContainer = styled.div`
@@ -115,12 +116,12 @@ export const ProfileImage = styled.img`
 export const ProfileText = styled.span`
   margin-left: 0.5rem;
   font-size: 1rem;
+  cursor: pointer;
   color: ${({ textColor }) => textColor};
 `;
 
 export const DropdownIcon = styled(FontAwesomeIcon)`
   margin-left: 0.25rem;
-  cursor: pointer;
   color: ${({ textColor }) => textColor};
 `;
 
@@ -269,7 +270,7 @@ export const MobileLogoutButton = styled.button`
 export const Underline = styled.div`
   position: relative;
   width: 100%;
-  height: 1px;
+  height: 0.5px;
 
   &::after {
     content: "";
@@ -284,9 +285,9 @@ export const Underline = styled.div`
 
 export const DropdownMenu = styled.div`
   position: absolute;
-  top: 85%;
+  top: 40px;
   right: 0;
-  //   min-width: 220px;
+  //   width: 250px;
   background: #fff;
   border-radius: 4px;
   box-shadow: 0 6px 20px rgba(60, 60, 60, 0.18);
@@ -302,9 +303,6 @@ export const DropdownItem = styled.div`
   font-size: 15px;
   border-radius: 6px;
   color: #343434;
-  &:hover {
-    background: #f5f5f5;
-  }
 `;
 
 export const DropdownItemProfile = styled(NavLink)`
@@ -345,13 +343,13 @@ export const ThemeContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #bababa;
+  border: 2px solid #bababa;
   border-radius: 999px;
   padding: 2px 4px;
   background: #fff;
-  width: 75px;
+  width: 100px;
   height: 36px;
-  box-shadow: 0 6px 20px rgba(60, 60, 60, 0.18);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 `;
 
 export const ThemeButton = styled.button`
@@ -368,21 +366,21 @@ export const ThemeButton = styled.button`
     theme === "light" ? "#FD6A7F" : "transparent"};
 `;
 
-export const ThemeIcon = styled.img`
+export const ThemeIcon = styled(FontAwesomeIcon)`
   height: 22px;
   width: 22px;
   color: ${({ isTheme }) => (isTheme ? "#ffffff" : "#000000")};
-  filter: ${({ isTheme }) => (isTheme ? "brightness(0) invert(1)" : "none")};
-
+  background-color: ${({ isTheme }) => (isTheme ? "#FD6A7F" : "#ffffff")};
   border-radius: 50%;
-  padding: 2px;
+  padding: 4px;
+  transition: background-color 0.3s, color 0.3s;
 `;
 
 export const MoonIcon = styled(FontAwesomeIcon)`
   height: 22px;
   width: 22px;
-  color: ${({ isTheme }) => (isTheme ? "#ffffff" : "#000000")};
-  background-color: ${({ isTheme }) => (isTheme ? "#000000" : "#ffffff")};
+  color: ${({ isTheme }) => (isTheme ? "#ffffff" : "##BABABA")};
+  background-color: ${({ isTheme }) => (isTheme ? "#FD6A7F" : "#ffffff")};
   border-radius: 50%;
   padding: 4px;
   transition: background-color 0.3s, color 0.3s;

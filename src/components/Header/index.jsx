@@ -10,6 +10,7 @@ import {
   faTimes,
   faCaretDown,
   faMoon,
+  faSun,
 } from "@fortawesome/free-solid-svg-icons";
 
 import ThemeContext from "../../context/ThemeContext.jsx";
@@ -105,6 +106,17 @@ const Header = () => {
   const { theme, setTheme } = useContext(ThemeContext);
   const [showAppearanceOptions, setShowAppearanceOptions] = useState(false);
 
+  let timeoutId;
+
+  const handleEnter = () => {
+    clearTimeout(timeoutId);
+    setDropDown(true);
+  };
+
+  const handleLeave = () => {
+    timeoutId = setTimeout(() => setDropDown(false), 200); // 200ms delay
+  };
+
   const bgColor = theme === "dark" ? "#262626" : "#ffffff";
   const textColor = theme === "dark" ? "#FFFFFF" : "#343434";
 
@@ -165,13 +177,13 @@ const Header = () => {
           </ListItem>
         </NavList>
 
-        <ProfileLink>
+        <ProfileLink onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
           <ProfileContainer>
             <ProfileImage src={profileLogo} alt="Profile" />
             <ProfileText textColor={textColor}>Hi, Muskan</ProfileText>
             <DropdownIcon
               icon={faCaretDown}
-              onClick={() => setDropDown(!dropDown)}
+              // onClick={() => setDropDown(!dropDown)}
               textColor={textColor}
             />
           </ProfileContainer>
@@ -199,11 +211,7 @@ const Header = () => {
                     onClick={() => setTheme("light")}
                     theme={theme}
                   >
-                    <ThemeIcon
-                      src={mobileIcon7}
-                      alt="Light Theme"
-                      style={{ width: "22px", height: "22px" }}
-                    />
+                    <ThemeIcon icon={faSun} isTheme={theme === "light"} />
                   </ThemeButton>
                   <ThemeButton
                     active={theme === "dark"}
@@ -276,6 +284,7 @@ const Header = () => {
                   }}
                 />
                 <p> Apperance</p>
+                <DropdownIconMobile icon={faAngleDown} />
               </StyledNavLinkProfileApperance>
               <Underline />
             </div>
