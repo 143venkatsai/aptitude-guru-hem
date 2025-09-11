@@ -14,7 +14,7 @@ import {
   SelectContainer,
 } from "./styledComponents";
 
-// Example activity data (can be dynamic later)
+// Example activity data
 const activities = [
   { date: "2025-09-04", count: 1, level: 1 },
   { date: "2025-09-05", count: 5, level: 3 },
@@ -41,6 +41,7 @@ const activities = [
   { date: "2026-01-20", count: 5, level: 3 },
   { date: "2026-01-28", count: 3, level: 2 },
 ];
+
 // ✅ Dynamic start and end dates
 const today = new Date();
 const startDate = new Date(today); // today
@@ -86,7 +87,6 @@ const HeatMapSection = () => {
           WebkitOverflowScrolling: "touch",
           padding: "10px",
           maxWidth: "100%",
-          color: "#777676",
         }}
         className="hide-scrollbar"
       >
@@ -97,19 +97,23 @@ const HeatMapSection = () => {
             endDate={endDate}
             cellColors={colors}
             renderTooltip={(activity) =>
-              activity
-                ? `${activity.date}: ${activity.count} activities`
-                : "No activity"
+              activity ? (
+                <div className="custom-tooltip">
+                  <p>
+                    {new Date(activity.date).toLocaleDateString("en-GB", {
+                      day: "2-digit",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </p>
+                  <div style={{ marginTop: "6px" }}>
+                    <div>Aptitude : {activity.count || 0}</div>
+                    <div>Technical : {activity.count || 0}</div>
+                    <div>No. of Attempts : {activity.count || 0}</div>
+                  </div>
+                </div>
+              ) : null
             }
-            tooltipStyle={{
-              backgroundColor: "#ffffff",
-              color: "#777676",
-              border: "1px solid #ccc",
-              borderRadius: "6px",
-              padding: "6px 10px",
-              fontSize: "14px",
-              boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
-            }}
           />
         </div>
       </div>
@@ -118,6 +122,29 @@ const HeatMapSection = () => {
       <style>{`
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
+        }
+
+        .custom-tooltip {
+          position: relative;
+          background-color: #0D1B2A;
+          color: #ffffff;
+          border-radius: 8px;
+          padding: 10px;
+          font-size: 14px;
+          line-height: 20px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+          white-space: nowrap;
+        }
+
+        .custom-tooltip::after {
+          content: "";
+          position: absolute;
+          left: 50%;
+          bottom: -6px;
+          transform: translateX(-50%);
+          border-width: 6px;
+          border-style: solid;
+          border-color: transparent #0D1B2A transparent transparent;
         }
       `}</style>
     </HeatMapContainer>
