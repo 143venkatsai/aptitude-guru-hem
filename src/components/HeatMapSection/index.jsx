@@ -14,7 +14,6 @@ import {
   SelectContainer,
 } from "./styledComponents";
 
-// Example activity data
 const activities = [
   { date: "2025-09-04", count: 1, level: 1 },
   { date: "2025-09-05", count: 5, level: 3 },
@@ -42,11 +41,10 @@ const activities = [
   { date: "2026-01-28", count: 3, level: 2 },
 ];
 
-// ✅ Dynamic start and end dates
 const today = new Date();
-const startDate = new Date(today); // today
+const startDate = new Date(today);
 const endDate = new Date(today);
-endDate.setDate(endDate.getDate() + 364); // 365 days later
+endDate.setDate(endDate.getDate() + 364);
 
 const colors = {
   level0: "#B3B3B3",
