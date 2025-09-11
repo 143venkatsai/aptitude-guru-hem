@@ -56,6 +56,7 @@ export const StreakBottomSection = styled.div`
   flex-direction: column;
   align-items: center;
   border-radius: 16px;
+  flex-grow: 1;
   padding: 1rem;
   border: 1px solid #e4e4e7;
   width: 100%;

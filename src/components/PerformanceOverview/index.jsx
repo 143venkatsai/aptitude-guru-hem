@@ -8,6 +8,7 @@ import {
   ResponsiveContainer,
   CartesianGrid,
   Area,
+  Tooltip,
 } from "recharts";
 
 import {
@@ -248,12 +249,24 @@ const PerformanceOverview = () => {
           <ResponsiveContainer width="100%" height={350}>
             <LineChart
               data={data.chartData}
-              margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
+              margin={{ top: 20, right: 20, left: 20, bottom: 15 }}
             >
-              <XAxis dataKey="name" axisLine={false} tickLine={false} />
-              <YAxis domain={[0, 100]} axisLine={false} tickLine={false} />
-              <CartesianGrid strokeDasharray="4 4" vertical={false} />
+              <XAxis
+                dataKey="name"
+                axisLine={false}
+                tickLine={false}
+                tickMargin={25}
+              />
+              <YAxis
+                domain={[0, 100]}
+                axisLine={false}
+                tickLine={false}
+                tickFormatter={(value) => `${value}%`}
+                tickMargin={10}
+              />
 
+              <CartesianGrid strokeDasharray="4 4" vertical={false} />
+              <Tooltip />
               {data.legend.map((item) =>
                 selectedMetric === item.name ? (
                   <Area
@@ -275,7 +288,7 @@ const PerformanceOverview = () => {
                   stroke={item.color}
                   strokeWidth={selectedMetric === item.name ? 3 : 2}
                   dot={false}
-                  opacity={selectedMetric === item.name ? 1 : 0.3}
+                  opacity={selectedMetric === item.name ? 1 : 0.6}
                   activeDot={{ r: 6 }}
                 />
               ))}

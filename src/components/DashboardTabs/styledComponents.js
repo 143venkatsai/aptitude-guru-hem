@@ -92,6 +92,7 @@ export const QuestionItem = styled.li`
   display: flex;
   align-items: center;
   padding: 0.5rem 1rem;
+  height: 55px;
   background-color: ${(props) => (props.isTrue ? "" : "#F8F8F8")};
   @media (min-width: 1024px) {
     padding: 0.5rem 3rem;

@@ -21,7 +21,7 @@ export const Button = styled.button`
   border: 1px solid ${(props) => (props.active ? "#519CCD" : "#D4D4D4")};
   color: ${(props) => (props.active ? "#519CCD" : "#9D9D9D")};
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 20px;
   &:hover {
     color: ${(props) => (props.active ? "" : "#519CCD")};
   }
@@ -44,7 +44,7 @@ export const TabBar = styled.div`
 `;
 
 export const Tab = styled.button`
-  font-size: 1.09rem;
+  font-size: 20px;
   font-weight: 600;
   padding: 0.42rem 2.1rem;
   border: 2px solid ${({ active }) => (active ? "#37bfff" : "transparent")};
@@ -57,7 +57,7 @@ export const Tab = styled.button`
 `;
 
 export const Title = styled.h1`
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 600;
   margin-bottom: 1.5rem;
   margin-top: 0.2rem;
@@ -142,6 +142,7 @@ export const CardTopContainer = styled.div`
   @media (min-width: 1024px) {
     display: flex;
     flex-direction: row;
+    padding: 0rem 1rem;
     justify-content: space-between;
   }
 `;
