@@ -1,12 +1,14 @@
 import React from "react";
-import {
-  faArrowRight,
-  faCertificate,
-  faRibbon,
-} from "@fortawesome/free-solid-svg-icons";
+import // faArrowRight,
+// faCertificate,
+// faRibbon,
+"@fortawesome/free-solid-svg-icons";
 
 import profileLogo from "../../assets/profileLogo.png";
 import chatGpt1 from "../../assets/chatGpt1.png";
+import certificate from "../../assets/certificate.png";
+import badge from "../../assets/badge.png";
+import arrowRight from "../../assets/arrowRight.png";
 
 import {
   ProfileCardContainer,
@@ -111,9 +113,14 @@ const ProfileCard = () => {
         {/* Certificates and Badges */}
         <ProfileCertificates>
           <CertificatesContainer>
-            <CertificateIconContainer>
+            {/* <CertificateIconContainer>
               <CertificateIcon icon={faCertificate} />
-            </CertificateIconContainer>
+            </CertificateIconContainer> */}
+            <img
+              src={certificate}
+              alt="Certificate"
+              style={{ height: "40px", width: "40px" }}
+            />
             <CertificateDetails>
               <CertificateTitle>Certificates</CertificateTitle>
               <CertificateCount>5</CertificateCount>
@@ -122,9 +129,14 @@ const ProfileCard = () => {
 
           {/* Badges Container */}
           <BadgeContainer>
-            <BadgeIconContainer>
+            {/* <BadgeIconContainer>
               <BadgeIcon icon={faRibbon} />
-            </BadgeIconContainer>
+            </BadgeIconContainer> */}
+            <img
+              src={badge}
+              alt="Badge"
+              style={{ height: "40px", width: "40px" }}
+            />
             <BadgeDetails>
               <BadgeTitle>Badges</BadgeTitle>
               <BadgeCount>3</BadgeCount>
@@ -141,7 +153,11 @@ const ProfileCard = () => {
                   <LanguageItem key={language.id}>{language.name}</LanguageItem>
                 ))}
                 <RightArrowContainer>
-                  <RightArrowIcon icon={faArrowRight} />
+                  <img
+                    src={arrowRight}
+                    alt="arrow right"
+                    style={{ height: "20px", width: "10px" }}
+                  />
                 </RightArrowContainer>
               </LanguageList>
             </LanguagesContainer>
@@ -158,7 +174,12 @@ const ProfileCard = () => {
                       <SkillItem key={item.id}>{item.name}</SkillItem>
                     ))}
                     <RightArrowContainer>
-                      <RightArrowIcon icon={faArrowRight} />
+                      {/* <RightArrowIcon icon={faArrowRight} /> */}
+                      <img
+                        src={arrowRight}
+                        alt="arrow right"
+                        style={{ height: "20px", width: "10px" }}
+                      />
                     </RightArrowContainer>
                   </SkillsList>
                 </SkillContainer>

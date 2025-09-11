@@ -1,6 +1,6 @@
 import React from "react";
 import { PieChart, Pie, Cell } from "recharts";
-import flameIcon from "../../assets/flameIcon.png";
+import fire from "../../assets/fire.png";
 
 import {
   StreakSection,
@@ -74,7 +74,7 @@ const Streak = () => {
             >
               <span role="img" aria-label="fire" style={{ fontSize: 42 }}>
                 <img
-                  src={flameIcon}
+                  src={fire}
                   alt="Flame"
                   style={{ height: "50px", width: "50px" }}
                 />

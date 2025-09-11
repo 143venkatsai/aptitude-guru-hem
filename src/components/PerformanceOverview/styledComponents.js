@@ -202,7 +202,7 @@ export const LegendScoreHeading = styled.h1`
 `;
 
 export const LegendScore = styled.h1`
-  font-size: 14px;
+  font-size: 24px;
   color: #343434;
   font-weight: 500;
 `;
@@ -226,6 +226,7 @@ export const MobileContainer = styled.div`
   @media (min-width: 1024px) {
     displa: flex;
     flex-direction: column;
+    gap: 10px;
   }
 `;
 

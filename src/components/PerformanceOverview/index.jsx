@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { faBullseye, faCheck } from "@fortawesome/free-solid-svg-icons";
+// import { faBullseye, faCheck } from "@fortawesome/free-solid-svg-icons";
 import {
   LineChart,
   Line,
@@ -38,6 +38,9 @@ import {
 } from "./styledComponents";
 
 import chatGpt2 from "../../assets/chatGpt2.png";
+
+import score from "../../assets/score.png";
+import assessment from "../../assets/assessment.png";
 
 const buttons = [
   { id: 1, name: "Assessment" },
@@ -197,9 +200,18 @@ const PerformanceOverview = () => {
               <TitleMobile>{selectedMetric}</TitleMobile>
               <MobileContainer>
                 <AverageScoreContainer>
-                  <AverageIconContainer>
+                  {/* <AverageIconContainer>
                     <AverageAssessmentIcon icon={faBullseye} />
-                  </AverageIconContainer>
+                  </AverageIconContainer> */}
+                  <img
+                    src={score}
+                    alt="Score"
+                    style={{
+                      height: "40px",
+                      width: "40px",
+                      marginRight: "10px",
+                    }}
+                  />
                   <div>
                     <LegendScoreHeading>Average Score</LegendScoreHeading>
                     <LegendScore>
@@ -208,9 +220,18 @@ const PerformanceOverview = () => {
                   </div>
                 </AverageScoreContainer>
                 <AverageScoreContainer>
-                  <AssessmentIconContainer>
+                  {/* <AssessmentIconContainer>
                     <AverageAssessmentIcon icon={faCheck} />
-                  </AssessmentIconContainer>
+                  </AssessmentIconContainer> */}
+                  <img
+                    src={assessment}
+                    alt="Assessment"
+                    style={{
+                      height: "40px",
+                      width: "40px",
+                      marginRight: "10px",
+                    }}
+                  />
                   <div>
                     <LegendScoreHeading>Assessment</LegendScoreHeading>
                     <LegendScore>
