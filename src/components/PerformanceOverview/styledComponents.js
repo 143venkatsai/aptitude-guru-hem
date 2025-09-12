@@ -21,12 +21,12 @@ export const Button = styled.button`
   border: 1px solid ${(props) => (props.active ? "#519CCD" : "#D4D4D4")};
   color: ${(props) => (props.active ? "#519CCD" : "#9D9D9D")};
   cursor: pointer;
-  font-size: 20px;
+  font-size: 14px;
   &:hover {
     color: ${(props) => (props.active ? "" : "#519CCD")};
   }
   @media (min-width: 1024px) {
-    font-size: 1rem;
+    font-size: 14px;
     padding: 0.5rem 1rem;
   }
 `;

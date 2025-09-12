@@ -51,10 +51,10 @@ const buttons = [
 // --- Data definitions ---
 const assessmentData = {
   legend: [
-    { name: "Aptitude", color: "#228BE6" },
-    { name: "Technical", color: "#85D6B5" },
-    { name: "Aptitude E-learning", color: "#FFE9BF" },
-    { name: "Tech E-learning", color: "#EDBFFB" },
+    { name: "Aptitude", color: "#3C9BD9" },
+    { name: "Technical", color: "#57C05D" },
+    { name: "Aptitude E-learning", color: "#FEC574" },
+    { name: "Tech E-learning", color: "#C202BC" },
   ],
   summary: {
     averageScore: [
@@ -111,8 +111,8 @@ const assessmentData = {
 
 const collegeAssessmentData = {
   legend: [
-    { name: "Aptitude", color: "#228BE6" },
-    { name: "Technical", color: "#85D6B5" },
+    { name: "Aptitude", color: "#3C9BD9" },
+    { name: "Technical", color: "#57C05D" },
   ],
   summary: {
     averageScore: [
@@ -288,7 +288,7 @@ const PerformanceOverview = () => {
                   stroke={item.color}
                   strokeWidth={selectedMetric === item.name ? 3 : 2}
                   dot={false}
-                  opacity={selectedMetric === item.name ? 1 : 0.6}
+                  opacity={selectedMetric === item.name ? 1 : 0.4}
                   activeDot={{ r: 6 }}
                 />
               ))}

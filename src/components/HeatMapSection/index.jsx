@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { ActivityHeatmap } from "react-activity-heatmap";
 
 import {
@@ -55,6 +55,22 @@ const colors = {
 };
 
 const HeatMapSection = () => {
+  const [hoveredActivity, setHoveredActivity] = useState(null);
+  const popoverRef = useRef();
+
+  // close popover if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (popoverRef.current && !popoverRef.current.contains(e.target)) {
+        setHoveredActivity(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  console.log(hoveredActivity);
+
   return (
     <HeatMapContainer>
       {/* Top Section */}
@@ -85,6 +101,7 @@ const HeatMapSection = () => {
           WebkitOverflowScrolling: "touch",
           padding: "10px",
           maxWidth: "100%",
+          color: "#777676",
         }}
         className="hide-scrollbar"
       >
@@ -94,55 +111,54 @@ const HeatMapSection = () => {
             startDate={startDate}
             endDate={endDate}
             cellColors={colors}
-            renderTooltip={(activity) =>
-              activity ? (
-                <div className="custom-tooltip">
-                  <p>
-                    {new Date(activity.date).toLocaleDateString("en-GB", {
-                      day: "2-digit",
-                      month: "long",
-                      year: "numeric",
-                    })}
-                  </p>
-                  <div style={{ marginTop: "6px" }}>
-                    <div>Aptitude : {activity.count || 0}</div>
-                    <div>Technical : {activity.count || 0}</div>
-                    <div>No. of Attempts : {activity.count || 0}</div>
-                  </div>
-                </div>
-              ) : null
-            }
+            renderTooltip={(activity) => {
+              if (!activity) return null;
+              console.log(activity);
+
+              return (
+                <div
+                  onMouseEnter={() => setHoveredActivity(activity)}
+                  onMouseLeave={() => setHoveredActivity(null)}
+                />
+              );
+            }}
           />
         </div>
       </div>
+
+      {/* Popover like your UMF/MGO */}
+      {hoveredActivity && (
+        <div
+          ref={popoverRef}
+          className="absolute left-20 mt-4 w-[280px] bg-white rounded-xl shadow-lg border border-gray-200 z-50"
+        >
+          {/* Arrow */}
+          <div className="absolute -top-2 left-6 w-4 h-4 bg-white border-l border-t border-gray-200 rotate-45"></div>
+
+          <div className="p-4 space-y-3">
+            <div className="bg-gray-100 rounded-md p-4">
+              <h2 className="font-bold">Activity Details</h2>
+              <p className="text-sm text-gray-600">
+                {new Date(hoveredActivity.date).toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </p>
+              <div className="mt-3 text-sm">
+                <p>Aptitude: {hoveredActivity.count || 0}</p>
+                <p>Technical: {hoveredActivity.count || 0}</p>
+                <p>No. of Attempts: {hoveredActivity.count || 0}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Custom Styles */}
       <style>{`
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
-        }
-
-        .custom-tooltip {
-          position: relative;
-          background-color: #0D1B2A;
-          color: #ffffff;
-          border-radius: 8px;
-          padding: 10px;
-          font-size: 14px;
-          line-height: 20px;
-          box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-          white-space: nowrap;
-        }
-
-        .custom-tooltip::after {
-          content: "";
-          position: absolute;
-          left: 50%;
-          bottom: -6px;
-          transform: translateX(-50%);
-          border-width: 6px;
-          border-style: solid;
-          border-color: transparent #0D1B2A transparent transparent;
         }
       `}</style>
     </HeatMapContainer>
