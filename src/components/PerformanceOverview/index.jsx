@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy } from "react";
 // import { faBullseye, faCheck } from "@fortawesome/free-solid-svg-icons";
 import {
   LineChart,
@@ -164,6 +164,7 @@ const PerformanceOverview = () => {
     </PerformanceEmptyContainer>
   );
 
+  // FloatingCard (same as before)
   const FloatingCard = ({ x, y, value, label }) => {
     return (
       <foreignObject x={x - 70} y={y - 85} width={120} height={90}>
@@ -174,11 +175,11 @@ const PerformanceOverview = () => {
             borderRadius: "20px",
             padding: "12px 16px",
             textAlign: "center",
+            zIndex: "9999",
             fontFamily: "sans-serif",
             boxShadow: "0px 1px 1px rgba(0, 0, 0, 0.15)",
           }}
         >
-          {/* Label */}
           <div
             style={{
               fontSize: "14px",
@@ -187,10 +188,9 @@ const PerformanceOverview = () => {
               fontWeight: "600",
             }}
           >
-            {label}
+            {/* {label} */}
+            Analogy
           </div>
-
-          {/* Value */}
           <div
             style={{
               fontSize: "22px",
@@ -211,8 +211,6 @@ const PerformanceOverview = () => {
               /100
             </span>
           </div>
-
-          {/* Arrow */}
           <div
             style={{
               position: "absolute",
@@ -231,14 +229,22 @@ const PerformanceOverview = () => {
     );
   };
 
-  // --- Compute average dynamically for selected metric ---
-  const metricValues = data.chartData.map((d) => d[selectedMetric]);
-  const avgSelected =
-    metricValues.length > 0
-      ? Math.round(
-          metricValues.reduce((a, b) => a + b, 0) / metricValues.length
-        )
-      : null;
+  // shows FloatingCard only on active dot of selected metric
+  const CustomActiveDot = ({ cx, cy, value, dataKey, color }) => {
+    return (
+      <g>
+        <circle
+          cx={cx}
+          cy={cy}
+          r={6}
+          fill={color}
+          stroke="#fff"
+          strokeWidth={2}
+        />
+        <FloatingCard x={cx} y={cy} value={value} label={dataKey} />
+      </g>
+    );
+  };
 
   return (
     <PerformanceContainer>
@@ -349,7 +355,8 @@ const PerformanceOverview = () => {
               />
 
               <CartesianGrid strokeDasharray="4 4" vertical={false} />
-              {/* <Tooltip content={() => null} /> */}
+              {/* <Tooltip content={() => null} cursor={false} /> */}
+
               {data.legend.map((item) =>
                 selectedMetric === item.name ? (
                   <Area
@@ -370,32 +377,18 @@ const PerformanceOverview = () => {
                   dataKey={item.name}
                   stroke={item.color}
                   strokeWidth={selectedMetric === item.name ? 3 : 2}
-                  dot={false}
+                  dot={selectedMetric === item.name ? false : false}
                   opacity={selectedMetric === item.name ? 1 : 0.4}
-                  activeDot={{ r: 6 }}
+                  activeDot={
+                    selectedMetric === item.name ? (
+                      <CustomActiveDot color={item.color} />
+                    ) : (
+                      false
+                    )
+                  }
+                  isAnimationActive={false}
                 />
               ))}
-              <Line
-                dataKey={selectedMetric}
-                stroke="transparent"
-                dot={({ cx, cy, index }) => {
-                  if (
-                    avgSelected !== null &&
-                    index === Math.floor(data.chartData.length / 2)
-                  ) {
-                    return (
-                      <FloatingCard
-                        x={cx}
-                        y={cy}
-                        value={avgSelected}
-                        // label={`${selectedMetric} Avg`}
-                        label={"Analogy"}
-                      />
-                    );
-                  }
-                  return null;
-                }}
-              />
             </LineChart>
           </ResponsiveContainer>
         </Card>
