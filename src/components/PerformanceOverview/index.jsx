@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy } from "react";
+import React, { useState, useEffect } from "react";
 // import { faBullseye, faCheck } from "@fortawesome/free-solid-svg-icons";
 import {
   LineChart,
