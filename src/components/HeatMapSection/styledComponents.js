@@ -7,6 +7,7 @@ export const HeatMapContainer = styled.section`
   border-radius: 16px;
   padding: 1rem;
   margin: 0rem 1rem;
+  margin-top: -8px;
   @media (min-width: 1024px) {
     margin: 0rem 5rem;
     margin-bottom: 1rem;

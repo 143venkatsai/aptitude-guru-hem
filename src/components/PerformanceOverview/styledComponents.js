@@ -67,10 +67,10 @@ export const Title = styled.h1`
 export const Flex = styled.div`
   display: flex;
   align-items: cener;
-  gap: 5px;
+  gap: 8px;
   cursor: pointer;
   @media (min-width: 1024px) {
-    gap: 20px;
+    gap: 12px;
   }
 `;
 
@@ -110,7 +110,8 @@ export const ScoreInfo = styled.div`
 `;
 
 export const Emoji = styled.span`
-  width: 25px;
+  width: 21px;
+  height: 17px;
   background: ${(props) => props.color};
 `;
 
@@ -222,10 +223,11 @@ export const TitleMobile = styled.h1`
 
 export const MobileContainer = styled.div`
   display: flex;
-  margin-top: 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   gap: 20px;
   @media (min-width: 1024px) {
-    displa: flex;
+    display: flex;
     flex-direction: column;
     gap: 10px;
   }

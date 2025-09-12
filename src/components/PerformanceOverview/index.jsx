@@ -9,6 +9,8 @@ import {
   CartesianGrid,
   Area,
   Tooltip,
+  ReferenceLine,
+  Label,
 } from "recharts";
 
 import {
@@ -162,6 +164,82 @@ const PerformanceOverview = () => {
     </PerformanceEmptyContainer>
   );
 
+  const FloatingCard = ({ x, y, value, label }) => {
+    return (
+      <foreignObject x={x - 70} y={y - 85} width={120} height={90}>
+        <div
+          style={{
+            position: "relative",
+            background: "#F2F2F2",
+            borderRadius: "20px",
+            padding: "12px 16px",
+            textAlign: "center",
+            fontFamily: "sans-serif",
+            boxShadow: "0px 1px 1px rgba(0, 0, 0, 0.15)",
+          }}
+        >
+          {/* Label */}
+          <div
+            style={{
+              fontSize: "14px",
+              color: "#000",
+              marginBottom: "2px",
+              fontWeight: "600",
+            }}
+          >
+            {label}
+          </div>
+
+          {/* Value */}
+          <div
+            style={{
+              fontSize: "22px",
+              fontWeight: "500",
+              color: "#22C55E",
+              lineHeight: "1.2",
+            }}
+          >
+            {value}
+            <span
+              style={{
+                fontSize: "14px",
+                fontWeight: "500",
+                marginLeft: "2px",
+                color: "#22C55E",
+              }}
+            >
+              /100
+            </span>
+          </div>
+
+          {/* Arrow */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: "-8px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: 0,
+              height: 0,
+              borderLeft: "8px solid transparent",
+              borderRight: "8px solid transparent",
+              borderTop: "8px solid #F2F2F2",
+            }}
+          />
+        </div>
+      </foreignObject>
+    );
+  };
+
+  // --- Compute average dynamically for selected metric ---
+  const metricValues = data.chartData.map((d) => d[selectedMetric]);
+  const avgSelected =
+    metricValues.length > 0
+      ? Math.round(
+          metricValues.reduce((a, b) => a + b, 0) / metricValues.length
+        )
+      : null;
+
   return (
     <PerformanceContainer>
       <ButtonsContainer>
@@ -189,7 +267,12 @@ const PerformanceOverview = () => {
                     key={item.name}
                     onClick={() => setSelectedMetric(item.name)}
                   >
-                    <Emoji color={item.color}></Emoji>
+                    <Emoji
+                      color={item.color}
+                      style={{
+                        opacity: selectedMetric === item.name ? 1 : 0.4,
+                      }}
+                    ></Emoji>
                     <LegendTitle isActive={selectedMetric === item.name}>
                       {item.name}
                     </LegendTitle>
@@ -266,7 +349,7 @@ const PerformanceOverview = () => {
               />
 
               <CartesianGrid strokeDasharray="4 4" vertical={false} />
-              <Tooltip />
+              {/* <Tooltip content={() => null} /> */}
               {data.legend.map((item) =>
                 selectedMetric === item.name ? (
                   <Area
@@ -292,6 +375,27 @@ const PerformanceOverview = () => {
                   activeDot={{ r: 6 }}
                 />
               ))}
+              <Line
+                dataKey={selectedMetric}
+                stroke="transparent"
+                dot={({ cx, cy, index }) => {
+                  if (
+                    avgSelected !== null &&
+                    index === Math.floor(data.chartData.length / 2)
+                  ) {
+                    return (
+                      <FloatingCard
+                        x={cx}
+                        y={cy}
+                        value={avgSelected}
+                        // label={`${selectedMetric} Avg`}
+                        label={"Analogy"}
+                      />
+                    );
+                  }
+                  return null;
+                }}
+              />
             </LineChart>
           </ResponsiveContainer>
         </Card>
