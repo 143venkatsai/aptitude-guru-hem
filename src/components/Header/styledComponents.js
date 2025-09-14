@@ -289,7 +289,7 @@ export const DropdownMenu = styled.div`
   top: 40px;
   right: 0;
   //   width: 250px;
-  background: #fff;
+  background: ${(props) => (props.theme === "light" ? "#ffffff" : "#343434")};
   border-radius: 4px;
   box-shadow: 0 6px 20px rgba(60, 60, 60, 0.18);
   padding: 16px;
@@ -317,7 +317,7 @@ export const DropdownItemProfile = styled(NavLink)`
   border-radius: 6px;
 
   &:hover {
-    background: #f5f5f5;
+    background: #262626;
   }
 `;
 
@@ -347,7 +347,7 @@ export const ThemeContainer = styled.div`
   border: 2px solid #bababa;
   border-radius: 999px;
   padding: 2px 4px;
-  background: #fff;
+  background: ${(props) => (props.theme === "light" ? "#fff" : "#434343")};
   width: 100px;
   height: 36px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
@@ -371,7 +371,7 @@ export const ThemeIcon = styled(FontAwesomeIcon)`
   height: 22px;
   width: 22px;
   color: ${({ isTheme }) => (isTheme ? "#ffffff" : "#000000")};
-  background-color: ${({ isTheme }) => (isTheme ? "#FD6A7F" : "#ffffff")};
+  background-color: ${({ isTheme }) => (isTheme ? "#FD6A7F" : "transparent")};
   border-radius: 50%;
   padding: 4px;
   transition: background-color 0.3s, color 0.3s;

@@ -169,7 +169,7 @@ const DashboardTabs = () => {
           (hasCourses ? (
             <LearningContainer>
               <LearningTopContainer>
-                <LearningTitle>Continue Learning</LearningTitle>
+                <LearningTitle theme={theme}>Continue Learning</LearningTitle>
                 <LearningView>View All &gt;</LearningView>
               </LearningTopContainer>
               <CoursesListWrapper>

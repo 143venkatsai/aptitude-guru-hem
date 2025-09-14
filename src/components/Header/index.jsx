@@ -188,14 +188,18 @@ const Header = () => {
             />
           </ProfileContainer>
           {dropDown && (
-            <DropdownMenu>
+            <DropdownMenu theme={theme}>
               <DropdownItemProfile to="/profile">
                 <img
                   src={mobileIcon6}
                   alt="Profile"
                   style={{ width: 22, height: 22 }}
                 />
-                <span>Profile</span>
+                <span
+                  style={{ color: theme === "light" ? "#343434" : "#ECECEC" }}
+                >
+                  Profile
+                </span>
               </DropdownItemProfile>
               <DropdownItem>
                 <img
@@ -203,8 +207,12 @@ const Header = () => {
                   alt="Appearance"
                   style={{ width: 22, height: 22 }}
                 />
-                <span>Appearance</span>
-                <ThemeContainer>
+                <span
+                  style={{ color: theme === "light" ? "#343434" : "#ECECEC" }}
+                >
+                  Appearance
+                </span>
+                <ThemeContainer theme={theme}>
                   <ThemeButton
                     active={theme === "light"}
                     aria-label="Light theme"

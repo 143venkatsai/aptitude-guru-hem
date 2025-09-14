@@ -161,7 +161,7 @@ export const LearningTopContainer = styled.div`
 export const LearningTitle = styled.h1`
   font-size: 16px;
   font-weight: 600px;
-  color: ${(props) => (props.theme === "light" ? "#737373" : "#ffffff")};
+  color: ${(props) => (props.theme === "light" ? "#000000" : "#ffffff")};
   @media (min-width: 1024px) {
     font-size: 24px;
     font-weight: 600;
@@ -240,23 +240,26 @@ export const CourseTitle = styled.h1`
 export const CourseBottomContainer = styled.div`
   display: flex;
   align-items: center;
+  padding-bottom: 6px;
 `;
 
 export const AuthorIcon = styled(FontAwesomeIcon)`
-  color: ${(props) => (props.theme === "light" ? "#212121 " : "#ffffff")};
+  color: ${(props) => (props.theme === "light" ? "#444444 " : "#ffffff")};
+  height: 10.67px;
+  width: 10.67px;
 `;
 
 export const AuthorName = styled.h1`
   font-size: 14px;
   font-weight: 500;
-  color: ${(props) => (props.theme === "light" ? "#212121 " : "#ffffff")};
-  margin-left: 2px;
+  color: ${(props) => (props.theme === "light" ? "#444444 " : "#ffffff")};
+  margin-left: 4px;
 `;
 
 export const CourseDuration = styled.p`
   font-size: 10px;
   font-weight: 600;
-  color: ${(props) => (props.theme === "light" ? "#212121 " : "#ffffff")};
+  color: ${(props) => (props.theme === "light" ? "#444444 " : "#ffffff")};
   margin-left: auto;
 `;
 
