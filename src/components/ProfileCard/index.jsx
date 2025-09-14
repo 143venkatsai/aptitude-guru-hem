@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import // faArrowRight,
 // faCertificate,
 // faRibbon,
 "@fortawesome/free-solid-svg-icons";
+
+import ThemeContext from "../../context/ThemeContext";
 
 import profileLogo from "../../assets/profileLogo.png";
 import chatGpt1 from "../../assets/chatGpt1.png";
 import certificate from "../../assets/certificate.png";
 import badge from "../../assets/badge.png";
 import arrowRight from "../../assets/arrowRight.png";
+import arrowRightDark from "../../assets/arrowRightDark.png";
 
 import {
   ProfileCardContainer,
@@ -86,6 +89,7 @@ const skills = [
 ];
 
 const ProfileCard = () => {
+  const { theme } = useContext(ThemeContext);
   // Check if Languages and skills are empty
   const hasLanguages = Languages.length > 0;
   const hasSkills = skills.length > 0;
@@ -95,13 +99,13 @@ const ProfileCard = () => {
 
   return (
     <>
-      <ProfileCardContainer>
+      <ProfileCardContainer theme={theme}>
         <ProfileDetails>
           <ProfileImage src={profileLogo} alt="Profile Logo" />
           <ProfileNameContainer>
-            <ProfileName>Muskan Verma</ProfileName>
-            <ProfileEmail>muskanverma@gmail.com</ProfileEmail>
-            <ProfileUniversity>SRM University</ProfileUniversity>
+            <ProfileName theme={theme}>Muskan Verma</ProfileName>
+            <ProfileEmail theme={theme}>muskanverma@gmail.com</ProfileEmail>
+            <ProfileUniversity theme={theme}>SRM University</ProfileUniversity>
           </ProfileNameContainer>
         </ProfileDetails>
 
@@ -146,24 +150,31 @@ const ProfileCard = () => {
 
         {!showEmpty ? (
           <>
-            <LanguagesContainer>
-              <LanguageTitle>Languages</LanguageTitle>
+            <LanguagesContainer theme={theme}>
+              <LanguageTitle theme={theme}>Languages</LanguageTitle>
               <LanguageList>
                 {Languages.map((language) => (
-                  <LanguageItem key={language.id}>{language.name}</LanguageItem>
+                  <LanguageItem theme={theme} key={language.id}>
+                    {language.name}
+                  </LanguageItem>
                 ))}
-                <RightArrowContainer>
+                <RightArrowContainer theme={theme}>
+                  {/* <RightArrowIcon icon={faArrowRight} /> */}
                   <img
-                    src={arrowRight}
+                    src={theme === "light" ? arrowRight : arrowRightDark}
                     alt="arrow right"
-                    style={{ height: "20px", width: "10px" }}
+                    style={{
+                      height: theme === "light" ? "20px" : "12px",
+                      width: theme === "light" ? "10px" : "6px",
+                    }}
+                    theme={theme}
                   />
                 </RightArrowContainer>
               </LanguageList>
             </LanguagesContainer>
 
             <SkillsSection>
-              <SkillsHeading>Skills</SkillsHeading>
+              <SkillsHeading theme={theme}>Skills</SkillsHeading>
               {skills.map((group) => (
                 <SkillContainer key={group.id}>
                   <SkillTitle style={{ color: group.color }}>
@@ -171,14 +182,20 @@ const ProfileCard = () => {
                   </SkillTitle>
                   <SkillsList>
                     {group.skill.map((item) => (
-                      <SkillItem key={item.id}>{item.name}</SkillItem>
+                      <SkillItem key={item.id} theme={theme}>
+                        {item.name}
+                      </SkillItem>
                     ))}
-                    <RightArrowContainer>
+                    <RightArrowContainer theme={theme}>
                       {/* <RightArrowIcon icon={faArrowRight} /> */}
                       <img
-                        src={arrowRight}
+                        src={theme === "light" ? arrowRight : arrowRightDark}
                         alt="arrow right"
-                        style={{ height: "20px", width: "10px" }}
+                        style={{
+                          height: theme === "light" ? "20px" : "12px",
+                          width: theme === "light" ? "10px" : "6px",
+                        }}
+                        theme={theme}
                       />
                     </RightArrowContainer>
                   </SkillsList>
@@ -189,8 +206,8 @@ const ProfileCard = () => {
         ) : (
           <ProfileEmptyContainer>
             <EmptyImage src={chatGpt1} about="Profile Empty" />
-            <EmptyHeading>No Highlights yet</EmptyHeading>
-            <EmptyMessage>
+            <EmptyHeading theme={theme}>No Highlights yet</EmptyHeading>
+            <EmptyMessage theme={theme}>
               Your profile summary will appear here once you attempt an
               assessment or practice questions.
             </EmptyMessage>

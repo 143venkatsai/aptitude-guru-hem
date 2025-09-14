@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const ProfileCardContainer = styled.section`
   display: flex;
   flex-direction: column;
-  border: 1px solid #e4e4e7;
+  border: 1px solid
+    ${(props) => (props.theme === "light" ? "#e4e4e7" : "#505050")};
   border-radius: 16px;
   padding: 1rem;
   width: 100%;
@@ -20,8 +21,8 @@ export const RankContainer = styled.div`
   top: 0;
   left: 0;
   background-image: linear-gradient(to right, #204ea3, #2d74f7);
-  border-top-left-radius: 16px;
-  border-bottom-right-radius: 16px;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
   padding: 0.5rem 1rem;
 `;
 
@@ -54,19 +55,19 @@ export const ProfileNameContainer = styled.div`
 
 export const ProfileName = styled.h2`
   font-size: 1.5rem;
-  color: #343434;
+  color: ${(props) => (props.theme === "light" ? "#343434" : "#ffffff")};
   font-weight: 600;
 `;
 
 export const ProfileEmail = styled.p`
   font-size: 1rem;
-  color: #737373;
+  color: ${(props) => (props.theme === "light" ? " #737373" : "#DCDCDC")};
   font-weight: 500;
 `;
 
 export const ProfileUniversity = styled.p`
   font-size: 1rem;
-  color: #737373;
+  color: ${(props) => (props.theme === "light" ? " #737373" : "#DCDCDC")};
   font-weight: 500;
 `;
 
@@ -171,12 +172,13 @@ export const LanguagesContainer = styled.div`
   flex-direction: column;
   gap: 0.5rem;
   padding-bottom: 1rem;
-  border-bottom: 2px solid #d2d2d2;
+  border-bottom: 1px solid
+    ${(props) => (props.theme === "light" ? "#d2d2d2" : "#505050")};
 `;
 
 export const LanguageTitle = styled.h1`
   font-size: 1rem;
-  color: #777575;
+  color: ${(props) => (props.theme === "light" ? "#777575" : "#DCDCDC")};
   font-weight: 600;
 `;
 
@@ -189,11 +191,12 @@ export const LanguageList = styled.ul`
 `;
 
 export const LanguageItem = styled.li`
-  background-color: #f2f3f4;
+  background-color: ${(props) =>
+    props.theme === "light" ? " #f2f3f4" : "#434343"};
   padding: 0.3rem 0.8rem;
   border-radius: 16px;
   font-size: 14px;
-  color: #6f6e6d;
+  color: ${(props) => (props.theme === "light" ? " #6f6e6d" : "#dcdcdc")};
 `;
 
 export const RightArrowContainer = styled.div`
@@ -203,11 +206,12 @@ export const RightArrowContainer = styled.div`
   height: 30px;
   width: 35px;
   border-radius: 45%;
-  background-color: #f2f3f4;
+  background-color: ${(props) =>
+    props.theme === "light" ? " #f2f3f4" : "#434343"};
 `;
 
 export const RightArrowIcon = styled(FontAwesomeIcon)`
-  color: #6f6e6d;
+  color: ${(props) => (props.theme === "light" ? " #6f6e6d" : "#dcdcdc")};
   height: 15px;
   width: 15px;
 `;
@@ -221,7 +225,8 @@ export const SkillsSection = styled.div`
 
 export const SkillsHeading = styled.h1`
   font-size: 1rem;
-  font-weight: 500;
+  color: ${(props) => (props.theme === "light" ? "#777575" : "#DCDCDC")};
+  font-weight: 600;
 `;
 
 export const SkillContainer = styled.div`
@@ -246,11 +251,12 @@ export const SkillsList = styled.ul`
 `;
 
 export const SkillItem = styled.li`
-  background-color: #f2f3f4;
+  background-color: ${(props) =>
+    props.theme === "light" ? " #f2f3f4" : "#434343"};
   padding: 0.3rem 0.8rem;
   border-radius: 16px;
   font-size: 14px;
-  color: #6f6e6d;
+  color: ${(props) => (props.theme === "light" ? " #6f6e6d" : "#dcdcdc")};
 `;
 
 export const ProfileEmptyContainer = styled.div`
@@ -268,7 +274,7 @@ export const EmptyImage = styled.img`
 export const EmptyHeading = styled.h1`
   font-size: 16px;
   font-weight: 700;
-  color: #767676;
+  color: ${(props) => (props.theme === "light" ? "#767676" : "#ffffff")};
   text-align: center;
   margin: 0.5rem 0rem;
 `;
@@ -276,6 +282,6 @@ export const EmptyHeading = styled.h1`
 export const EmptyMessage = styled.p`
   font-size: 16px;
   font-weight: 400;
-  color: #767676;
+  color: ${(props) => (props.theme === "light" ? "#767676" : "#ffffff")};
   text-align: center;
 `;

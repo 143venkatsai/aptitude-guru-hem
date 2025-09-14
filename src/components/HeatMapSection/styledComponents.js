@@ -3,15 +3,15 @@ import styled from "styled-components";
 export const HeatMapContainer = styled.section`
   display: flex;
   flex-direction: column;
-  border: 1px solid #e4e4e7;
+  border: 1px solid
+    ${(props) => (props.theme === "light" ? "#e4e4e7" : "#505050")};
   border-radius: 16px;
   padding: 1rem;
   margin: 0rem 1rem;
-  margin-top: -8px;
   @media (min-width: 1024px) {
     margin: 0rem 5rem;
     margin-bottom: 1rem;
-    margin-top: -15px;
+    padding: 1rem 2rem;
   }
 `;
 
@@ -35,13 +35,13 @@ export const HeatMapLeftSection = styled.div`
 export const Hours = styled.h1`
   font-size: 24px;
   font-weight: 600;
-  color: #262626;
+  color: ${(props) => (props.theme === "light" ? "#262626" : "#ffffff")};
 `;
 
 export const Months = styled.p`
   font-size: 16px;
   font-weight: 500;
-  color: #262626;
+  color: ${(props) => (props.theme === "light" ? "#262626" : "#ffffff")};
 `;
 
 export const HeatMapRightSection = styled.div`
@@ -58,7 +58,7 @@ export const HeatMapRightSection = styled.div`
 export const MaxStreak = styled.p`
   font-size: 16px;
   font-weight: 500;
-  color: #777676;
+  color: ${(props) => (props.theme === "light" ? " #777676" : "#ffffff")};
 `;
 
 export const SelectContainer = styled.select`

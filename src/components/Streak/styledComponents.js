@@ -16,29 +16,30 @@ export const StreakTopSection = styled.div`
   align-items: center;
   border-radius: 16px;
   padding: 1rem;
-  border: 1px solid #e4e4e7;
+  border: 1px solid
+    ${(props) => (props.theme === "light" ? "#e4e4e7" : "#505050")};
 `;
 
 export const StreakTopTitle = styled.h1`
   font-size: 16px;
   font-weight: 600;
-  color: #666666;
+  color: ${(props) => (props.theme === "light" ? " #666666" : "#ffffff")};
   margin-bottom: 5px;
 `;
 
 export const StreakInfo = styled.p`
   font-size: 16px;
   font-weight: 500;
-  color: #767676;
+  color: ${(props) => (props.theme === "light" ? "#767676 " : "#DCDCDC")};
   margin-bottom: 10px;
 `;
 
 export const StreakMessage = styled.p`
   font-size: 14px;
   font-weight: 500;
-  color: #767676;
+  color: ${(props) => (props.theme === "light" ? " #767676" : "#DCDCDC")};
   text-align: center;
-  margin: 10px 0px;
+  margin: 15px 0px;
 `;
 
 export const StreakButton = styled.button`
@@ -48,6 +49,7 @@ export const StreakButton = styled.button`
   font-weight: 500;
   padding: 5px 12px;
   border-radius: 4px;
+  border: 1px solid #fd6a7f;
   cursor: pointer;
 `;
 
@@ -58,7 +60,8 @@ export const StreakBottomSection = styled.div`
   border-radius: 16px;
   flex-grow: 1;
   padding: 1rem;
-  border: 1px solid #e4e4e7;
+  border: 1px solid
+    ${(props) => (props.theme === "light" ? "#e4e4e7" : "#505050")};
   width: 100%;
   box-sizing: border-box;
   justify-content: flex-start;
@@ -67,7 +70,7 @@ export const StreakBottomSection = styled.div`
 export const StreakBottomTitle = styled.h1`
   font-size: 16px;
   font-weight: 600;
-  color: #4d4d4d;
+  color: ${(props) => (props.theme === "light" ? "#4d4d4d" : "#ffffff")};
   margin-bottom: 20px;
 `;
 
@@ -87,13 +90,13 @@ export const StreakPracticeSession = styled.div`
 export const StreakPracticeTitle = styled.h1`
   font-size: 16px;
   font-weight: 600;
-  color: #343434;
+  color: ${(props) => (props.theme === "light" ? "#343434" : "#DCDCDC")};
 `;
 
 export const StreakPracticeCount = styled.p`
   font-size: 14px;
   font-weight: 500;
-  color: #343434;
+  color: ${(props) => (props.theme === "light" ? "#343434" : "#DCDCDC")};
 `;
 
 export const StreakRangeContainer = styled.div`

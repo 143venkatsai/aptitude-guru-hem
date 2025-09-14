@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 // import { faBullseye, faCheck } from "@fortawesome/free-solid-svg-icons";
 import {
   LineChart,
@@ -12,6 +12,8 @@ import {
   ReferenceLine,
   Label,
 } from "recharts";
+
+import ThemeContext from "../../context/ThemeContext";
 
 import {
   PerformanceContainer,
@@ -138,6 +140,7 @@ const collegeAssessmentData = {
 const PerformanceOverview = () => {
   const [activeButton, setActiveButton] = useState(1);
   const [selectedMetric, setSelectedMetric] = useState("");
+  const { theme } = useContext(ThemeContext);
 
   const data = activeButton === 1 ? assessmentData : collegeAssessmentData;
   const title =
@@ -154,10 +157,10 @@ const PerformanceOverview = () => {
 
   const PerformanceEmptyState = () => (
     <PerformanceEmptyContainer>
-      <EmptyHeading>{title}</EmptyHeading>
+      <EmptyHeading theme={theme}>{title}</EmptyHeading>
       <EmptyImage src={chatGpt2} alt="Empty State" />
-      <EmptyInfo>No Activity Recorded</EmptyInfo>
-      <EmptyMessage>
+      <EmptyInfo theme={theme}>No Activity Recorded</EmptyInfo>
+      <EmptyMessage theme={theme}>
         Complete your first test to view insights and track your growth here.
       </EmptyMessage>
       <EmptyButton>Attend Assessment</EmptyButton>
@@ -165,17 +168,17 @@ const PerformanceOverview = () => {
   );
 
   // FloatingCard (same as before)
-  const FloatingCard = ({ x, y, value, label }) => {
+  const FloatingCard = ({ x, y, value, label, theme }) => {
     return (
-      <foreignObject x={x - 70} y={y - 85} width={120} height={90}>
+      <foreignObject x={x - 60} y={y - 90} width={120} height={90}>
         <div
           style={{
             position: "relative",
-            background: "#F2F2F2",
+            background: theme === "light" ? "#F2F2F2" : "#343434",
             borderRadius: "20px",
             padding: "12px 16px",
             textAlign: "center",
-            zIndex: "9999",
+            zIndex: "10",
             fontFamily: "sans-serif",
             boxShadow: "0px 1px 1px rgba(0, 0, 0, 0.15)",
           }}
@@ -183,7 +186,7 @@ const PerformanceOverview = () => {
           <div
             style={{
               fontSize: "14px",
-              color: "#000",
+              color: theme === "light" ? "#000" : "#ffffff",
               marginBottom: "2px",
               fontWeight: "600",
             }}
@@ -221,7 +224,9 @@ const PerformanceOverview = () => {
               height: 0,
               borderLeft: "8px solid transparent",
               borderRight: "8px solid transparent",
-              borderTop: "8px solid #F2F2F2",
+              borderTop: `8px solid  ${
+                theme === "light" ? "#F2F2F2" : "#343434"
+              }`,
             }}
           />
         </div>
@@ -230,7 +235,7 @@ const PerformanceOverview = () => {
   };
 
   // shows FloatingCard only on active dot of selected metric
-  const CustomActiveDot = ({ cx, cy, value, dataKey, color }) => {
+  const CustomActiveDot = ({ cx, cy, value, dataKey, color, theme }) => {
     return (
       <g>
         <circle
@@ -241,7 +246,13 @@ const PerformanceOverview = () => {
           stroke="#fff"
           strokeWidth={2}
         />
-        <FloatingCard x={cx} y={cy} value={value} label={dataKey} />
+        <FloatingCard
+          x={cx}
+          y={cy}
+          value={value}
+          label={dataKey}
+          theme={theme}
+        />
       </g>
     );
   };
@@ -253,6 +264,7 @@ const PerformanceOverview = () => {
           <Button
             key={btn.id}
             active={activeButton === btn.id}
+            themeMode={theme}
             onClick={() => setActiveButton(btn.id)}
           >
             {btn.name}
@@ -263,10 +275,10 @@ const PerformanceOverview = () => {
       {data.chartData.length === 0 ? (
         <PerformanceEmptyState />
       ) : (
-        <Card>
+        <Card position="relative" theme={theme}>
           <CardTopContainer>
             <div>
-              <Title>{title}</Title>
+              <Title theme={theme}>{title}</Title>
               <LegendStyled>
                 {data.legend.map((item) => (
                   <Flex
@@ -279,7 +291,13 @@ const PerformanceOverview = () => {
                         opacity: selectedMetric === item.name ? 1 : 0.4,
                       }}
                     ></Emoji>
-                    <LegendTitle isActive={selectedMetric === item.name}>
+                    <LegendTitle
+                      isActive={selectedMetric === item.name}
+                      theme={theme}
+                      style={{
+                        opacity: selectedMetric === item.name ? 1 : 0.4,
+                      }}
+                    >
                       {item.name}
                     </LegendTitle>
                   </Flex>
@@ -287,7 +305,7 @@ const PerformanceOverview = () => {
               </LegendStyled>
             </div>
             <div>
-              <TitleMobile>{selectedMetric}</TitleMobile>
+              <TitleMobile theme={theme}>{selectedMetric}</TitleMobile>
               <MobileContainer>
                 <AverageScoreContainer>
                   {/* <AverageIconContainer>
@@ -303,8 +321,10 @@ const PerformanceOverview = () => {
                     }}
                   />
                   <div>
-                    <LegendScoreHeading>Average Score</LegendScoreHeading>
-                    <LegendScore>
+                    <LegendScoreHeading theme={theme}>
+                      Average Score
+                    </LegendScoreHeading>
+                    <LegendScore theme={theme}>
                       {avg.score !== undefined ? `${avg.score}%` : "--"}
                     </LegendScore>
                   </div>
@@ -323,8 +343,10 @@ const PerformanceOverview = () => {
                     }}
                   />
                   <div>
-                    <LegendScoreHeading>Assessment</LegendScoreHeading>
-                    <LegendScore>
+                    <LegendScoreHeading theme={theme}>
+                      Assessment
+                    </LegendScoreHeading>
+                    <LegendScore theme={theme}>
                       {assess.score !== undefined
                         ? `${assess.score}/${assess.total}`
                         : "--"}
@@ -345,6 +367,7 @@ const PerformanceOverview = () => {
                 axisLine={false}
                 tickLine={false}
                 tickMargin={25}
+                stroke={theme === "light" ? "#5C5C5C" : "#DCDCDC"}
               />
               <YAxis
                 domain={[0, 100]}
@@ -352,9 +375,14 @@ const PerformanceOverview = () => {
                 tickLine={false}
                 tickFormatter={(value) => `${value}%`}
                 tickMargin={10}
+                stroke={theme === "light" ? "#5C5C5C" : "#DCDCDC"}
               />
 
-              <CartesianGrid strokeDasharray="4 4" vertical={false} />
+              <CartesianGrid
+                strokeDasharray="4 4"
+                vertical={false}
+                stroke={theme === "light" ? "#444444" : "#000"}
+              />
               {/* <Tooltip content={() => null} cursor={false} /> */}
 
               {data.legend.map((item) =>
@@ -381,7 +409,7 @@ const PerformanceOverview = () => {
                   opacity={selectedMetric === item.name ? 1 : 0.4}
                   activeDot={
                     selectedMetric === item.name ? (
-                      <CustomActiveDot color={item.color} />
+                      <CustomActiveDot color={item.color} theme={theme} />
                     ) : (
                       false
                     )

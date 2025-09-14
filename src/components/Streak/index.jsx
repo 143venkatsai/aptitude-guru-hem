@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { PieChart, Pie, Cell } from "recharts";
+
+import ThemeContext from "../../context/ThemeContext";
+
 import fire from "../../assets/fire.png";
 
 import {
@@ -32,12 +35,14 @@ const practiceData = [
   { id: 3, name: "Logical Reasoning", completed: 12, total: 20 },
 ];
 const Streak = () => {
+  const { theme } = useContext(ThemeContext);
+
   return (
     <>
       <StreakSection>
-        <StreakTopSection>
-          <StreakTopTitle>You are almost there</StreakTopTitle>
-          <StreakInfo>Keep Going !!</StreakInfo>
+        <StreakTopSection theme={theme}>
+          <StreakTopTitle theme={theme}>You are almost there</StreakTopTitle>
+          <StreakInfo theme={theme}>Keep Going !!</StreakInfo>
           <div style={{ width: 180, height: 180, position: "relative" }}>
             <PieChart width={180} height={180}>
               <Pie
@@ -79,18 +84,25 @@ const Streak = () => {
                   style={{ height: "50px", width: "50px" }}
                 />
               </span>
-              <div style={{ fontSize: 28, fontWeight: "600", color: "#222" }}>
+              <div
+                style={{
+                  fontSize: 28,
+                  fontWeight: "600",
+                  color: theme === "light" ? "#222" : "#ffffff",
+                }}
+              >
                 {progress}%
               </div>
             </div>
           </div>
-          <StreakMessage>
+          <StreakMessage theme={theme}>
             You are about to achieve your target of 10 LPA
           </StreakMessage>
           <StreakButton>Continue Practice</StreakButton>
         </StreakTopSection>
-        <StreakBottomSection>
-          <StreakBottomTitle>Practice Activity</StreakBottomTitle>
+
+        <StreakBottomSection theme={theme}>
+          <StreakBottomTitle theme={theme}>Practice Activity</StreakBottomTitle>
           <StreakPracticeContainer>
             {practiceData.map((item) => {
               const widthPercent = (item.completed / item.total) * 100;
@@ -98,8 +110,12 @@ const Streak = () => {
               return (
                 <div key={item.id} style={{ marginBottom: "1rem" }}>
                   <StreakPracticeSession>
-                    <StreakPracticeTitle>{item.name}</StreakPracticeTitle>
-                    <StreakPracticeCount>{`${item.completed}/${item.total}`}</StreakPracticeCount>
+                    <StreakPracticeTitle theme={theme}>
+                      {item.name}
+                    </StreakPracticeTitle>
+                    <StreakPracticeCount
+                      theme={theme}
+                    >{`${item.completed}/${item.total}`}</StreakPracticeCount>
                   </StreakPracticeSession>
                   <StreakRangeContainer>
                     <StreakRange value={widthPercent} />

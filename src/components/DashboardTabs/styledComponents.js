@@ -5,10 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const DashboardContainer = styled.section`
   display: flex;
   flex-direction: column;
-  margin: 1rem 1rem;
+  margin: 0rem 1rem;
+  padding: 1rem 0rem;
   @media (min-width: 1024px) {
     margin: 0rem 5rem;
-    margin-bottom: 1rem;
+    padding-bottom: 1rem;
 `;
 
 export const TabRow = styled.div`
@@ -30,17 +31,22 @@ export const Tab = styled.div`
   margin: auto;
   border-radius: 4px;
   cursor: pointer;
-  background-color: ${(props) => (props.isActive ? "#DCDCDC" : "#ECECEC")};
+  background-color: ${(props) => {
+    if (props.isActive) {
+      return props.themeMode === "light" ? "#DCDCDC" : "#5c5c5c";
+    }
+    return props.themeMode === "light" ? "#ECECEC" : "#343434";
+  }};
 `;
 
 export const TabIcon = styled(FontAwesomeIcon)`
-  color: #444444;
+  color: ${(props) => (props.theme === "light" ? "#444444" : "#DCDCDC")};
 `;
 
 export const TabTitle = styled.h1`
   font-size: 14px;
   font-weight: 500;
-  color: #444444;
+  color: ${(props) => (props.theme === "light" ? "#444444" : "#DCDCDC")};
   margin-left: 4px;
   @media (min-width: 1024px) {
     font-size: 16px;
@@ -51,7 +57,8 @@ export const TabTitle = styled.h1`
 export const RecentTabContainer = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid #e4e4e7;
+  border: 1px solid
+    ${(props) => (props.theme === "light" ? "#e4e4e7" : "#505050")};
   border-radius: 8px;
   margin: 1rem 0rem;
 `;
@@ -60,6 +67,7 @@ export const RecentTopContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 55px;
   padding: 0.5rem 1rem;
   @media (min-width: 1024px) {
     padding: 0.5rem 3rem;
@@ -69,7 +77,7 @@ export const RecentTopContainer = styled.div`
 export const RecentTabTitle = styled.h1`
   font-size: 16px;
   font-weight: 500;
-  color: #737373;
+  color: ${(props) => (props.theme === "light" ? "#737373" : "#ffffff")};
   @media (min-width: 1024px) {
     font-size: 20px;
     font-weight: 600;
@@ -93,7 +101,12 @@ export const QuestionItem = styled.li`
   align-items: center;
   padding: 0.5rem 1rem;
   height: 55px;
-  background-color: ${(props) => (props.isTrue ? "" : "#F8F8F8")};
+  background-color: ${(props) => {
+    if (props.isTrue) {
+      return props.themeMode === "light" ? "#f8f8f8" : "#343434";
+    }
+  }};
+  border-radius: 7px;
   @media (min-width: 1024px) {
     padding: 0.5rem 3rem;
   }
@@ -120,7 +133,7 @@ export const Question = styled.h1`
 export const Time = styled.p`
   font-size: 14px;
   font-weight: 500;
-  color: #848382;
+  color: ${(props) => (props.theme === "light" ? "#848382" : "#ffffff")};
   margin-left: auto;
   margin-right: 10px;
   @media (min-width: 1024px) {
@@ -148,6 +161,7 @@ export const LearningTopContainer = styled.div`
 export const LearningTitle = styled.h1`
   font-size: 16px;
   font-weight: 600px;
+  color: ${(props) => (props.theme === "light" ? "#737373" : "#ffffff")};
   @media (min-width: 1024px) {
     font-size: 24px;
     font-weight: 600;
@@ -180,13 +194,14 @@ export const CoursesList = styled.ul`
 export const CourseItem = styled.li`
   display: flex;
   flex-direction: column;
-  border: 1px solid #e4e4e7;
-  box-shadow: 2px;
+  border: 1px solid
+    ${(props) => (props.theme === "light" ? "#e4e4e7" : "#505050")};
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  width: 280px; /* width less than 300px to fit padding + gap */
+  width: 280px;
 
   @media (min-width: 1024px) {
-    width: calc((100% - 3 * 16px) / 4); /* 4 items per row with gaps */
+    width: calc((100% - 3 * 16px) / 4);
   }
 `;
 
@@ -218,7 +233,7 @@ export const CourseDetails = styled.div`
 export const CourseTitle = styled.h1`
   font-size: 16px;
   font-weight: 600;
-  color: #212121;
+  color: ${(props) => (props.theme === "light" ? "#212121 " : "#ffffff")};
   margin-bottom: 1rem;
 `;
 
@@ -228,20 +243,20 @@ export const CourseBottomContainer = styled.div`
 `;
 
 export const AuthorIcon = styled(FontAwesomeIcon)`
-  color: #444444;
+  color: ${(props) => (props.theme === "light" ? "#212121 " : "#ffffff")};
 `;
 
 export const AuthorName = styled.h1`
   font-size: 14px;
   font-weight: 500;
-  color: #444444;
+  color: ${(props) => (props.theme === "light" ? "#212121 " : "#ffffff")};
   margin-left: 2px;
 `;
 
 export const CourseDuration = styled.p`
   font-size: 10px;
   font-weight: 600;
-  color: #444444;
+  color: ${(props) => (props.theme === "light" ? "#212121 " : "#ffffff")};
   margin-left: auto;
 `;
 
@@ -301,11 +316,12 @@ export const EmptyHeading = styled.h1`
   font-size: 16px;
   font-weight: 700;
   text-align: center;
+  color: ${(props) => (props.theme === "light" ? "#212121 " : "#ffffff")};
 `;
 
 export const EmptyInfo = styled.p`
   font-size: 14px;
-  color: #767676;
+  color: ${(props) => (props.theme === "light" ? "#212121 " : "#ffffff")};
   text-align: center;
 `;
 

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   faRotateRight,
   faBook,
   faUser,
   faPlay,
 } from "@fortawesome/free-solid-svg-icons";
+
+import ThemeContext from "../../context/ThemeContext";
 
 import {
   DashboardContainer,
@@ -108,7 +110,8 @@ const tabContent = [
 ];
 
 const DashboardTabs = () => {
-  const [activeTab, setActiveTab] = useState("recent"); // Default tab
+  const [activeTab, setActiveTab] = useState();
+  const { theme } = useContext(ThemeContext);
 
   const hasQuestions = recent.length > 0;
   const hasCourses = courses.length > 0;
@@ -122,25 +125,30 @@ const DashboardTabs = () => {
               key={item.id}
               isActive={activeTab === item.id}
               onClick={() => setActiveTab(item.id)}
+              themeMode={theme}
             >
-              <TabIcon icon={item.image} />
-              <TabTitle>{item.value}</TabTitle>
+              <TabIcon icon={item.image} theme={theme} />
+              <TabTitle theme={theme}>{item.value}</TabTitle>
             </Tab>
           ))}
         </TabRow>
 
         {activeTab === "recent" &&
           (hasQuestions ? (
-            <RecentTabContainer>
+            <RecentTabContainer theme={theme}>
               <RecentTopContainer>
-                <RecentTabTitle>Problems</RecentTabTitle>
+                <RecentTabTitle theme={theme}>Problems</RecentTabTitle>
                 <RecentTabInfo>View all submission</RecentTabInfo>
               </RecentTopContainer>
               <RecentQuestions>
                 {recent.map((item, index) => (
-                  <QuestionItem key={index} isTrue={index % 2 !== 0}>
+                  <QuestionItem
+                    key={index}
+                    isTrue={index % 2 === 0}
+                    themeMode={theme}
+                  >
                     <Question>{item.title}</Question>
-                    <Time>{item.ago}</Time>
+                    <Time theme={theme}>{item.ago}</Time>
                   </QuestionItem>
                 ))}
               </RecentQuestions>
@@ -148,8 +156,10 @@ const DashboardTabs = () => {
           ) : (
             <EmptyContainer>
               <EmptyImageTop src={chatGpt3} alt="No data" />
-              <EmptyHeading>No recently accepted questions</EmptyHeading>
-              <EmptyInfo>
+              <EmptyHeading theme={theme}>
+                No recently accepted questions
+              </EmptyHeading>
+              <EmptyInfo theme={theme}>
                 Start Practicing, Your accepted questions will appear here
               </EmptyInfo>
             </EmptyContainer>
@@ -165,7 +175,7 @@ const DashboardTabs = () => {
               <CoursesListWrapper>
                 <CoursesList>
                   {courses.map((item) => (
-                    <CourseItem key={item.id}>
+                    <CourseItem key={item.id} theme={theme}>
                       <CourseImageWrapper>
                         <CourseImage src={item.img} alt={item.title} />
                         <PlayIconContainer>
@@ -176,11 +186,13 @@ const DashboardTabs = () => {
                         <CourseProgress></CourseProgress>
                       </CourseProgressContainer>
                       <CourseDetails>
-                        <CourseTitle>{item.title}</CourseTitle>
+                        <CourseTitle theme={theme}>{item.title}</CourseTitle>
                         <CourseBottomContainer>
-                          <AuthorIcon icon={faUser} />
-                          <AuthorName>{item.author}</AuthorName>
-                          <CourseDuration>{item.time}</CourseDuration>
+                          <AuthorIcon icon={faUser} theme={theme} />
+                          <AuthorName theme={theme}>{item.author}</AuthorName>
+                          <CourseDuration theme={theme}>
+                            {item.time}
+                          </CourseDuration>
                         </CourseBottomContainer>
                       </CourseDetails>
                     </CourseItem>
@@ -191,8 +203,8 @@ const DashboardTabs = () => {
           ) : (
             <EmptyContainer>
               <EmptyImage src={chatGpt4} alt="No data" />
-              <EmptyHeading>No courses yet!</EmptyHeading>
-              <EmptyInfo>
+              <EmptyHeading theme={theme}>No courses yet!</EmptyHeading>
+              <EmptyInfo theme={theme}>
                 Your learning journey starts here! You haven’t enrolled in any
                 courses yet.
               </EmptyInfo>

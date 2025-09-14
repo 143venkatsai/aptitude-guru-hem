@@ -142,7 +142,7 @@ const Header = () => {
 
   return (
     <>
-      <NavContainer bgColor={bgColor}>
+      <NavContainer bgColor={bgColor} theme={theme}>
         {/* Mobile Menu Icon */}
         <MenuIconContainer onClick={() => setIsMenuOpen(!isMenuOpen)}>
           {isMenuOpen ? (

@@ -8,9 +8,10 @@ export const NavContainer = styled.nav`
   justify-content: flex-start;
   align-items: center;
   padding: 0.5rem 1rem;
-  border-bottom-width: 1px;
+  border-bottom-width: 0.5px;
   border-bottom-style: solid;
-  border-bottom-color: #cbd5e0;
+  border-bottom-color: ${(props) =>
+    props.theme === "light" ? "#B3B3B3" : "#D3D3D3"};
   background-color: ${({ bgColor }) => bgColor};
   color: ${({ textColor }) => textColor};
   @media (min-width: 1024px) {

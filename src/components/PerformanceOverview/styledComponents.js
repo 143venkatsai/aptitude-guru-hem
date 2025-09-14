@@ -16,15 +16,44 @@ export const ButtonsContainer = styled.div`
 
 export const Button = styled.button`
   padding: 0.5rem 0.5rem;
-  border: none;
   border-radius: 8px;
-  border: 1px solid ${(props) => (props.active ? "#519CCD" : "#D4D4D4")};
-  color: ${(props) => (props.active ? "#519CCD" : "#9D9D9D")};
-  cursor: pointer;
   font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  border: 1px solid
+    ${(props) =>
+      props.active
+        ? props.themeMode === "dark"
+          ? "#9BC6E2"
+          : "#519CCD"
+        : "#D4D4D4"};
+
+  color: ${(props) =>
+    props.active
+      ? props.themeMode === "dark"
+        ? "#BBD9EB"
+        : "#519CCD"
+      : props.themeMode === "dark"
+      ? "#DCDCDC"
+      : "#9D9D9D"};
+
+  background-color: ${(props) =>
+    props.active
+      ? props.themeMode === "dark"
+        ? "#53BFFF33"
+        : "#E9F3F9"
+      : "transparent"};
+
   &:hover {
-    color: ${(props) => (props.active ? "" : "#519CCD")};
+    color: ${(props) =>
+      !props.active
+        ? props.themeMode === "dark"
+          ? "#519CCD"
+          : "#519CCD"
+        : ""};
   }
+
   @media (min-width: 1024px) {
     font-size: 14px;
     padding: 0.5rem 1rem;
@@ -32,7 +61,8 @@ export const Button = styled.button`
 `;
 
 export const Card = styled.div`
-  border: 1px solid #e4e4e7;
+  border: 1px solid
+    ${(props) => (props.theme === "light" ? "#e4e4e7" : "#505050")};
   border-radius: 16px;
   padding: 1rem;
 `;
@@ -61,7 +91,7 @@ export const Title = styled.h1`
   font-weight: 600;
   margin-bottom: 1.5rem;
   margin-top: 0.2rem;
-  color: #444444;
+  color: ${(props) => (props.theme === "light" ? "#444444" : "#ffffff")};
 `;
 
 export const Flex = styled.div`
@@ -131,7 +161,7 @@ export const LegendStyled = styled.div`
 
 export const LegendTitle = styled.h2`
   font-size: 12px;
-  color: ${(props) => (props.isActive ? "#343434" : "#9D9D9D")};
+  color: ${(props) => (props.theme === "light" ? "#343434" : "#DCDCDC")};
   @media (min-width: 1024px) {
     font-size: 14px;
   }
@@ -199,13 +229,13 @@ export const AverageScoreContainer = styled.div`
 
 export const LegendScoreHeading = styled.h1`
   font-size: 14px;
-  color: #777575;
+  color: ${(props) => (props.theme === "light" ? "#777575" : "#ffffff")};
   font-weight: 500;
 `;
 
 export const LegendScore = styled.h1`
   font-size: 24px;
-  color: #343434;
+  color: ${(props) => (props.theme === "light" ? "#343434" : "#DCDCDC")};
   font-weight: 500;
 `;
 
@@ -217,7 +247,7 @@ export const TitleMobile = styled.h1`
     font-weight: 600;
     margin-bottom: 1.5rem;
     margin-top: 0.2rem;
-    color: #444444;
+    color: ${(props) => (props.theme === "light" ? "#444444" : "#ffffff")};
   }
 `;
 
@@ -230,6 +260,7 @@ export const MobileContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-bottom: 0px;
   }
 `;
 
@@ -253,7 +284,7 @@ export const PerformanceEmptyContainer = styled.div`
 export const EmptyHeading = styled.h1`
   font-size: 20px;
   font-weight: 600;
-  color: #444444;
+  color: ${(props) => (props.theme === "light" ? "#444444" : "#ffffff")};
 `;
 export const EmptyImage = styled.img`
   height: 300px;
@@ -264,12 +295,12 @@ export const EmptyImage = styled.img`
 export const EmptyInfo = styled.h1`
   font-size: 16px;
   font-weight: 700;
-  color: #767676;
+  color: ${(props) => (props.theme === "light" ? "#767676" : "#ffffff")};
   text-align: center;
 `;
 export const EmptyMessage = styled.p`
   font-size: 16px;
-  color: #767676;
+  color: ${(props) => (props.theme === "light" ? "#767676" : "#ffffff")};
   text-align: center;
   margin-top: 0.5rem;
 `;

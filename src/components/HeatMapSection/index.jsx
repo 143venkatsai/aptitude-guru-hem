@@ -1,5 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { ActivityHeatmap } from "react-activity-heatmap";
+
+import ThemeContext from "../../context/ThemeContext";
 
 import {
   HeatMapContainer,
@@ -47,7 +49,7 @@ const endDate = new Date(today);
 endDate.setDate(endDate.getDate() + 364);
 
 const colors = {
-  level0: "#B3B3B3",
+  level0: "#B3B3B399",
   level1: "#ACEEBB",
   level2: "#4AC26B",
   level3: "#2DA44E",
@@ -56,9 +58,10 @@ const colors = {
 
 const HeatMapSection = () => {
   const [hoveredActivity, setHoveredActivity] = useState(null);
+  const [popoverPos, setPopoverPos] = useState({ x: 0, y: 0 });
   const popoverRef = useRef();
+  const { theme } = useContext(ThemeContext);
 
-  // close popover if clicked outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (popoverRef.current && !popoverRef.current.contains(e.target)) {
@@ -69,25 +72,82 @@ const HeatMapSection = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  console.log(hoveredActivity);
+  // Popover floating card like PerformanceOverview
+  const FloatingCard = ({ activity, x, y }) => {
+    return (
+      <foreignObject x={x} y={y} width={180} height={100}>
+        <div
+          style={{
+            position: "relative",
+            background: "#000",
+            borderRadius: "16px",
+            color: "#fff",
+            padding: "12px",
+            // textAlign: "center",
+            fontFamily: "sans-serif",
+            boxShadow: "0px 2px 6px rgba(0,0,0,0.15)",
+            zIndex: 9999,
+          }}
+        >
+          {/* <div
+            style={{ fontSize: "14px", fontWeight: "600", marginBottom: "4px" }}
+          >
+            Activity Details
+          </div> */}
+          <div style={{ fontSize: "12px", marginBottom: "4px" }}>
+            {new Date(activity.date).toLocaleDateString("en-GB", {
+              day: "2-digit",
+              month: "long",
+              year: "numeric",
+            })}
+          </div>
+          <div
+            style={{
+              fontSize: "12px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "4px",
+            }}
+          >
+            <p>Aptitude: {activity.count}</p>
+            <p>Technical: {activity.count}</p>
+            <p>No. of Attempts: {activity.count}</p>
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              top: "20%",
+              left: "-13px", // move it to the left edge of the card
+              transform: "translateY(-50%)",
+              width: 0,
+              height: 0,
+              borderTop: "6px solid transparent",
+              borderBottom: "6px solid transparent",
+              borderRight: "6px solid #000", // solid border on right makes arrow point left
+            }}
+          />
+        </div>
+      </foreignObject>
+    );
+  };
 
   return (
-    <HeatMapContainer>
+    <HeatMapContainer theme={theme}>
       {/* Top Section */}
       <HeatMapTopSection>
         <HeatMapMobileLeftSection>
           <HoursMobile>
-            <Hours>230</Hours>
-            <Months>Hours in last</Months>
+            <Hours theme={theme}>230</Hours>
+            <Months theme={theme}>Hours in last</Months>
           </HoursMobile>
-          <Months>6 Months</Months>
+          <Months theme={theme}>6 Months</Months>
         </HeatMapMobileLeftSection>
         <HeatMapLeftSection>
-          <Hours>230</Hours>
-          <Months>Hours in last 6 Months</Months>
+          <Hours theme={theme}>230</Hours>
+          <Months theme={theme}>Hours in last 6 Months</Months>
         </HeatMapLeftSection>
         <HeatMapRightSection>
-          <MaxStreak>Max Streak : 11</MaxStreak>
+          <MaxStreak theme={theme}>Max Streak : 11</MaxStreak>
           <SelectContainer>
             <option>Current</option>
           </SelectContainer>
@@ -99,61 +159,29 @@ const HeatMapSection = () => {
         style={{
           overflowX: "auto",
           WebkitOverflowScrolling: "touch",
-          padding: "10px",
+          paddingTop: "10px",
           maxWidth: "100%",
-          color: "#777676",
         }}
         className="hide-scrollbar"
       >
-        <div style={{ minWidth: "900px" }}>
+        <div style={{ minWidth: "900px", position: "relative" }}>
           <ActivityHeatmap
             activities={activities}
             startDate={startDate}
             endDate={endDate}
             cellColors={colors}
-            renderTooltip={(activity) => {
+            renderTooltip={(activity, index, rect) => {
               if (!activity) return null;
-              console.log(activity);
 
-              return (
-                <div
-                  onMouseEnter={() => setHoveredActivity(activity)}
-                  onMouseLeave={() => setHoveredActivity(null)}
-                />
-              );
+              // rect contains the bounding rectangle of the hovered cell
+              const x = rect ? rect.x + rect.width / 2 : 0;
+              const y = rect ? rect.y - 110 : 0;
+
+              return <FloatingCard activity={activity} x={x} y={y} />;
             }}
           />
         </div>
       </div>
-
-      {/* Popover like your UMF/MGO */}
-      {hoveredActivity && (
-        <div
-          ref={popoverRef}
-          className="absolute left-20 mt-4 w-[280px] bg-white rounded-xl shadow-lg border border-gray-200 z-50"
-        >
-          {/* Arrow */}
-          <div className="absolute -top-2 left-6 w-4 h-4 bg-white border-l border-t border-gray-200 rotate-45"></div>
-
-          <div className="p-4 space-y-3">
-            <div className="bg-gray-100 rounded-md p-4">
-              <h2 className="font-bold">Activity Details</h2>
-              <p className="text-sm text-gray-600">
-                {new Date(hoveredActivity.date).toLocaleDateString("en-GB", {
-                  day: "2-digit",
-                  month: "long",
-                  year: "numeric",
-                })}
-              </p>
-              <div className="mt-3 text-sm">
-                <p>Aptitude: {hoveredActivity.count || 0}</p>
-                <p>Technical: {hoveredActivity.count || 0}</p>
-                <p>No. of Attempts: {hoveredActivity.count || 0}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Custom Styles */}
       <style>{`
