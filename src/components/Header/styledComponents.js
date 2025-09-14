@@ -317,7 +317,7 @@ export const DropdownItemProfile = styled(NavLink)`
   border-radius: 6px;
 
   &:hover {
-    background: #262626;
+    background: ${(props) => (props.theme === "light" ? "#DCDCDC" : "#262626")};
   }
 `;
 

@@ -189,7 +189,7 @@ const Header = () => {
           </ProfileContainer>
           {dropDown && (
             <DropdownMenu theme={theme}>
-              <DropdownItemProfile to="/profile">
+              <DropdownItemProfile to="/profile" theme={theme}>
                 <img
                   src={mobileIcon6}
                   alt="Profile"
