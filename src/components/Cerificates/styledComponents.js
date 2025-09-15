@@ -23,7 +23,7 @@ export const CertificatesList = styled.ul`
   display: flex;
   flex-direction: column;
   padding-left: 0px;
-  gap: 10px;
+  gap: 32px;
   @media (min-width: 786px) {
     display: flex;
     flex-direction: row;
