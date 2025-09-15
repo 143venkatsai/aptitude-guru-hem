@@ -497,7 +497,13 @@ const PerformanceOverview = () => {
                 top: "50%",
               }}
             >
-              <MdArrowBackIos />
+              <MdArrowBackIos
+                style={{
+                  color: theme === "light" ? "#000" : "fff",
+                  height: "20px",
+                  width: "20px",
+                }}
+              />
             </button>
             <button
               onClick={handleNext}
@@ -514,7 +520,13 @@ const PerformanceOverview = () => {
                 top: "50%",
               }}
             >
-              <MdArrowForwardIos />
+              <MdArrowForwardIos
+                style={{
+                  color: theme === "light" ? "#000" : "fff",
+                  height: "20px",
+                  width: "20px",
+                }}
+              />
             </button>
           </div>
         </Card>
