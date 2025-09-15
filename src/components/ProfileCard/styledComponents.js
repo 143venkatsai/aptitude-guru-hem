@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
 
@@ -79,7 +81,7 @@ export const ProfileCertificates = styled.div`
   gap: 1rem;
 `;
 
-export const CertificatesContainer = styled.div`
+export const CertificatesContainer = styled(NavLink)`
   background-color: #e9f3f9;
   padding: 0.5rem;
   display: flex;

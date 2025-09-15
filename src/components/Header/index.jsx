@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
-import { NavLink } from "react-router-dom";
-import { MdKeyboardArrowDown } from "react-icons/md";
-import { IoMdArrowDropdown } from "react-icons/io";
+// import { NavLink } from "react-router-dom";
+// import { MdKeyboardArrowDown } from "react-icons/md";
+// import { IoMdArrowDropdown } from "react-icons/io";
 // import { IoClose, IoMenu } from "react-icons/io5";
+import { FaUser } from "react-icons/fa6";
+import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
 
 import {
   faBars,
@@ -187,13 +189,16 @@ const Header = () => {
               textColor={textColor}
             />
           </ProfileContainer>
+
           {dropDown && (
             <DropdownMenu theme={theme}>
               <DropdownItemProfile to="/profile" theme={theme}>
-                <img
-                  src={mobileIcon6}
-                  alt="Profile"
-                  style={{ width: 22, height: 22 }}
+                <FaUser
+                  style={{
+                    width: 22,
+                    height: 22,
+                    color: theme === "light" ? "#343434" : "#ECECEC",
+                  }}
                 />
                 <span
                   style={{ color: theme === "light" ? "#343434" : "#ECECEC" }}
@@ -202,10 +207,12 @@ const Header = () => {
                 </span>
               </DropdownItemProfile>
               <DropdownItem>
-                <img
-                  src={mobileIcon7}
-                  alt="Appearance"
-                  style={{ width: 22, height: 22 }}
+                <MdOutlineLightMode
+                  style={{
+                    width: 25,
+                    height: 25,
+                    color: theme === "light" ? "#343434" : "#ECECEC",
+                  }}
                 />
                 <span
                   style={{ color: theme === "light" ? "#343434" : "#ECECEC" }}
@@ -214,19 +221,40 @@ const Header = () => {
                 </span>
                 <ThemeContainer theme={theme}>
                   <ThemeButton
-                    active={theme === "light"}
                     aria-label="Light theme"
                     onClick={() => setTheme("light")}
-                    theme={theme}
+                    style={{
+                      height: 30,
+                      width: 30,
+                      backgroundColor: theme === "light" ? "#FD6A7F" : "",
+                      borderRadius: "50%",
+                    }}
                   >
-                    <ThemeIcon icon={faSun} isTheme={theme === "light"} />
+                    <MdOutlineLightMode
+                      style={{
+                        color: "#fff",
+                        height: 20,
+                        width: 20,
+                      }}
+                    />
                   </ThemeButton>
                   <ThemeButton
-                    active={theme === "dark"}
                     aria-label="Dark theme"
                     onClick={() => setTheme("dark")}
+                    style={{
+                      height: 30,
+                      width: 30,
+                      backgroundColor: theme === "dark" ? "#FD6A7F" : "",
+                      borderRadius: "50%",
+                    }}
                   >
-                    <MoonIcon icon={faMoon} isTheme={theme === "dark"} />
+                    <MdOutlineDarkMode
+                      style={{
+                        color: theme === "light" ? "#262626" : "#fff",
+                        height: 20,
+                        width: 20,
+                      }}
+                    />
                   </ThemeButton>
                 </ThemeContainer>
               </DropdownItem>

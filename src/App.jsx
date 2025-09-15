@@ -6,6 +6,7 @@ import Assessments from "./components/Assessments";
 import ProfileSection from "./components/ProfileSection";
 
 import { ThemeProvider } from "./context/ThemeContext.jsx";
+import Certificates from "./components/Cerificates/index.jsx";
 
 const App = () => {
   return (
@@ -14,7 +15,8 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/assessments" element={<Assessments />} />
-          <Route exact path="/profile" element={<ProfileSection />} />?{" "}
+          <Route exact path="/profile" element={<ProfileSection />} />
+          <Route exact path="/certificates" element={<Certificates />} />
         </Routes>
       </Router>
     </ThemeProvider>

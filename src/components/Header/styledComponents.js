@@ -348,8 +348,8 @@ export const ThemeContainer = styled.div`
   border-radius: 999px;
   padding: 2px 4px;
   background: ${(props) => (props.theme === "light" ? "#fff" : "#434343")};
-  width: 100px;
-  height: 36px;
+  width: 80px;
+  height: 35px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 `;
 

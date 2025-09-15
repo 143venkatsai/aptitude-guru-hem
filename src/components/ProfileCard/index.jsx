@@ -111,7 +111,7 @@ const skills = [
 
 const ProfileCard = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [streakValue, setStreakValue] = useState();
+  const [streakValue, setStreakValue] = useState(0);
   const [badges, setBadges] = useState(0);
   const { theme } = useContext(ThemeContext);
 
@@ -145,7 +145,7 @@ const ProfileCard = () => {
 
         {/* Certificates and Badges */}
         <ProfileCertificates>
-          <CertificatesContainer>
+          <CertificatesContainer to="/certificates">
             {/* <CertificateIconContainer>
               <CertificateIcon icon={faCertificate} />
             </CertificateIconContainer> */}
