@@ -288,7 +288,7 @@ const Header = () => {
                   <ItemWithIcon>
                     <item.newIcon
                       style={{
-                        marginRight: "0.75rem",
+                        marginRight: "20px",
                         width: "24px",
                         height: "24px",
                         objectFit: "contain",
@@ -319,7 +319,7 @@ const Header = () => {
               >
                 <MdOutlineLightMode
                   style={{
-                    marginRight: "0.75rem",
+                    marginRight: "20px",
                     width: "24px",
                     height: "24px",
                     objectFit: "contain",
@@ -372,7 +372,7 @@ const Header = () => {
               style={{
                 width: "24px",
                 height: "24px",
-                marginRight: "16px",
+                marginRight: "20px",
                 color: "#6C7072",
               }}
             />
@@ -393,7 +393,7 @@ const Header = () => {
               style={{
                 width: "24px",
                 height: "24px",
-                marginRight: "16px",
+                marginRight: "20px",
                 color: "#6C7072",
               }}
             />
@@ -414,7 +414,7 @@ const Header = () => {
               style={{
                 width: "24px",
                 height: "24px",
-                marginRight: "16px",
+                marginRight: "20px",
                 color: "#6C7072",
               }}
             />
