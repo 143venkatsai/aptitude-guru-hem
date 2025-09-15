@@ -1,17 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
-// import { NavLink } from "react-router-dom";
-// import { MdKeyboardArrowDown } from "react-icons/md";
-// import { IoMdArrowDropdown } from "react-icons/io";
-// import { IoClose, IoMenu } from "react-icons/io5";
+
 import { FaUser } from "react-icons/fa6";
-import {
-  MdOutlineLightMode,
-  MdOutlineDarkMode,
-  MdKeyboardArrowDown,
-  MdOutlineChevronRight,
-  MdLogout,
-  MdOutlineLeaderboard,
-} from "react-icons/md";
 import { FiHome, FiMenu } from "react-icons/fi";
 import { CgNotes } from "react-icons/cg";
 import { PiListChecksLight, PiBuildingOffice } from "react-icons/pi";
@@ -20,15 +9,14 @@ import { VscColorMode } from "react-icons/vsc";
 import { IoClose } from "react-icons/io5";
 import { BiSolidDownArrow } from "react-icons/bi";
 import { IoIosArrowBack } from "react-icons/io";
-
-// import {
-//   faBars,
-//   faAngleDown,
-//   faTimes,
-//   faCaretDown,
-//   faMoon,
-//   faSun,
-// } from "@fortawesome/free-solid-svg-icons";
+import {
+  MdOutlineLightMode,
+  MdOutlineDarkMode,
+  MdKeyboardArrowDown,
+  MdOutlineChevronRight,
+  MdLogout,
+  MdOutlineLeaderboard,
+} from "react-icons/md";
 
 import ThemeContext from "../../context/ThemeContext.jsx";
 
@@ -36,28 +24,11 @@ import header1 from "../../assets/header1.png";
 import header2 from "../../assets/header2.png";
 import profileLogo from "../../assets/profileLogo.png";
 
-// import logo from "../../assets/headerLogo.png";
-// import mobileIcon1 from "../../assets/mobileicon1.png";
-// import mobileIcon2 from "../../assets/mobileIcon2.png";
-// import mobileIcon3 from "../../assets/mobileIcon3.png";
-// import mobileIcon4 from "../../assets/mobileIcon4.png";
-// import mobileIcon5 from "../../assets/mobileIcon5.png";
-// import mobileIcon6 from "../../assets/mobileIcon6.png";
-// import mobileIcon7 from "../../assets/mobileIcon7.png";
-// import mobileIcon8 from "../../assets/mobileIcon8.png";
-// import deviceTheme from "../../assets/deviceTheme.png";
-// import backArrow from "../../assets/backArrow.png";
-// import sun from "../../assets/sun.png";
-// import footerLogo3 from "../../assets/footerLogo3.png";
-
 import {
   AppearanceHeader,
   AppearanceModal,
   AppearanceOption,
   BackArrow,
-  DownArrowIcon,
-  DropdownIcon,
-  DropdownIconMobile,
   DropdownItem,
   DropdownItemProfile,
   DropdownLogout,
@@ -75,11 +46,9 @@ import {
   MobileProfile,
   MobileProfileImage,
   MobileProfileName,
-  MoonIcon,
   NavContainer,
   NavItem,
   NavList,
-  OptionIcon,
   OptionText,
   ProfileContainer,
   ProfileImage,
@@ -87,19 +56,14 @@ import {
   ProfileText,
   RadioInner,
   RadioOuter,
-  StyledIcon,
   StyledNavLink,
   StyledNavLinkLeft,
   StyledNavLinkProfile,
   StyledNavLinkProfileApperance,
   ThemeButton,
   ThemeContainer,
-  ThemeIcon,
   Underline,
 } from "./styledComponents";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-// import "/index.css";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -143,7 +107,7 @@ const Header = () => {
   };
 
   const handleLeave = () => {
-    timeoutId = setTimeout(() => setDropDown(false), 200); // 200ms delay
+    timeoutId = setTimeout(() => setDropDown(false), 200);
   };
 
   const bgColor = theme === "dark" ? "#262626" : "#ffffff";
@@ -175,12 +139,10 @@ const Header = () => {
         {/* Mobile Menu Icon */}
         <MenuIconContainer onClick={() => setIsMenuOpen(!isMenuOpen)}>
           {isMenuOpen ? (
-            // <StyledIcon icon={faTimes} textColor={textColor} />
             <IoClose
               style={{ color: textColor, height: "30px", width: "30px" }}
             />
           ) : (
-            // <StyledIcon icon={faBars} textColor={textColor} />
             <FiMenu
               style={{ color: textColor, height: "30px", width: "30px" }}
             />
@@ -208,7 +170,6 @@ const Header = () => {
             >
               Company Specific
             </StyledNavLinkLeft>
-            {/* <DownArrowIcon icon={faAngleDown} textColor={textColor} /> */}
             <MdKeyboardArrowDown
               style={{
                 color: textColor,
@@ -224,11 +185,6 @@ const Header = () => {
           <ProfileContainer>
             <ProfileImage src={profileLogo} alt="Profile" />
             <ProfileText textColor={textColor}>Hi, Muskan</ProfileText>
-            {/* <DropdownIcon
-              icon={faCaretDown}
-              // onClick={() => setDropDown(!dropDown)}
-              textColor={textColor}
-            /> */}
             <BiSolidDownArrow
               style={{
                 color: textColor,
@@ -330,16 +286,6 @@ const Header = () => {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <ItemWithIcon>
-                    {/* <img
-                      src={item.icon}
-                      alt={`${item.label} icon`}
-                      style={{
-                        marginRight: "0.75rem",
-                        width: "24px",
-                        height: "24px",
-                        objectFit: "contain",
-                      }}
-                    /> */}
                     <item.newIcon
                       style={{
                         marginRight: "0.75rem",
@@ -352,7 +298,6 @@ const Header = () => {
                     {["/assessments", "/company"].includes(item.to) ? (
                       <>
                         <p style={{ color: "#0F0F0F" }}>{item.label}</p>
-                        {/* <DropdownIconMobile icon={faAngleDown} /> */}
                         <MdOutlineChevronRight
                           style={{
                             marginLeft: "auto",
@@ -372,16 +317,6 @@ const Header = () => {
               <StyledNavLinkProfileApperance
                 onClick={() => setShowAppearanceOptions(true)}
               >
-                {/* <img
-                  src={mobileIcon7}
-                  alt="Appearance"
-                  style={{
-                    marginRight: "0.75rem",
-                    width: "24px",
-                    height: "24px",
-                    objectFit: "contain",
-                  }}
-                /> */}
                 <MdOutlineLightMode
                   style={{
                     marginRight: "0.75rem",
@@ -392,7 +327,6 @@ const Header = () => {
                   }}
                 />
                 <p style={{ color: "#0F0F0F" }}>Appearance</p>
-                {/* <DropdownIconMobile icon={faAngleDown} /> */}
                 <MdOutlineChevronRight
                   style={{
                     marginLeft: "auto",
@@ -405,7 +339,6 @@ const Header = () => {
           <div>
             <MobileLogoutContainer>
               <MobileLogoutButton>Logout</MobileLogoutButton>
-              {/* <img src={mobileIcon8} alt="Logout" /> */}
               <MdLogout
                 style={{
                   width: "16px",
@@ -423,7 +356,6 @@ const Header = () => {
         <AppearanceModal>
           <AppearanceHeader>
             <BackArrow onClick={() => setShowAppearanceOptions(false)}>
-              {/* <img src={backArrow} alt="Back Arrow" /> */}
               <IoIosArrowBack
                 style={{ width: "24px", height: "24px", color: "#6C7072" }}
               />
@@ -436,7 +368,6 @@ const Header = () => {
               setTheme("light");
             }}
           >
-            {/* <OptionIcon src={mobileIcon7} alt="Light theme" /> */}
             <MdOutlineLightMode
               style={{
                 width: "24px",
@@ -458,16 +389,6 @@ const Header = () => {
               setTheme("dark");
             }}
           >
-            {/* <FontAwesomeIcon
-              icon={faMoon}
-              alt="Dark theme"
-              style={{
-                color: "#848382",
-                marginRight: "16px",
-                height: "24px",
-                width: "24px",
-              }}
-            /> */}
             <MdOutlineDarkMode
               style={{
                 width: "24px",
@@ -489,7 +410,6 @@ const Header = () => {
               setTheme("device");
             }}
           >
-            {/* <OptionIcon src={deviceTheme} alt="Device theme" /> */}
             <VscColorMode
               style={{
                 width: "24px",
