@@ -275,7 +275,7 @@ const PerformanceOverview = () => {
       {data.chartData.length === 0 ? (
         <PerformanceEmptyState />
       ) : (
-        <Card position="relative" theme={theme}>
+        <Card theme={theme}>
           <CardTopContainer>
             <div>
               <Title theme={theme}>{title}</Title>

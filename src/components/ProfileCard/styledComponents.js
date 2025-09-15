@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { motion } from "framer-motion";
 
 export const ProfileCardContainer = styled.section`
   display: flex;
@@ -127,6 +128,7 @@ export const BadgeContainer = styled.div`
   padding: 0.5rem;
   display: flex;
   flex: 1;
+  cursor: pointer;
   align-items: center;
   border-radius: 8px;
 `;
@@ -284,4 +286,128 @@ export const EmptyMessage = styled.p`
   font-weight: 400;
   color: ${(props) => (props.theme === "light" ? "#767676" : "#ffffff")};
   text-align: center;
+`;
+
+// Model
+
+export const ModalOverlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center; /* center modal */
+  z-index: 1000;
+`;
+
+export const ModalContent = styled(motion.div)`
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  position: relative;
+  z-index: 1001;
+  width: 90%;
+  @media (min-width: 1024px) {
+    width: 40%;
+  }
+`;
+
+export const CloseButton = styled(FontAwesomeIcon)`
+  font-size: 18px;
+  cursor: pointer;
+`;
+
+export const ModelHeading = styled.h1`
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000;
+`;
+
+export const ModelTopContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const ModelBottomContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ModelDays = styled.p`
+  color: #666666;
+  font-weight: 600;
+  text-align: center;
+`;
+
+export const ModelMessage = styled.p`
+  font-size: 14px;
+  font-weight: 500;
+  color: #767676;
+  text-align: center;
+`;
+
+export const ModelImage = styled.img`
+  margin: auto;
+  height: 200px;
+  width: 200px;
+`;
+
+export const ModelBadges = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+`;
+
+export const CenterBadge = styled.img`
+  height: 100px;
+  width: 100px;
+  margin: 0px 10px;
+  @media (min-width: 1024px) {
+    height: 180px;
+    width: 180px;
+    margin: 0px 20px;
+  }
+`;
+
+export const SmallBadge = styled.img`
+  height: 70px;
+  width: 70px;
+  @media (min-width: 1024px) {
+    height: 120px;
+    width: 120px;
+  }
+`;
+
+export const ModelBadgeDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const ModelBadgeDetailsSmall = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: auto;
+`;
+
+export const BadgeName = styled.h1`
+  font-size: 14px;
+  font-weight: 600;
+  color: #000000;
+  margin-top: 10px;
+`;
+
+export const BadgesCount = styled.p`
+  font-size: 14px;
+  font-weight: 500;
+  color: #000000;
+  margin-top: 32px;
 `;

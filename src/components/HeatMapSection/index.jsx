@@ -117,13 +117,13 @@ const HeatMapSection = () => {
             style={{
               position: "absolute",
               top: "20%",
-              left: "-13px", // move it to the left edge of the card
+              left: "-13px",
               transform: "translateY(-50%)",
               width: 0,
               height: 0,
               borderTop: "6px solid transparent",
               borderBottom: "6px solid transparent",
-              borderRight: "6px solid #000", // solid border on right makes arrow point left
+              borderRight: "6px solid #000",
             }}
           />
         </div>
@@ -173,7 +173,6 @@ const HeatMapSection = () => {
             renderTooltip={(activity, index, rect) => {
               if (!activity) return null;
 
-              // rect contains the bounding rectangle of the hovered cell
               const x = rect ? rect.x + rect.width / 2 : 0;
               const y = rect ? rect.y - 110 : 0;
 

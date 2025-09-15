@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
-import // faArrowRight,
-// faCertificate,
-// faRibbon,
-"@fortawesome/free-solid-svg-icons";
+import React, { useContext, useState } from "react";
+import { PieChart, Pie, Cell } from "recharts";
+import { AnimatePresence } from "framer-motion";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import ThemeContext from "../../context/ThemeContext";
 
@@ -12,6 +11,12 @@ import certificate from "../../assets/certificate.png";
 import badge from "../../assets/badge.png";
 import arrowRight from "../../assets/arrowRight.png";
 import arrowRightDark from "../../assets/arrowRightDark.png";
+import PadLock from "../../assets/PadLock.png";
+import LockStreak from "../../assets/LockStreak.png";
+import star from "../../assets/star.png";
+import Streak from "../../assets/Streak.png";
+import Python from "../../assets/Python.png";
+import Java from "../../assets/Java.png";
 
 import {
   ProfileCardContainer,
@@ -52,6 +57,22 @@ import {
   EmptyMessage,
   RankContainer,
   Rank,
+  ModalOverlay,
+  ModalContent,
+  CloseButton,
+  ModelHeading,
+  ModelTopContainer,
+  ModelBottomContainer,
+  ModelDays,
+  ModelMessage,
+  ModelImage,
+  ModelBadges,
+  SmallBadge,
+  CenterBadge,
+  ModelBadgeDetails,
+  BadgeName,
+  ModelBadgeDetailsSmall,
+  BadgesCount,
 } from "./styledComponents";
 
 const Languages = [
@@ -89,13 +110,21 @@ const skills = [
 ];
 
 const ProfileCard = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [streakValue, setStreakValue] = useState(0);
+  const [badges, setBadges] = useState(0);
   const { theme } = useContext(ThemeContext);
-  // Check if Languages and skills are empty
+
   const hasLanguages = Languages.length > 0;
   const hasSkills = skills.length > 0;
 
-  // Determine if should show empty state
   const showEmpty = !hasLanguages && !hasSkills;
+
+  const COLORS = ["#FB9E14", "#DCDCDC"];
+  const data = [
+    { name: "progress", value: streakValue },
+    { name: "remaining", value: 50 - streakValue },
+  ];
 
   return (
     <>
@@ -132,7 +161,7 @@ const ProfileCard = () => {
           </CertificatesContainer>
 
           {/* Badges Container */}
-          <BadgeContainer>
+          <BadgeContainer onClick={() => setIsOpen(true)}>
             {/* <BadgeIconContainer>
               <BadgeIcon icon={faRibbon} />
             </BadgeIconContainer> */}
@@ -146,6 +175,287 @@ const ProfileCard = () => {
               <BadgeCount>3</BadgeCount>
             </BadgeDetails>
           </BadgeContainer>
+          <AnimatePresence>
+            {isOpen && (
+              <ModalOverlay
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                onClick={() => setIsOpen(false)}
+              >
+                <ModalContent
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "100%" }}
+                  transition={{ type: "", stiffness: 120 }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <ModelTopContainer>
+                    <ModelHeading>Badge List</ModelHeading>
+                    <CloseButton
+                      icon={faXmark}
+                      onClick={() => setIsOpen(false)}
+                    />
+                  </ModelTopContainer>
+
+                  {/* Case 1: streakValue === 0 */}
+                  {streakValue === 0 && (
+                    <>
+                      <div
+                        style={{
+                          width: 180,
+                          height: 180,
+                          position: "relative",
+                          margin: "auto",
+                        }}
+                      >
+                        <PieChart width={180} height={180}>
+                          <Pie
+                            data={data}
+                            innerRadius={74}
+                            outerRadius={80}
+                            startAngle={180}
+                            endAngle={-180}
+                            dataKey="value"
+                            stroke="none"
+                          >
+                            {data.map((entry, index) => (
+                              <Cell
+                                key={`cell-${index}`}
+                                fill={COLORS[index]}
+                              />
+                            ))}
+                          </Pie>
+                        </PieChart>
+
+                        {/* Center Content */}
+                        <div
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "180px",
+                            height: "180px",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <img
+                            src={LockStreak}
+                            alt="Badge"
+                            style={{
+                              height: "90%",
+                              width: "90%",
+                              opacity: 0.2,
+                              position: "absolute",
+                            }}
+                          />
+                          <img
+                            src={PadLock}
+                            alt="Lock"
+                            style={{
+                              height: "40px",
+                              width: "40px",
+                              zIndex: 2,
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <ModelBottomContainer>
+                        <ModelDays>
+                          <span style={{ fontSize: "40px" }}>
+                            {streakValue}
+                          </span>
+                          <span style={{ fontSize: "20px" }}>/50Days</span>
+                        </ModelDays>
+                        <ModelMessage>
+                          Stay consistent! Unlock this badge at 50 days
+                        </ModelMessage>
+                      </ModelBottomContainer>
+                    </>
+                  )}
+
+                  {/* Case 2: streakValue between 1 and 49 */}
+                  {streakValue > 0 && streakValue < 50 && (
+                    <>
+                      <div
+                        style={{
+                          width: 180,
+                          height: 180,
+                          position: "relative",
+                          margin: "auto",
+                        }}
+                      >
+                        <PieChart width={180} height={180}>
+                          <Pie
+                            data={data}
+                            innerRadius={74}
+                            outerRadius={80}
+                            startAngle={180}
+                            endAngle={-180}
+                            dataKey="value"
+                            stroke="none"
+                          >
+                            {data.map((entry, index) => (
+                              <Cell
+                                key={`cell-${index}`}
+                                fill={COLORS[index]}
+                              />
+                            ))}
+                          </Pie>
+                        </PieChart>
+
+                        {/* Center Content */}
+                        <div
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "180px",
+                            height: "180px",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <img
+                            src={LockStreak}
+                            alt="Badge"
+                            style={{
+                              height: "90%",
+                              width: "90%",
+                              opacity: 0.2,
+                              position: "absolute",
+                            }}
+                          />
+                          <img
+                            src={PadLock}
+                            alt="Lock"
+                            style={{
+                              height: "40px",
+                              width: "40px",
+                              zIndex: 2,
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      <ModelBottomContainer>
+                        <ModelDays>
+                          <span style={{ fontSize: "40px" }}>
+                            {streakValue}
+                          </span>
+                          <span style={{ fontSize: "20px" }}>/50Days</span>
+                        </ModelDays>
+                        <ModelMessage>
+                          Stay consistent! Unlock this badge at 50 days
+                        </ModelMessage>
+                      </ModelBottomContainer>
+                    </>
+                  )}
+
+                  {/* Case 3: streakValue >= 50  */}
+                  {streakValue >= 50 && badges === 0 && (
+                    <>
+                      <div
+                        style={{
+                          width: 200,
+                          height: 200,
+                          position: "relative",
+                          margin: "auto",
+                        }}
+                      >
+                        {/* Badge image in the center */}
+                        <img
+                          src={LockStreak}
+                          alt="Badge"
+                          style={{
+                            height: "200px",
+                            width: "200px",
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                          }}
+                        />
+
+                        {/* Stars */}
+                        <img
+                          src={star}
+                          alt="Star"
+                          style={{
+                            height: "20px",
+                            width: "20px",
+                            position: "absolute",
+                            top: "50%",
+                            left: "0%",
+                          }}
+                        />
+                        <img
+                          src={star}
+                          alt="Star"
+                          style={{
+                            height: "30px",
+                            width: "30px",
+                            position: "absolute",
+                            top: "8%",
+                            right: "10%",
+                          }}
+                        />
+                        <img
+                          src={star}
+                          alt="Star"
+                          style={{
+                            height: "50px",
+                            width: "50px",
+                            position: "absolute",
+                            bottom: "15%",
+                            left: "0%",
+                          }}
+                        />
+                      </div>
+                      <ModelBottomContainer>
+                        <ModelDays>
+                          <span style={{ fontSize: "40px" }}>
+                            {streakValue}
+                          </span>
+                          <span style={{ fontSize: "20px" }}>/50Days</span>
+                        </ModelDays>
+                        <ModelMessage>
+                          Stay consistent! Unlock this badge at 50 days
+                        </ModelMessage>
+                      </ModelBottomContainer>
+                    </>
+                  )}
+
+                  {/* Case 4: streakValue >= 50 and badges > 0 */}
+                  {streakValue >= 50 && badges > 0 && (
+                    <>
+                      <ModelBadges>
+                        <ModelBadgeDetailsSmall>
+                          <SmallBadge src={Python} alt="Badge" />
+                          <BadgeName>Python Master</BadgeName>
+                        </ModelBadgeDetailsSmall>
+                        <ModelBadgeDetails>
+                          <CenterBadge src={Streak} alt="Badge" />
+                          <BadgeName>50 Days Streak</BadgeName>
+                        </ModelBadgeDetails>
+                        <ModelBadgeDetailsSmall>
+                          <SmallBadge src={Java} alt="Badge" />
+                          <BadgeName>Java Master</BadgeName>
+                        </ModelBadgeDetailsSmall>
+                      </ModelBadges>
+                      <BadgesCount>{badges} Badges Earned</BadgesCount>
+                    </>
+                  )}
+                </ModalContent>
+              </ModalOverlay>
+            )}
+          </AnimatePresence>
         </ProfileCertificates>
 
         {!showEmpty ? (
