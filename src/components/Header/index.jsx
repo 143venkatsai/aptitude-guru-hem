@@ -15,7 +15,7 @@ import {
 import { FiHome, FiMenu } from "react-icons/fi";
 import { CgNotes } from "react-icons/cg";
 import { PiListChecksLight, PiBuildingOffice } from "react-icons/pi";
-import { CiUser } from "react-icons/ci";
+import { FaRegUser } from "react-icons/fa6";
 import { VscColorMode } from "react-icons/vsc";
 import { IoClose } from "react-icons/io5";
 import { BiSolidDownArrow } from "react-icons/bi";
@@ -126,7 +126,7 @@ const navLinksMobile = [
     label: "Company Specific",
     newIcon: PiBuildingOffice,
   },
-  { to: "/profile", label: "Profile", newIcon: CiUser },
+  { to: "/profile", label: "Profile", newIcon: FaRegUser },
 ];
 
 const Header = () => {
@@ -229,7 +229,14 @@ const Header = () => {
               // onClick={() => setDropDown(!dropDown)}
               textColor={textColor}
             /> */}
-            <BiSolidDownArrow style={{ color: textColor, marginLeft: "4px" }} />
+            <BiSolidDownArrow
+              style={{
+                color: textColor,
+                marginLeft: "9px",
+                height: "12px",
+                width: "12px",
+              }}
+            />
           </ProfileContainer>
 
           {dropDown && (
