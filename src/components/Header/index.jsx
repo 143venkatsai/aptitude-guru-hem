@@ -399,8 +399,8 @@ const Header = () => {
               {/* <img src={mobileIcon8} alt="Logout" /> */}
               <MdLogout
                 style={{
-                  width: "20px",
-                  height: "20px",
+                  width: "16px",
+                  height: "16px",
                   objectFit: "contain",
                   color: "#fff",
                 }}
