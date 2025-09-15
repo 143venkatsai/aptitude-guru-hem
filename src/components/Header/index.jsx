@@ -339,11 +339,12 @@ const Header = () => {
                         width: "24px",
                         height: "24px",
                         objectFit: "contain",
+                        color: "#6C7072",
                       }}
                     />
                     {["/assessments", "/company"].includes(item.to) ? (
                       <>
-                        {item.label}
+                        <p style={{ color: "#0F0F0F" }}>{item.label}</p>
                         {/* <DropdownIconMobile icon={faAngleDown} /> */}
                         <MdOutlineChevronRight
                           style={{
@@ -352,7 +353,7 @@ const Header = () => {
                         />
                       </>
                     ) : (
-                      item.label
+                      <p style={{ color: "#0F0F0F" }}>{item.label}</p>
                     )}
                   </ItemWithIcon>
                 </StyledNavLinkProfile>
@@ -380,9 +381,10 @@ const Header = () => {
                     width: "24px",
                     height: "24px",
                     objectFit: "contain",
+                    color: "#6C7072",
                   }}
                 />
-                <p> Apperance</p>
+                <p style={{ color: "#0F0F0F" }}>Appearance</p>
                 {/* <DropdownIconMobile icon={faAngleDown} /> */}
                 <MdOutlineChevronRight
                   style={{
@@ -415,9 +417,11 @@ const Header = () => {
           <AppearanceHeader>
             <BackArrow onClick={() => setShowAppearanceOptions(false)}>
               {/* <img src={backArrow} alt="Back Arrow" /> */}
-              <IoIosArrowBack />
+              <IoIosArrowBack
+                style={{ width: "24px", height: "24px", color: "#6C7072" }}
+              />
             </BackArrow>
-            Appearance
+            <p style={{ color: "#0F0F0F" }}>Appearance</p>
           </AppearanceHeader>
           <AppearanceOption
             selected={theme === "light"}
@@ -427,7 +431,12 @@ const Header = () => {
           >
             {/* <OptionIcon src={mobileIcon7} alt="Light theme" /> */}
             <MdOutlineLightMode
-              style={{ width: "24px", height: "24px", marginRight: "16px" }}
+              style={{
+                width: "24px",
+                height: "24px",
+                marginRight: "16px",
+                color: "#6C7072",
+              }}
             />
             <OptionText>Light theme</OptionText>
             <RadioOuter selected={theme === "light"}>
@@ -453,7 +462,12 @@ const Header = () => {
               }}
             /> */}
             <MdOutlineDarkMode
-              style={{ width: "24px", height: "24px", marginRight: "16px" }}
+              style={{
+                width: "24px",
+                height: "24px",
+                marginRight: "16px",
+                color: "#6C7072",
+              }}
             />
             <OptionText>Dark theme</OptionText>
             <RadioOuter selected={theme === "dark"}>
@@ -470,7 +484,12 @@ const Header = () => {
           >
             {/* <OptionIcon src={deviceTheme} alt="Device theme" /> */}
             <VscColorMode
-              style={{ width: "24px", height: "24px", marginRight: "16px" }}
+              style={{
+                width: "24px",
+                height: "24px",
+                marginRight: "16px",
+                color: "#6C7072",
+              }}
             />
             <OptionText>Use device theme</OptionText>
             <RadioOuter selected={theme === "device"}>

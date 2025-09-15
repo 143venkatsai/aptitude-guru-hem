@@ -429,6 +429,7 @@ export const OptionIcon = styled.img`
 export const OptionText = styled.span`
   flex: 1;
   font-size: 16px;
+  color: #0f0f0f;
 `;
 
 export const RadioOuter = styled.span`
