@@ -4,34 +4,49 @@ import React, { useEffect, useState, useContext } from "react";
 // import { IoMdArrowDropdown } from "react-icons/io";
 // import { IoClose, IoMenu } from "react-icons/io5";
 import { FaUser } from "react-icons/fa6";
-import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
-
 import {
-  faBars,
-  faAngleDown,
-  faTimes,
-  faCaretDown,
-  faMoon,
-  faSun,
-} from "@fortawesome/free-solid-svg-icons";
+  MdOutlineLightMode,
+  MdOutlineDarkMode,
+  MdKeyboardArrowDown,
+  MdOutlineChevronRight,
+  MdLogout,
+} from "react-icons/md";
+import { FiHome, FiMenu } from "react-icons/fi";
+import { CgNotes } from "react-icons/cg";
+import { PiListChecksLight, PiBuildingOffice } from "react-icons/pi";
+import { MdLeaderboard } from "react-icons/md";
+import { CiUser } from "react-icons/ci";
+import { VscColorMode } from "react-icons/vsc";
+import { IoClose } from "react-icons/io5";
+import { BiSolidDownArrow } from "react-icons/bi";
+import { IoIosArrowBack } from "react-icons/io";
+
+// import {
+//   faBars,
+//   faAngleDown,
+//   faTimes,
+//   faCaretDown,
+//   faMoon,
+//   faSun,
+// } from "@fortawesome/free-solid-svg-icons";
 
 import ThemeContext from "../../context/ThemeContext.jsx";
 
 import header1 from "../../assets/header1.png";
 import header2 from "../../assets/header2.png";
+import profileLogo from "../../assets/profileLogo.png";
 
 // import logo from "../../assets/headerLogo.png";
-import profileLogo from "../../assets/profileLogo.png";
-import mobileIcon1 from "../../assets/mobileicon1.png";
-import mobileIcon2 from "../../assets/mobileIcon2.png";
-import mobileIcon3 from "../../assets/mobileIcon3.png";
-import mobileIcon4 from "../../assets/mobileIcon4.png";
-import mobileIcon5 from "../../assets/mobileIcon5.png";
-import mobileIcon6 from "../../assets/mobileIcon6.png";
-import mobileIcon7 from "../../assets/mobileIcon7.png";
-import mobileIcon8 from "../../assets/mobileIcon8.png";
-import deviceTheme from "../../assets/deviceTheme.png";
-import backArrow from "../../assets/backArrow.png";
+// import mobileIcon1 from "../../assets/mobileicon1.png";
+// import mobileIcon2 from "../../assets/mobileIcon2.png";
+// import mobileIcon3 from "../../assets/mobileIcon3.png";
+// import mobileIcon4 from "../../assets/mobileIcon4.png";
+// import mobileIcon5 from "../../assets/mobileIcon5.png";
+// import mobileIcon6 from "../../assets/mobileIcon6.png";
+// import mobileIcon7 from "../../assets/mobileIcon7.png";
+// import mobileIcon8 from "../../assets/mobileIcon8.png";
+// import deviceTheme from "../../assets/deviceTheme.png";
+// import backArrow from "../../assets/backArrow.png";
 // import sun from "../../assets/sun.png";
 // import footerLogo3 from "../../assets/footerLogo3.png";
 
@@ -94,12 +109,24 @@ const navLinks = [
 ];
 
 const navLinksMobile = [
-  { to: "/", label: "Home", icon: mobileIcon1 },
-  { to: "/practice", label: "Practice", icon: mobileIcon2 },
-  { to: "/assessments", label: "Assessment", icon: mobileIcon3 },
-  { to: "/leaderboard", label: "Leaderboard", icon: mobileIcon4 },
-  { to: "/company", label: "Company Specific", icon: mobileIcon5 },
-  { to: "/profile", label: "Profile", icon: mobileIcon6 },
+  { to: "/", label: "Home", newIcon: FiHome },
+  { to: "/practice", label: "Practice", newIcon: CgNotes },
+  {
+    to: "/assessments",
+    label: "Assessment",
+    newIcon: PiListChecksLight,
+  },
+  {
+    to: "/leaderboard",
+    label: "Leaderboard",
+    newIcon: MdLeaderboard,
+  },
+  {
+    to: "/company",
+    label: "Company Specific",
+    newIcon: PiBuildingOffice,
+  },
+  { to: "/profile", label: "Profile", newIcon: CiUser },
 ];
 
 const Header = () => {
@@ -148,9 +175,15 @@ const Header = () => {
         {/* Mobile Menu Icon */}
         <MenuIconContainer onClick={() => setIsMenuOpen(!isMenuOpen)}>
           {isMenuOpen ? (
-            <StyledIcon icon={faTimes} textColor={textColor} />
+            // <StyledIcon icon={faTimes} textColor={textColor} />
+            <IoClose
+              style={{ color: textColor, height: "30px", width: "30px" }}
+            />
           ) : (
-            <StyledIcon icon={faBars} textColor={textColor} />
+            // <StyledIcon icon={faBars} textColor={textColor} />
+            <FiMenu
+              style={{ color: textColor, height: "30px", width: "30px" }}
+            />
           )}
         </MenuIconContainer>
         <LogoImg src={activeLogo} alt="Logo" />
@@ -175,7 +208,15 @@ const Header = () => {
             >
               Company Specific
             </StyledNavLinkLeft>
-            <DownArrowIcon icon={faAngleDown} textColor={textColor} />
+            {/* <DownArrowIcon icon={faAngleDown} textColor={textColor} /> */}
+            <MdKeyboardArrowDown
+              style={{
+                color: textColor,
+                marginLeft: "4px",
+                height: "20px",
+                width: "20px",
+              }}
+            />
           </ListItem>
         </NavList>
 
@@ -183,11 +224,12 @@ const Header = () => {
           <ProfileContainer>
             <ProfileImage src={profileLogo} alt="Profile" />
             <ProfileText textColor={textColor}>Hi, Muskan</ProfileText>
-            <DropdownIcon
+            {/* <DropdownIcon
               icon={faCaretDown}
               // onClick={() => setDropDown(!dropDown)}
               textColor={textColor}
-            />
+            /> */}
+            <BiSolidDownArrow style={{ color: textColor, marginLeft: "4px" }} />
           </ProfileContainer>
 
           {dropDown && (
@@ -260,7 +302,7 @@ const Header = () => {
               </DropdownItem>
               <DropdownLogout>
                 Logout
-                <img src={mobileIcon8} alt="logout" />
+                <MdLogout />
               </DropdownLogout>
             </DropdownMenu>
           )}
@@ -281,9 +323,17 @@ const Header = () => {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <ItemWithIcon>
-                    <img
+                    {/* <img
                       src={item.icon}
                       alt={`${item.label} icon`}
+                      style={{
+                        marginRight: "0.75rem",
+                        width: "24px",
+                        height: "24px",
+                        objectFit: "contain",
+                      }}
+                    /> */}
+                    <item.newIcon
                       style={{
                         marginRight: "0.75rem",
                         width: "24px",
@@ -294,7 +344,12 @@ const Header = () => {
                     {["/assessments", "/company"].includes(item.to) ? (
                       <>
                         {item.label}
-                        <DropdownIconMobile icon={faAngleDown} />
+                        {/* <DropdownIconMobile icon={faAngleDown} /> */}
+                        <MdOutlineChevronRight
+                          style={{
+                            marginLeft: "auto",
+                          }}
+                        />
                       </>
                     ) : (
                       item.label
@@ -309,7 +364,7 @@ const Header = () => {
               <StyledNavLinkProfileApperance
                 onClick={() => setShowAppearanceOptions(true)}
               >
-                <img
+                {/* <img
                   src={mobileIcon7}
                   alt="Appearance"
                   style={{
@@ -318,9 +373,22 @@ const Header = () => {
                     height: "24px",
                     objectFit: "contain",
                   }}
+                /> */}
+                <MdOutlineLightMode
+                  style={{
+                    marginRight: "0.75rem",
+                    width: "24px",
+                    height: "24px",
+                    objectFit: "contain",
+                  }}
                 />
                 <p> Apperance</p>
-                <DropdownIconMobile icon={faAngleDown} />
+                {/* <DropdownIconMobile icon={faAngleDown} /> */}
+                <MdOutlineChevronRight
+                  style={{
+                    marginLeft: "auto",
+                  }}
+                />
               </StyledNavLinkProfileApperance>
               <Underline />
             </div>
@@ -328,9 +396,8 @@ const Header = () => {
           <div>
             <MobileLogoutContainer>
               <MobileLogoutButton>Logout</MobileLogoutButton>
-              <img
-                src={mobileIcon8}
-                alt="Logout"
+              {/* <img src={mobileIcon8} alt="Logout" /> */}
+              <MdLogout
                 style={{
                   width: "1.25rem",
                   height: "1.25rem",
@@ -346,7 +413,8 @@ const Header = () => {
         <AppearanceModal>
           <AppearanceHeader>
             <BackArrow onClick={() => setShowAppearanceOptions(false)}>
-              <img src={backArrow} alt="Back Arrow" />
+              {/* <img src={backArrow} alt="Back Arrow" /> */}
+              <IoIosArrowBack />
             </BackArrow>
             Appearance
           </AppearanceHeader>
@@ -356,7 +424,10 @@ const Header = () => {
               setTheme("light");
             }}
           >
-            <OptionIcon src={mobileIcon7} alt="Light theme" />
+            {/* <OptionIcon src={mobileIcon7} alt="Light theme" /> */}
+            <MdOutlineLightMode
+              style={{ width: "24px", height: "24px", marginRight: "16px" }}
+            />
             <OptionText>Light theme</OptionText>
             <RadioOuter selected={theme === "light"}>
               {theme === "light" && <RadioInner />}
@@ -370,7 +441,7 @@ const Header = () => {
               setTheme("dark");
             }}
           >
-            <FontAwesomeIcon
+            {/* <FontAwesomeIcon
               icon={faMoon}
               alt="Dark theme"
               style={{
@@ -379,6 +450,9 @@ const Header = () => {
                 height: "24px",
                 width: "24px",
               }}
+            /> */}
+            <MdOutlineDarkMode
+              style={{ width: "24px", height: "24px", marginRight: "16px" }}
             />
             <OptionText>Dark theme</OptionText>
             <RadioOuter selected={theme === "dark"}>
@@ -393,7 +467,10 @@ const Header = () => {
               setTheme("device");
             }}
           >
-            <OptionIcon src={deviceTheme} alt="Device theme" />
+            {/* <OptionIcon src={deviceTheme} alt="Device theme" /> */}
+            <VscColorMode
+              style={{ width: "24px", height: "24px", marginRight: "16px" }}
+            />
             <OptionText>Use device theme</OptionText>
             <RadioOuter selected={theme === "device"}>
               {theme === "device" && <RadioInner />}
