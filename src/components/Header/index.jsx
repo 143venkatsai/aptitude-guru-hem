@@ -10,11 +10,11 @@ import {
   MdKeyboardArrowDown,
   MdOutlineChevronRight,
   MdLogout,
+  MdOutlineLeaderboard,
 } from "react-icons/md";
 import { FiHome, FiMenu } from "react-icons/fi";
 import { CgNotes } from "react-icons/cg";
 import { PiListChecksLight, PiBuildingOffice } from "react-icons/pi";
-import { MdLeaderboard } from "react-icons/md";
 import { CiUser } from "react-icons/ci";
 import { VscColorMode } from "react-icons/vsc";
 import { IoClose } from "react-icons/io5";
@@ -119,7 +119,7 @@ const navLinksMobile = [
   {
     to: "/leaderboard",
     label: "Leaderboard",
-    newIcon: MdLeaderboard,
+    newIcon: MdOutlineLeaderboard,
   },
   {
     to: "/company",

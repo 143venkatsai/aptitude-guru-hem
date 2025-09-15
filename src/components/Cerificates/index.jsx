@@ -59,7 +59,11 @@ const Certificates = () => {
                   >
                     Download
                   </CertificateDownloadButton>
-                  <CertificateViewButton>View</CertificateViewButton>
+                  <CertificateViewButton
+                    onClick={() => window.open(eachItem.image, "_blank")}
+                  >
+                    View
+                  </CertificateViewButton>
                 </CertificatesButtonsContainer>
               </CertificateDetails>
             </CertificateItem>

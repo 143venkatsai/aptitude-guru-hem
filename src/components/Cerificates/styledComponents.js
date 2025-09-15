@@ -97,4 +97,5 @@ export const CertificateViewButton = styled.button`
   color: #fc2947;
   font-size: 14px;
   font-weight: 600;
+  cursor: pointer;
 `;
