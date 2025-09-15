@@ -13,6 +13,8 @@ import {
   Label,
 } from "recharts";
 
+import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
+
 import ThemeContext from "../../context/ThemeContext";
 
 import {
@@ -110,6 +112,41 @@ const assessmentData = {
       "Aptitude E-learning": 95,
       "Tech E-learning": 30,
     },
+    {
+      name: "Test 6",
+      Aptitude: 85,
+      Technical: 75,
+      "Aptitude E-learning": 95,
+      "Tech E-learning": 30,
+    },
+    {
+      name: "Test 7",
+      Aptitude: 55,
+      Technical: 65,
+      "Aptitude E-learning": 67,
+      "Tech E-learning": 10,
+    },
+    {
+      name: "Test 8",
+      Aptitude: 40,
+      Technical: 50,
+      "Aptitude E-learning": 45,
+      "Tech E-learning": 22,
+    },
+    {
+      name: "Test 9",
+      Aptitude: 35,
+      Technical: 55,
+      "Aptitude E-learning": 80,
+      "Tech E-learning": 16,
+    },
+    {
+      name: "Test 10",
+      Aptitude: 25,
+      Technical: 40,
+      "Aptitude E-learning": 60,
+      "Tech E-learning": 10,
+    },
   ],
 };
 
@@ -134,12 +171,18 @@ const collegeAssessmentData = {
     { name: "Test 3", Aptitude: 10, Technical: 75 },
     { name: "Test 4", Aptitude: 55, Technical: 65 },
     { name: "Test 5", Aptitude: 85, Technical: 75 },
+    { name: "Test 6", Aptitude: 85, Technical: 75 },
+    { name: "Test 7", Aptitude: 55, Technical: 65 },
+    { name: "Test 8", Aptitude: 10, Technical: 75 },
+    { name: "Test 9", Aptitude: 35, Technical: 55 },
+    { name: "Test 10", Aptitude: 25, Technical: 40 },
   ],
 };
 
 const PerformanceOverview = () => {
   const [activeButton, setActiveButton] = useState(1);
   const [selectedMetric, setSelectedMetric] = useState("");
+  const [page, setPage] = useState(0);
   const { theme } = useContext(ThemeContext);
 
   const data = activeButton === 1 ? assessmentData : collegeAssessmentData;
@@ -148,12 +191,33 @@ const PerformanceOverview = () => {
 
   useEffect(() => {
     setSelectedMetric(data.legend[0].name);
+    setPage(0);
   }, [activeButton]);
 
   const avg =
     data.summary.averageScore.find((sc) => sc.name === selectedMetric) || {};
   const assess =
     data.summary.assessment.find((sc) => sc.name === selectedMetric) || {};
+
+  // Shows 5 tests per page
+  const testsPerPage = 5;
+  const paginatedData = data.chartData.slice(
+    page * testsPerPage,
+    page * testsPerPage + testsPerPage
+  );
+
+  // handle navigation
+  const handleNext = () => {
+    if ((page + 1) * testsPerPage < data.chartData.length) {
+      setPage(page + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    if (page > 0) {
+      setPage(page - 1);
+    }
+  };
 
   const PerformanceEmptyState = () => (
     <PerformanceEmptyContainer>
@@ -357,68 +421,102 @@ const PerformanceOverview = () => {
             </div>
           </CardTopContainer>
 
-          <ResponsiveContainer width="100%" height={350}>
-            <LineChart
-              data={data.chartData}
-              margin={{ top: 20, right: 20, left: 20, bottom: 15 }}
-            >
-              <XAxis
-                dataKey="name"
-                axisLine={false}
-                tickLine={false}
-                tickMargin={25}
-                stroke={theme === "light" ? "#5C5C5C" : "#DCDCDC"}
-              />
-              <YAxis
-                domain={[0, 100]}
-                axisLine={false}
-                tickLine={false}
-                tickFormatter={(value) => `${value}%`}
-                tickMargin={10}
-                stroke={theme === "light" ? "#5C5C5C" : "#DCDCDC"}
-              />
-
-              <CartesianGrid
-                strokeDasharray="4 4"
-                vertical={false}
-                stroke={theme === "light" ? "#444444" : "#000"}
-              />
-              {/* <Tooltip content={() => null} cursor={false} /> */}
-
-              {data.legend.map((item) =>
-                selectedMetric === item.name ? (
-                  <Area
-                    key={`${item.name}-area`}
-                    type="monotone"
-                    dataKey={item.name}
-                    stroke="none"
-                    fill={item.color}
-                    fillOpacity={0.15}
-                  />
-                ) : null
-              )}
-
-              {data.legend.map((item) => (
-                <Line
-                  key={item.name}
-                  type="linear"
-                  dataKey={item.name}
-                  stroke={item.color}
-                  strokeWidth={selectedMetric === item.name ? 3 : 2}
-                  dot={selectedMetric === item.name ? false : false}
-                  opacity={selectedMetric === item.name ? 1 : 0.4}
-                  activeDot={
-                    selectedMetric === item.name ? (
-                      <CustomActiveDot color={item.color} theme={theme} />
-                    ) : (
-                      false
-                    )
-                  }
-                  isAnimationActive={false}
+          <div style={{ position: "relative" }}>
+            <ResponsiveContainer width="100%" height={350}>
+              <LineChart
+                data={paginatedData}
+                margin={{ top: 20, right: 20, left: 20, bottom: 15 }}
+              >
+                <XAxis
+                  dataKey="name"
+                  axisLine={false}
+                  tickLine={false}
+                  tickMargin={25}
+                  stroke={theme === "light" ? "#5C5C5C" : "#DCDCDC"}
                 />
-              ))}
-            </LineChart>
-          </ResponsiveContainer>
+                <YAxis
+                  domain={[0, 100]}
+                  axisLine={false}
+                  tickLine={false}
+                  tickFormatter={(value) => `${value}%`}
+                  tickMargin={10}
+                  stroke={theme === "light" ? "#5C5C5C" : "#DCDCDC"}
+                />
+
+                <CartesianGrid
+                  strokeDasharray="4 4"
+                  vertical={false}
+                  stroke={theme === "light" ? "#444444" : "#000"}
+                />
+                {/* <Tooltip content={() => null} cursor={false} /> */}
+
+                {data.legend.map((item) =>
+                  selectedMetric === item.name ? (
+                    <Area
+                      key={`${item.name}-area`}
+                      type="monotone"
+                      dataKey={item.name}
+                      stroke="none"
+                      fill={item.color}
+                      fillOpacity={0.15}
+                    />
+                  ) : null
+                )}
+
+                {data.legend.map((item) => (
+                  <Line
+                    key={item.name}
+                    type="linear"
+                    dataKey={item.name}
+                    stroke={item.color}
+                    strokeWidth={selectedMetric === item.name ? 3 : 2}
+                    dot={selectedMetric === item.name ? false : false}
+                    opacity={selectedMetric === item.name ? 1 : 0.4}
+                    activeDot={
+                      selectedMetric === item.name ? (
+                        <CustomActiveDot color={item.color} theme={theme} />
+                      ) : (
+                        false
+                      )
+                    }
+                    isAnimationActive={false}
+                  />
+                ))}
+              </LineChart>
+            </ResponsiveContainer>
+
+            {/* Pagination Buttons */}
+            <button
+              onClick={handlePrev}
+              disabled={page === 0}
+              style={{
+                border: "none",
+                background: "transparent",
+                cursor: page === 0 ? "not-allowed" : "pointer",
+                position: "absolute",
+                top: "50%",
+              }}
+            >
+              <MdArrowBackIos />
+            </button>
+            <button
+              onClick={handleNext}
+              disabled={(page + 1) * testsPerPage >= data.chartData.length}
+              style={{
+                border: "none",
+                background: "transparent",
+                cursor:
+                  (page + 1) * testsPerPage >= data.chartData.length
+                    ? "not-allowed"
+                    : "pointer",
+                position: "absolute",
+                right: "0%",
+                top: "50%",
+              }}
+            >
+              <MdArrowForwardIos />
+            </button>
+          </div>
         </Card>
       )}
     </PerformanceContainer>

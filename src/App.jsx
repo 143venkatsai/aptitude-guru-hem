@@ -14,7 +14,7 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/assessments" element={<Assessments />} />
-          <Route exact path="/profile" element={<ProfileSection />} />
+          <Route exact path="/profile" element={<ProfileSection />} />?{" "}
         </Routes>
       </Router>
     </ThemeProvider>

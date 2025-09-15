@@ -111,7 +111,7 @@ const skills = [
 
 const ProfileCard = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [streakValue, setStreakValue] = useState(0);
+  const [streakValue, setStreakValue] = useState();
   const [badges, setBadges] = useState(0);
   const { theme } = useContext(ThemeContext);
 
@@ -182,7 +182,6 @@ const ProfileCard = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                onClick={() => setIsOpen(false)}
               >
                 <ModalContent
                   initial={{ y: "100%" }}
@@ -190,12 +189,14 @@ const ProfileCard = () => {
                   exit={{ y: "100%" }}
                   transition={{ type: "", stiffness: 120 }}
                   onClick={(e) => e.stopPropagation()}
+                  theme={theme}
                 >
                   <ModelTopContainer>
-                    <ModelHeading>Badge List</ModelHeading>
+                    <ModelHeading theme={theme}>Badge List</ModelHeading>
                     <CloseButton
                       icon={faXmark}
                       onClick={() => setIsOpen(false)}
+                      theme={theme}
                     />
                   </ModelTopContainer>
 
@@ -265,13 +266,13 @@ const ProfileCard = () => {
                         </div>
                       </div>
                       <ModelBottomContainer>
-                        <ModelDays>
+                        <ModelDays theme={theme}>
                           <span style={{ fontSize: "40px" }}>
                             {streakValue}
                           </span>
                           <span style={{ fontSize: "20px" }}>/50Days</span>
                         </ModelDays>
-                        <ModelMessage>
+                        <ModelMessage theme={theme}>
                           Stay consistent! Unlock this badge at 50 days
                         </ModelMessage>
                       </ModelBottomContainer>
@@ -345,13 +346,13 @@ const ProfileCard = () => {
                       </div>
 
                       <ModelBottomContainer>
-                        <ModelDays>
+                        <ModelDays theme={theme}>
                           <span style={{ fontSize: "40px" }}>
                             {streakValue}
                           </span>
                           <span style={{ fontSize: "20px" }}>/50Days</span>
                         </ModelDays>
-                        <ModelMessage>
+                        <ModelMessage theme={theme}>
                           Stay consistent! Unlock this badge at 50 days
                         </ModelMessage>
                       </ModelBottomContainer>
@@ -419,14 +420,15 @@ const ProfileCard = () => {
                         />
                       </div>
                       <ModelBottomContainer>
-                        <ModelDays>
+                        <ModelDays theme={theme}>
                           <span style={{ fontSize: "40px" }}>
                             {streakValue}
                           </span>
                           <span style={{ fontSize: "20px" }}>/50Days</span>
                         </ModelDays>
-                        <ModelMessage>
-                          Stay consistent! Unlock this badge at 50 days
+                        <ModelMessage theme={theme}>
+                          Congratulations! You've unlocked the 50-Day Streak
+                          Badge!
                         </ModelMessage>
                       </ModelBottomContainer>
                     </>
@@ -438,18 +440,20 @@ const ProfileCard = () => {
                       <ModelBadges>
                         <ModelBadgeDetailsSmall>
                           <SmallBadge src={Python} alt="Badge" />
-                          <BadgeName>Python Master</BadgeName>
+                          <BadgeName theme={theme}>Python Master</BadgeName>
                         </ModelBadgeDetailsSmall>
                         <ModelBadgeDetails>
                           <CenterBadge src={Streak} alt="Badge" />
-                          <BadgeName>50 Days Streak</BadgeName>
+                          <BadgeName theme={theme}>50 Days Streak</BadgeName>
                         </ModelBadgeDetails>
                         <ModelBadgeDetailsSmall>
                           <SmallBadge src={Java} alt="Badge" />
-                          <BadgeName>Java Master</BadgeName>
+                          <BadgeName theme={theme}>Java Master</BadgeName>
                         </ModelBadgeDetailsSmall>
                       </ModelBadges>
-                      <BadgesCount>{badges} Badges Earned</BadgesCount>
+                      <BadgesCount theme={theme}>
+                        {badges} Badges Earned
+                      </BadgesCount>
                     </>
                   )}
                 </ModalContent>

@@ -304,7 +304,7 @@ export const ModalOverlay = styled(motion.div)`
 `;
 
 export const ModalContent = styled(motion.div)`
-  background: #fff;
+  background: ${(props) => (props.theme === "light" ? "#fff" : "#262626")};
   padding: 25px;
   border-radius: 12px;
   position: relative;
@@ -318,12 +318,13 @@ export const ModalContent = styled(motion.div)`
 export const CloseButton = styled(FontAwesomeIcon)`
   font-size: 18px;
   cursor: pointer;
+  color: ${(props) => (props.theme === "light" ? "#000000" : "#fff")};
 `;
 
 export const ModelHeading = styled.h1`
   font-size: 20px;
   font-weight: 600;
-  color: #000000;
+  color: ${(props) => (props.theme === "light" ? "#000000" : "#fff")};
 `;
 
 export const ModelTopContainer = styled.div`
@@ -340,7 +341,7 @@ export const ModelBottomContainer = styled.div`
 `;
 
 export const ModelDays = styled.p`
-  color: #666666;
+  color: ${(props) => (props.theme === "light" ? "#666666" : "#fff")};
   font-weight: 600;
   text-align: center;
 `;
@@ -349,6 +350,7 @@ export const ModelMessage = styled.p`
   font-size: 14px;
   font-weight: 500;
   color: #767676;
+  color: ${(props) => (props.theme === "light" ? "#767676" : "#fff")};
   text-align: center;
 `;
 
@@ -401,13 +403,13 @@ export const ModelBadgeDetailsSmall = styled.div`
 export const BadgeName = styled.h1`
   font-size: 14px;
   font-weight: 600;
-  color: #000000;
+  color: ${(props) => (props.theme === "light" ? "#000" : "#fff")};
   margin-top: 10px;
 `;
 
 export const BadgesCount = styled.p`
   font-size: 14px;
   font-weight: 500;
-  color: #000000;
+  color: ${(props) => (props.theme === "light" ? "#000" : "#fff")};
   margin-top: 32px;
 `;
