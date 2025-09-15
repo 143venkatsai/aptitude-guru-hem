@@ -11,7 +11,7 @@ import certificate from "../../assets/certificate.png";
 import badge from "../../assets/badge.png";
 import arrowRight from "../../assets/arrowRight.png";
 import arrowRightDark from "../../assets/arrowRightDark.png";
-import PadLock from "../../assets/PadLock.png";
+import Padlock from "../../assets/Padlock.png";
 import LockStreak from "../../assets/LockStreak.png";
 import star from "../../assets/star.png";
 import Streak from "../../assets/Streak.png";
@@ -254,7 +254,7 @@ const ProfileCard = () => {
                             }}
                           />
                           <img
-                            src={PadLock}
+                            src={Padlock}
                             alt="Lock"
                             style={{
                               height: "40px",
@@ -333,7 +333,7 @@ const ProfileCard = () => {
                             }}
                           />
                           <img
-                            src={PadLock}
+                            src={Padlock}
                             alt="Lock"
                             style={{
                               height: "40px",
