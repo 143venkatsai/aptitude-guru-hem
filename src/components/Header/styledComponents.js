@@ -147,7 +147,7 @@ export const slideOut = keyframes`
 // Sliding menu container
 export const MobileMenu = styled.div`
   position: fixed;
-  top: 10; /* MUST have units */
+  top: 10;
   left: 0;
   height: 100vh;
   width: 280px;
@@ -389,9 +389,10 @@ export const MoonIcon = styled(FontAwesomeIcon)`
 
 export const AppearanceModal = styled.div`
   position: fixed;
-  top: 0;
+  top: 10;
   left: 0;
   right: 0;
+  height: 90vh;
   bottom: 0;
   width: 280px;
   background: white;
