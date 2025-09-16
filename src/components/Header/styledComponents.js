@@ -147,11 +147,11 @@ export const slideOut = keyframes`
 // Sliding menu container
 export const MobileMenu = styled.div`
   position: fixed;
-  top: 60px; /* height of your header */
+  top: 57px; /* height of your header */
   left: 0;
   right: 0;
   width: 280px;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 57px);
   background: white;
   box-shadow: 10px 0 8px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid #d1d5db;
@@ -390,11 +390,11 @@ export const MoonIcon = styled(FontAwesomeIcon)`
 
 export const AppearanceModal = styled.div`
   position: fixed;
-  top: 60px; /* height of your header */
+  top: 57px; /* height of your header */
   left: 0;
   right: 0;
   width: 280px;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 57px);
   background: white;
   z-index: 2000;
   padding: 24px 20px;
