@@ -196,11 +196,10 @@ export const MobileCollegeName = styled.p`
 `;
 
 export const MobileMenuList = styled.ul`
-  // flex: 1;
-  // overflow-y: auto;
   padding: 0;
   margin: 0;
   list-style: none;
+  margin-bottom: auto;
 `;
 
 export const MenuItem = styled.li`
@@ -258,7 +257,6 @@ export const MobileLogoutContainer = styled.div`
   align-self: flex-start;
   margin: 0.75rem 1.5rem;
   border-radius: 4px;
-  margin-top: auto;
 `;
 
 export const MobileLogoutButton = styled.button`
