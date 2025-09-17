@@ -278,67 +278,77 @@ const Header = () => {
             <MobileProfileName>Muskan Verma</MobileProfileName>
             <MobileCollegeName>{sliceCollegeName} ....</MobileCollegeName>
           </MobileProfile>
-          <MobileMenuList>
-            {navLinksMobile.map((item) => (
-              <MenuItem key={item.to}>
-                <StyledNavLinkProfile
-                  to={item.to}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <ItemWithIcon>
-                    <item.newIcon
-                      style={{
-                        marginRight: "20px",
-                        width: "24px",
-                        height: "24px",
-                        objectFit: "contain",
-                        color: "#6C7072",
-                      }}
-                    />
-                    {["/assessments", "/company"].includes(item.to) ? (
-                      <>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+            }}
+          >
+            <MobileMenuList>
+              {navLinksMobile.map((item) => (
+                <MenuItem key={item.to}>
+                  <StyledNavLinkProfile
+                    to={item.to}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <ItemWithIcon>
+                      <item.newIcon
+                        style={{
+                          marginRight: "20px",
+                          width: "24px",
+                          height: "24px",
+                          objectFit: "contain",
+                          color: "#6C7072",
+                        }}
+                      />
+                      {["/assessments", "/company"].includes(item.to) ? (
+                        <>
+                          <p style={{ color: "#0F0F0F" }}>{item.label}</p>
+                          <MdOutlineChevronRight
+                            style={{ marginLeft: "auto" }}
+                          />
+                        </>
+                      ) : (
                         <p style={{ color: "#0F0F0F" }}>{item.label}</p>
-                        <MdOutlineChevronRight style={{ marginLeft: "auto" }} />
-                      </>
-                    ) : (
-                      <p style={{ color: "#0F0F0F" }}>{item.label}</p>
-                    )}
-                  </ItemWithIcon>
-                </StyledNavLinkProfile>
+                      )}
+                    </ItemWithIcon>
+                  </StyledNavLinkProfile>
+                  <Underline />
+                </MenuItem>
+              ))}
+              <div>
+                <StyledNavLinkProfileApperance
+                  onClick={() => setShowAppearanceOptions(true)}
+                >
+                  <MdOutlineLightMode
+                    style={{
+                      marginRight: "20px",
+                      width: "24px",
+                      height: "24px",
+                      objectFit: "contain",
+                      color: "#6C7072",
+                    }}
+                  />
+                  <p style={{ color: "#0F0F0F" }}>Appearance</p>
+                  <MdOutlineChevronRight style={{ marginLeft: "auto" }} />
+                </StyledNavLinkProfileApperance>
                 <Underline />
-              </MenuItem>
-            ))}
-            <div>
-              <StyledNavLinkProfileApperance
-                onClick={() => setShowAppearanceOptions(true)}
-              >
-                <MdOutlineLightMode
-                  style={{
-                    marginRight: "20px",
-                    width: "24px",
-                    height: "24px",
-                    objectFit: "contain",
-                    color: "#6C7072",
-                  }}
-                />
-                <p style={{ color: "#0F0F0F" }}>Appearance</p>
-                <MdOutlineChevronRight style={{ marginLeft: "auto" }} />
-              </StyledNavLinkProfileApperance>
-              <Underline />
-            </div>
-          </MobileMenuList>
+              </div>
+            </MobileMenuList>
 
-          <MobileLogoutContainer>
-            <MobileLogoutButton>Logout</MobileLogoutButton>
-            <MdLogout
-              style={{
-                width: "16px",
-                height: "16px",
-                objectFit: "contain",
-                color: "#fff",
-              }}
-            />
-          </MobileLogoutContainer>
+            <MobileLogoutContainer>
+              <MobileLogoutButton>Logout</MobileLogoutButton>
+              <MdLogout
+                style={{
+                  width: "16px",
+                  height: "16px",
+                  objectFit: "contain",
+                  color: "#fff",
+                }}
+              />
+            </MobileLogoutContainer>
+          </div>
         </MobileMenu>
       )}
 

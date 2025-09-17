@@ -199,7 +199,6 @@ export const MobileMenuList = styled.ul`
   padding: 0;
   margin: 0;
   list-style: none;
-  margin-bottom: auto;
 `;
 
 export const MenuItem = styled.li`
