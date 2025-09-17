@@ -157,6 +157,7 @@ export const MobileMenu = styled.div`
 
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 
   z-index: 1000;
   animation: ${({ isOpen }) => (isOpen ? slideIn : slideOut)} 0.3s forwards;
@@ -195,6 +196,8 @@ export const MobileCollegeName = styled.p`
 `;
 
 export const MobileMenuList = styled.ul`
+  // height: 70vh;
+  // overflow-y: auto;
   flex: 1;
   overflow-y: auto;
   padding: 0;
