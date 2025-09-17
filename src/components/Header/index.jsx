@@ -91,8 +91,6 @@ const navLinksMobile = [
     newIcon: PiBuildingOffice,
   },
   { to: "/profile", label: "Profile", newIcon: FaRegUser },
-  { to: "/profile", label: "Courses", newIcon: FaRegUser },
-  { to: "/profile", label: "Courses", newIcon: FaRegUser },
 ];
 
 const Header = () => {

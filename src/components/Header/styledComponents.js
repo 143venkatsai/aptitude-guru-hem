@@ -196,7 +196,7 @@ export const MobileCollegeName = styled.p`
 `;
 
 export const MobileMenuList = styled.ul`
-  height: 50vh;
+  height: 70vh;
   overflow-y: auto;
   flex: 1;
   overflow-y: auto;
