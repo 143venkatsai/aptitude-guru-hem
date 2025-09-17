@@ -149,18 +149,16 @@ export const MobileMenu = styled.div`
   position: fixed;
   top: 57px; /* height of your header */
   left: 0;
-  right: 0;
   width: 280px;
-  height: calc(100vh - 57px);
+  height: calc(100vh - 57px); /* fill screen height minus header */
   background: white;
   box-shadow: 10px 0 8px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid #d1d5db;
 
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 
-  overflow-y: auto;
+  overflow-y: auto; /* enable vertical scroll */
   z-index: 1000;
   animation: ${({ isOpen }) => (isOpen ? slideIn : slideOut)} 0.3s forwards;
 
