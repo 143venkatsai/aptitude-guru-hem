@@ -5,6 +5,8 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import ThemeContext from "../../context/ThemeContext";
 
+import BadgeModal from "../BadgeModel";
+
 import profileLogo from "../../assets/profileLogo.png";
 import chatGpt1 from "../../assets/chatGpt1.png";
 import certificate from "../../assets/certificate.png";
@@ -111,8 +113,9 @@ const skills = [
 
 const ProfileCard = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [streakValue, setStreakValue] = useState(0);
-  const [badges, setBadges] = useState(0);
+  const [streakValue, setStreakValue] = useState(50);
+  const [badges, setBadges] = useState(3);
+  const [selectedBadge, setSelectedBadge] = useState(null);
   const { theme } = useContext(ThemeContext);
 
   const hasLanguages = Languages.length > 0;
@@ -124,6 +127,26 @@ const ProfileCard = () => {
   const data = [
     { name: "progress", value: streakValue },
     { name: "remaining", value: 50 - streakValue },
+  ];
+  const badgesList = [
+    {
+      id: 1,
+      img: Python,
+      name: "Python Master",
+      desc: "Solved 200+ Python problems",
+    },
+    {
+      id: 2,
+      img: Streak,
+      name: "50 Days Streak",
+      desc: "Solving Problems 50+ Days in 2025",
+    },
+    {
+      id: 3,
+      img: Java,
+      name: "Java Master",
+      desc: "Solved 150+ Java problems",
+    },
   ];
 
   return (
@@ -381,7 +404,9 @@ const ProfileCard = () => {
                             top: "50%",
                             left: "50%",
                             transform: "translate(-50%, -50%)",
+                            cursor: "pointer",
                           }}
+                          onClick={() => setSelectedBadge(badgesList[1])}
                         />
 
                         {/* Stars */}
@@ -431,6 +456,11 @@ const ProfileCard = () => {
                           Badge!
                         </ModelMessage>
                       </ModelBottomContainer>
+                      <BadgeModal
+                        open={!!selectedBadge}
+                        onClose={() => setSelectedBadge(null)}
+                        badge={badgesList[1]}
+                      />
                     </>
                   )}
 
@@ -438,22 +468,35 @@ const ProfileCard = () => {
                   {streakValue >= 50 && badges > 0 && (
                     <>
                       <ModelBadges>
-                        <ModelBadgeDetailsSmall>
-                          <SmallBadge src={Python} alt="Badge" />
-                          <BadgeName theme={theme}>Python Master</BadgeName>
-                        </ModelBadgeDetailsSmall>
-                        <ModelBadgeDetails>
-                          <CenterBadge src={Streak} alt="Badge" />
-                          <BadgeName theme={theme}>50 Days Streak</BadgeName>
-                        </ModelBadgeDetails>
-                        <ModelBadgeDetailsSmall>
-                          <SmallBadge src={Java} alt="Badge" />
-                          <BadgeName theme={theme}>Java Master</BadgeName>
-                        </ModelBadgeDetailsSmall>
+                        {badgesList.map((badge, index) =>
+                          index === 1 ? (
+                            <ModelBadgeDetails
+                              key={badge.id}
+                              onClick={() => setSelectedBadge(badge)}
+                            >
+                              <CenterBadge src={badge.img} alt={badge.name} />
+                              <BadgeName theme={theme}>{badge.name}</BadgeName>
+                            </ModelBadgeDetails>
+                          ) : (
+                            <ModelBadgeDetailsSmall
+                              key={badge.id}
+                              onClick={() => setSelectedBadge(badge)}
+                            >
+                              <SmallBadge src={badge.img} alt={badge.name} />
+                              <BadgeName theme={theme}>{badge.name}</BadgeName>
+                            </ModelBadgeDetailsSmall>
+                          )
+                        )}
                       </ModelBadges>
                       <BadgesCount theme={theme}>
                         {badges} Badges Earned
                       </BadgesCount>
+
+                      <BadgeModal
+                        open={!!selectedBadge}
+                        onClose={() => setSelectedBadge(null)}
+                        badge={selectedBadge}
+                      />
                     </>
                   )}
                 </ModalContent>

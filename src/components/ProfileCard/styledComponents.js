@@ -373,6 +373,7 @@ export const CenterBadge = styled.img`
   height: 100px;
   width: 100px;
   margin: 0px 10px;
+  cursor: pointer;
   @media (min-width: 1024px) {
     height: 180px;
     width: 180px;
@@ -383,6 +384,7 @@ export const CenterBadge = styled.img`
 export const SmallBadge = styled.img`
   height: 70px;
   width: 70px;
+  cursor: pointer;
   @media (min-width: 1024px) {
     height: 120px;
     width: 120px;
@@ -415,3 +417,5 @@ export const BadgesCount = styled.p`
   color: ${(props) => (props.theme === "light" ? "#000" : "#fff")};
   margin-top: 32px;
 `;
+
+// Streak Value >= 50
