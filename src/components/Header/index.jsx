@@ -327,19 +327,18 @@ const Header = () => {
               <Underline />
             </div>
           </MobileMenuList>
-          <div>
-            <MobileLogoutContainer>
-              <MobileLogoutButton>Logout</MobileLogoutButton>
-              <MdLogout
-                style={{
-                  width: "16px",
-                  height: "16px",
-                  objectFit: "contain",
-                  color: "#fff",
-                }}
-              />
-            </MobileLogoutContainer>
-          </div>
+
+          <MobileLogoutContainer>
+            <MobileLogoutButton>Logout</MobileLogoutButton>
+            <MdLogout
+              style={{
+                width: "16px",
+                height: "16px",
+                objectFit: "contain",
+                color: "#fff",
+              }}
+            />
+          </MobileLogoutContainer>
         </MobileMenu>
       )}
 
