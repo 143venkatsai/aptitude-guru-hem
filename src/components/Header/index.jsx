@@ -298,11 +298,7 @@ const Header = () => {
                     {["/assessments", "/company"].includes(item.to) ? (
                       <>
                         <p style={{ color: "#0F0F0F" }}>{item.label}</p>
-                        <MdOutlineChevronRight
-                          style={{
-                            marginLeft: "auto",
-                          }}
-                        />
+                        <MdOutlineChevronRight style={{ marginLeft: "auto" }} />
                       </>
                     ) : (
                       <p style={{ color: "#0F0F0F" }}>{item.label}</p>
@@ -313,7 +309,6 @@ const Header = () => {
               </MenuItem>
             ))}
             <div>
-              {" "}
               <StyledNavLinkProfileApperance
                 onClick={() => setShowAppearanceOptions(true)}
               >
@@ -327,27 +322,24 @@ const Header = () => {
                   }}
                 />
                 <p style={{ color: "#0F0F0F" }}>Appearance</p>
-                <MdOutlineChevronRight
-                  style={{
-                    marginLeft: "auto",
-                  }}
-                />
+                <MdOutlineChevronRight style={{ marginLeft: "auto" }} />
               </StyledNavLinkProfileApperance>
               <Underline />
             </div>
           </MobileMenuList>
-
-          <MobileLogoutContainer>
-            <MobileLogoutButton>Logout</MobileLogoutButton>
-            <MdLogout
-              style={{
-                width: "16px",
-                height: "16px",
-                objectFit: "contain",
-                color: "#fff",
-              }}
-            />
-          </MobileLogoutContainer>
+          <div>
+            <MobileLogoutContainer>
+              <MobileLogoutButton>Logout</MobileLogoutButton>
+              <MdLogout
+                style={{
+                  width: "16px",
+                  height: "16px",
+                  objectFit: "contain",
+                  color: "#fff",
+                }}
+              />
+            </MobileLogoutContainer>
+          </div>
         </MobileMenu>
       )}
 
