@@ -147,10 +147,10 @@ export const slideOut = keyframes`
 // Sliding menu container
 export const MobileMenu = styled.div`
   position: fixed;
-  top: 57px; /* height of your header */
+  top: 57px;
   left: 0;
   width: 280px;
-  height: calc(100vh - 57px); /* fill screen height minus header */
+  height: calc(100vh - 57px);
   background: white;
   box-shadow: 10px 0 8px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid #d1d5db;
@@ -158,7 +158,6 @@ export const MobileMenu = styled.div`
   display: flex;
   flex-direction: column;
 
-  overflow-y: auto; /* enable vertical scroll */
   z-index: 1000;
   animation: ${({ isOpen }) => (isOpen ? slideIn : slideOut)} 0.3s forwards;
 
@@ -200,7 +199,6 @@ export const MobileMenuList = styled.ul`
   overflow-y: auto;
   padding: 0;
   margin: 0;
-  margin-bottom: 1rem;
   list-style: none;
 `;
 
@@ -256,9 +254,9 @@ export const MobileLogoutContainer = styled.div`
   display: inline-flex;
   flex-direction: row;
   align-items: center;
+  align-self: flex-start;
   margin: 0.75rem 1.5rem;
   border-radius: 4px;
-  margin-top: auto;
 `;
 
 export const MobileLogoutButton = styled.button`
