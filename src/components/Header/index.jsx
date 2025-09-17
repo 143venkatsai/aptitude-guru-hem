@@ -92,6 +92,7 @@ const navLinksMobile = [
   },
   { to: "/profile", label: "Profile", newIcon: FaRegUser },
   { to: "/profile", label: "Courses", newIcon: FaRegUser },
+  { to: "/profile", label: "Courses", newIcon: FaRegUser },
 ];
 
 const Header = () => {
