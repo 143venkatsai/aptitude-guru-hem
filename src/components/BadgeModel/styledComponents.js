@@ -52,6 +52,7 @@ export const RotatingBadge = styled.img`
 export const Title = styled.h2`
   font-size: 36px;
   font-weight: 600;
+  font-family: "Work Sans", sans-serif;
   text-align: center;
   color: #f5f0b2;
   @media (min-width: 1024px) {

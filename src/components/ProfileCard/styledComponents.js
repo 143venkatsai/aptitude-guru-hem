@@ -44,7 +44,7 @@ export const ProfileDetails = styled.div`
 
 export const ProfileImage = styled.img`
   width: 100px;
-  height: 80px;
+  height: 100px;
   border-radius: 10%;
   @media (min-width: 1024px) {
     width: 100px;
