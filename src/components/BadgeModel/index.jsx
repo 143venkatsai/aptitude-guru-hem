@@ -32,7 +32,7 @@ const BadgeModal = ({ open, onClose, badge }) => {
             height: "22px",
             width: "22px",
             position: "absolute",
-            top: "30%",
+            top: "0%",
             left: "90%",
             zIndex: 1,
           }}
@@ -44,8 +44,8 @@ const BadgeModal = ({ open, onClose, badge }) => {
             height: "48px",
             width: "48px",
             position: "absolute",
-            top: "61%",
-            left: "-8%",
+            bottom: "2%",
+            left: "-15%",
             zIndex: 1,
           }}
         />
