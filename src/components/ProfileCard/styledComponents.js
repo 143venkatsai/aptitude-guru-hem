@@ -69,9 +69,15 @@ export const ProfileEmail = styled.p`
   font-weight: 500;
 `;
 
+export const ProfileBranch = styled.p`
+  font-size: 1rem;
+  color: ${(props) => (props.theme === "light" ? " #737373" : "#989898")};
+  font-weight: 500;
+`;
+
 export const ProfileUniversity = styled.p`
   font-size: 1rem;
-  color: ${(props) => (props.theme === "light" ? " #737373" : "#DCDCDC")};
+  color: ${(props) => (props.theme === "light" ? " #737373" : "#989898")};
   font-weight: 500;
 `;
 

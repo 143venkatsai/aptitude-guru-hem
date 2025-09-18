@@ -75,6 +75,7 @@ import {
   BadgeName,
   ModelBadgeDetailsSmall,
   BadgesCount,
+  ProfileBranch,
 } from "./styledComponents";
 
 const Languages = [
@@ -165,6 +166,7 @@ const ProfileCard = () => {
           <ProfileNameContainer>
             <ProfileName theme={theme}>Muskan Verma</ProfileName>
             <ProfileEmail theme={theme}>muskanverma@gmail.com</ProfileEmail>
+            <ProfileBranch theme={theme}>CSE 3rd Year</ProfileBranch>
             <ProfileUniversity theme={theme}>SRM University</ProfileUniversity>
           </ProfileNameContainer>
         </ProfileDetails>
