@@ -57,8 +57,9 @@ export const TabTitle = styled.h1`
 export const RecentTabContainer = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid
-    ${(props) => (props.theme === "light" ? "#e4e4e7" : "#505050")};
+  border: ${(props) => (props.theme === "light" ? " 1px solid #e4e4e7" : "")};
+  background-color: ${(props) =>
+    props.theme === "light" ? "#fff" : "#303030"};
   border-radius: 8px;
   margin: 1rem 0rem;
 `;
@@ -194,8 +195,9 @@ export const CoursesList = styled.ul`
 export const CourseItem = styled.li`
   display: flex;
   flex-direction: column;
-  border: 1px solid
-    ${(props) => (props.theme === "light" ? "#e4e4e7" : "#505050")};
+  border: ${(props) => (props.theme === "light" ? " 1px solid #e4e4e7" : "")};
+  background-color: ${(props) =>
+    props.theme === "light" ? "#fff" : "#303030"};
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   width: 280px;

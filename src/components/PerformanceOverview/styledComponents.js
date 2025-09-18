@@ -61,8 +61,9 @@ export const Button = styled.button`
 `;
 
 export const Card = styled.div`
-  border: 1px solid
-    ${(props) => (props.theme === "light" ? "#e4e4e7" : "#505050")};
+  border: ${(props) => (props.theme === "light" ? " 1px solid #e4e4e7" : "")};
+  background-color: ${(props) =>
+    props.theme === "light" ? "#fff" : "#303030"};
   border-radius: 16px;
   padding: 1rem;
 `;

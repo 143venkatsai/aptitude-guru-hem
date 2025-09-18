@@ -16,8 +16,9 @@ export const StreakTopSection = styled.div`
   align-items: center;
   border-radius: 16px;
   padding: 1rem;
-  border: 1px solid
-    ${(props) => (props.theme === "light" ? "#e4e4e7" : "#505050")};
+  border: ${(props) => (props.theme === "light" ? " 1px solid #e4e4e7" : "")};
+  background-color: ${(props) =>
+    props.theme === "light" ? "#fff" : "#303030"};
 `;
 
 export const StreakTopTitle = styled.h1`
@@ -60,8 +61,9 @@ export const StreakBottomSection = styled.div`
   border-radius: 16px;
   flex-grow: 1;
   padding: 1rem;
-  border: 1px solid
-    ${(props) => (props.theme === "light" ? "#e4e4e7" : "#505050")};
+  border: ${(props) => (props.theme === "light" ? " 1px solid #e4e4e7" : "")};
+  background-color: ${(props) =>
+    props.theme === "light" ? "#fff" : "#303030"};
   width: 100%;
   box-sizing: border-box;
   justify-content: flex-start;

@@ -18,7 +18,7 @@ import {
 } from "./styledComponents";
 
 import CertificateLogo from "../../assets/CertificateLogo.png";
-import seal from "../../assets/seal.png";
+import seal1 from "../../assets/seal1.png";
 import sign1 from "../../assets/sign1.png";
 import sign2 from "../../assets/sign2.png";
 import { studentData } from "../../mockData/studentData";
@@ -61,7 +61,7 @@ const CertificateView = () => {
                 <br /> Tech Lead <br /> Aptitude Guru Hem
               </SignatureHolder>
             </SignatureContainer>
-            <SealImage src={seal} alt="Seal Logo" />
+            <SealImage src={seal1} alt="Seal Logo" />
             <SignatureContainer>
               <SignatureWrapper>
                 <SignatureTwo src={sign2} alt="S.N Hemchandar" />
