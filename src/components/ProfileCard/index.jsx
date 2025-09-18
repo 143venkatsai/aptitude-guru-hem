@@ -114,7 +114,7 @@ const skills = [
 const ProfileCard = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [streakValue, setStreakValue] = useState(50);
-  const [badges, setBadges] = useState(0);
+  const [badges, setBadges] = useState(3);
   const [selectedBadge, setSelectedBadge] = useState(null);
   const { theme } = useContext(ThemeContext);
 
@@ -414,7 +414,7 @@ const ProfileCard = () => {
                             transform: "translate(-50%, -50%)",
                             cursor: "pointer",
                           }}
-                          onClick={() => setSelectedBadge(fiftyDaysBadge)}
+                          onClick={() => setSelectedBadge(badgesList[1])}
                         />
 
                         {/* Stars */}
@@ -467,7 +467,7 @@ const ProfileCard = () => {
                       <BadgeModal
                         open={!!selectedBadge}
                         onClose={() => setSelectedBadge(null)}
-                        badge={fiftyDaysBadge}
+                        badge={badgesList[1]}
                       />
                     </>
                   )}

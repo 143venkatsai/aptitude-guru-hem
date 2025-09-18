@@ -22,18 +22,31 @@ export const FullscreenOverlay = styled.div`
   font-family: "Poppins", sans-serif;
 `;
 
-export const RotatingBadge = styled.img`
+export const RotatingContainer = styled.div`
   width: 161px;
   height: 156px;
+  position: relative;
   animation: ${rotateX} 4s linear infinite;
-  // filter: drop-shadow(0px 0px 8px white);
-  margin-top: 60px;
-  margin-bottom: 40px;
-  // backface-visibility: hidden;
-  // transform-style: preserve-3d;
-  // background-color: #f5f0b2;
-  // border-radius: 12px;
-  // padding: 8px;
+  transform-style: preserve-3d;
+`;
+
+export const Polygon = styled.img`
+  position: absolute;
+  top: 2%;
+  left: 8%;
+  width: 140px;
+  height: 150px;
+  z-index: 0;
+`;
+
+export const RotatingBadge = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 161px;
+  height: 156px;
+  z-index: 1;
+  backface-visibility: hidden;
 `;
 
 export const Title = styled.h2`
