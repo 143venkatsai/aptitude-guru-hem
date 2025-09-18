@@ -26,7 +26,7 @@ export const RotatingContainer = styled.div`
   width: 161px;
   height: 156px;
   position: relative;
-  // animation: ${rotateX} 4s linear infinite;
+  animation: ${rotateX} 4s linear infinite;
   transform-style: preserve-3d;
 `;
 
