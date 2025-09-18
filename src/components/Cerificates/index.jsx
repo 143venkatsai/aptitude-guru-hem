@@ -3,6 +3,8 @@ import React, { useState, useContext } from "react";
 import ThemeContext from "../../context/ThemeContext";
 
 import Header from "../Header";
+import CertificateView from "../CertificateView";
+
 import {
   CertificatesButtonsContainer,
   CertificateDetails,
@@ -41,6 +43,7 @@ const Certificates = () => {
       <Header />
       <CertificatesContainer theme={theme}>
         <CertificatesHeading theme={theme}>Certificates</CertificatesHeading>
+
         <CertificatesList>
           {certificates.map((eachItem) => (
             <CertificateItem key={eachItem.id} theme={theme}>
@@ -69,6 +72,7 @@ const Certificates = () => {
             </CertificateItem>
           ))}
         </CertificatesList>
+        <CertificateView />
       </CertificatesContainer>
     </>
   );

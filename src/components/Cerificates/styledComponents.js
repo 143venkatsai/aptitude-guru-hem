@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import CertificateContainer from "../../assets/CertificateContainer.png";
+import CertificateBackgroundImage from "../../assets/CertificateBackgroundImage.jpg";
 
 export const CertificatesContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1.5rem 1rem;
-  min-height: 100vh;
+  // min-height: 100vh;
   background-color: ${(props) =>
     props.theme === "light" ? "#fff" : "#262626"};
   @media (min-width: 1024px) {
@@ -99,3 +101,5 @@ export const CertificateViewButton = styled.button`
   font-weight: 600;
   cursor: pointer;
 `;
+
+///////////////
