@@ -18,7 +18,7 @@ export const FullscreenOverlay = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 9999;
-
+  padding: 0px 33px;
   font-family: "Poppins", sans-serif;
 `;
 
