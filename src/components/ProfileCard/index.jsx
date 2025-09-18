@@ -114,7 +114,7 @@ const skills = [
 const ProfileCard = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [streakValue, setStreakValue] = useState(50);
-  const [badges, setBadges] = useState(3);
+  const [badges, setBadges] = useState(0);
   const [selectedBadge, setSelectedBadge] = useState(null);
   const { theme } = useContext(ThemeContext);
 
@@ -128,6 +128,7 @@ const ProfileCard = () => {
     { name: "progress", value: streakValue },
     { name: "remaining", value: 50 - streakValue },
   ];
+
   const badgesList = [
     {
       id: 1,
@@ -138,8 +139,8 @@ const ProfileCard = () => {
     {
       id: 2,
       img: Streak,
-      name: "50 Days Streak",
-      desc: "Solving Problems 50+ Days in 2025",
+      name: "50 Days Badge",
+      desc: "50 Days of Consistency! Keep coding, keep growing.",
     },
     {
       id: 3,
@@ -148,6 +149,13 @@ const ProfileCard = () => {
       desc: "Solved 150+ Java problems",
     },
   ];
+
+  const fiftyDaysBadge = {
+    id: 1,
+    img: LockStreak,
+    name: "50 Days Badge",
+    desc: "50 Days of Consistency! Keep coding, keep growing.",
+  };
 
   return (
     <>
@@ -406,7 +414,7 @@ const ProfileCard = () => {
                             transform: "translate(-50%, -50%)",
                             cursor: "pointer",
                           }}
-                          onClick={() => setSelectedBadge(badgesList[1])}
+                          onClick={() => setSelectedBadge(fiftyDaysBadge)}
                         />
 
                         {/* Stars */}
@@ -459,7 +467,7 @@ const ProfileCard = () => {
                       <BadgeModal
                         open={!!selectedBadge}
                         onClose={() => setSelectedBadge(null)}
-                        badge={badgesList[1]}
+                        badge={fiftyDaysBadge}
                       />
                     </>
                   )}
