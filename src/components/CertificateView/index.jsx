@@ -21,6 +21,7 @@ import CertificateLogo from "../../assets/CertificateLogo.png";
 import seal1 from "../../assets/seal1.png";
 import sign1 from "../../assets/sign1.png";
 import sign2 from "../../assets/sign2.png";
+
 import { studentData } from "../../mockData/studentData";
 
 const CertificateView = () => {
