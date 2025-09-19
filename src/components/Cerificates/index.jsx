@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 
 import ThemeContext from "../../context/ThemeContext";
 
+import studentData from "../../mockData/studentData";
+
 import Header from "../Header";
 import CertificateView from "../CertificateView";
 
@@ -45,9 +47,9 @@ const Certificates = () => {
         <CertificatesHeading theme={theme}>Certificates</CertificatesHeading>
 
         <CertificatesList>
-          {certificates.map((eachItem) => (
+          {studentData.map((eachItem) => (
             <CertificateItem key={eachItem.id} theme={theme}>
-              <CertificateImage src={eachItem.image} alt={eachItem.name} />
+              <CertificateView studentDetails={eachItem} scal={0.2} />
               <CertificateDetails>
                 <CertificateName theme={theme}>{eachItem.name}</CertificateName>
                 <CertificatesButtonsContainer>
@@ -72,7 +74,7 @@ const Certificates = () => {
             </CertificateItem>
           ))}
         </CertificatesList>
-        <CertificateView />
+        {/* <CertificateView /> */}
       </CertificatesContainer>
     </>
   );

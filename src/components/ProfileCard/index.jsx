@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { PieChart, Pie, Cell } from "recharts";
 import { AnimatePresence } from "framer-motion";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -10,7 +10,7 @@ import BadgeModal from "../BadgeModel";
 import profileLogo from "../../assets/profileLogo.png";
 import chatGpt1 from "../../assets/chatGpt1.png";
 import certificate from "../../assets/certificate.png";
-import badge from "../../assets/badge.png";
+import badgeImage from "../../assets/badge.png";
 import arrowRight from "../../assets/arrowRight.png";
 import arrowRightDark from "../../assets/arrowRightDark.png";
 import Padlock from "../../assets/Padlock.png";
@@ -76,6 +76,8 @@ import {
   ModelBadgeDetailsSmall,
   BadgesCount,
   ProfileBranch,
+  ModelName,
+  Celebrate,
 } from "./styledComponents";
 
 const Languages = [
@@ -112,10 +114,13 @@ const skills = [
   },
 ];
 
+const activeBadges = ["50_DAYS"];
+
+import { badgesData } from "../../mockData/badgesData";
+
 const ProfileCard = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [streakValue, setStreakValue] = useState(50);
-  const [badges, setBadges] = useState(3);
+  const [badge, setBadge] = useState(null);
   const [selectedBadge, setSelectedBadge] = useState(null);
   const { theme } = useContext(ThemeContext);
 
@@ -124,38 +129,51 @@ const ProfileCard = () => {
 
   const showEmpty = !hasLanguages && !hasSkills;
 
-  const COLORS = ["#FB9E14", "#DCDCDC"];
-  const data = [
-    { name: "progress", value: streakValue },
-    { name: "remaining", value: 50 - streakValue },
-  ];
+  useEffect(() => {
+    if (activeBadges.length > 0) {
+      for (const badgeId of activeBadges) {
+        const storageKey = `badge_shown_${badgeId}`;
 
-  const badgesList = [
-    {
-      id: 1,
-      img: Python,
-      name: "Python Master",
-      desc: "Solved 200+ Python problems",
-    },
-    {
-      id: 2,
-      img: Streak,
-      name: "50 Days Badge",
-      desc: "50 Days of Consistency! Keep coding, keep growing.",
-    },
-    {
-      id: 3,
-      img: Java,
-      name: "Java Master",
-      desc: "Solved 150+ Java problems",
-    },
-  ];
+        const alreadyShown = localStorage.getItem(storageKey);
 
-  const fiftyDaysBadge = {
-    id: 1,
-    img: LockStreak,
-    name: "50 Days Badge",
-    desc: "50 Days of Consistency! Keep coding, keep growing.",
+        if (!alreadyShown) {
+          const earnedBadge = badgesData.find((b) => b.id === badgeId);
+
+          if (earnedBadge) {
+            setIsOpen(true);
+            localStorage.setItem(storageKey, "true");
+            setBadge(earnedBadge);
+          }
+
+          break;
+        }
+      }
+    }
+  }, [activeBadges]);
+
+  const BadgeBottomSection = ({ badge }) => {
+    if (!badge) return null;
+
+    if (badge.id === "50_DAYS") {
+      return (
+        <>
+          <ModelDays theme={theme}>
+            <span style={{ fontSize: "40px" }}>50</span>
+            <span style={{ fontSize: "20px" }}>/50 Days</span>
+          </ModelDays>
+          <ModelMessage theme={theme}>
+            {badge.newDesc || badge.desc}
+          </ModelMessage>
+        </>
+      );
+    }
+
+    return (
+      <>
+        <ModelName theme={theme}>{badge.name}</ModelName>
+        <ModelMessage theme={theme}>{badge.desc}</ModelMessage>
+      </>
+    );
   };
 
   return (
@@ -176,12 +194,9 @@ const ProfileCard = () => {
           <Rank>Rank 56</Rank>
         </RankContainer>
 
-        {/* Certificates and Badges */}
+        {/* Certificates Container */}
         <ProfileCertificates>
           <CertificatesContainer to="/certificates">
-            {/* <CertificateIconContainer>
-              <CertificateIcon icon={faCertificate} />
-            </CertificateIconContainer> */}
             <img
               src={certificate}
               alt="Certificate"
@@ -194,12 +209,9 @@ const ProfileCard = () => {
           </CertificatesContainer>
 
           {/* Badges Container */}
-          <BadgeContainer onClick={() => setIsOpen(true)}>
-            {/* <BadgeIconContainer>
-              <BadgeIcon icon={faRibbon} />
-            </BadgeIconContainer> */}
+          <BadgeContainer to="/badges">
             <img
-              src={badge}
+              src={badgeImage}
               alt="Badge"
               style={{ height: "40px", width: "40px" }}
             />
@@ -208,6 +220,7 @@ const ProfileCard = () => {
               <BadgeCount>3</BadgeCount>
             </BadgeDetails>
           </BadgeContainer>
+
           <AnimatePresence>
             {isOpen && (
               <ModalOverlay
@@ -232,283 +245,76 @@ const ProfileCard = () => {
                       theme={theme}
                     />
                   </ModelTopContainer>
-
-                  {/* Case 1: streakValue === 0 */}
-                  {streakValue === 0 && (
-                    <>
-                      <div
+                  <>
+                    <div
+                      style={{
+                        width: 150,
+                        height: 150,
+                        position: "relative",
+                        margin: "auto",
+                      }}
+                    >
+                      {/* Badge image in the center */}
+                      <img
+                        src={badge.img}
+                        alt="Badge"
                         style={{
-                          width: 180,
-                          height: 180,
-                          position: "relative",
-                          margin: "auto",
+                          height: "112px",
+                          width: "116px",
+                          position: "absolute",
+                          top: "50%",
+                          left: "50%",
+                          transform: "translate(-50%, -50%)",
                         }}
-                      >
-                        <PieChart width={180} height={180}>
-                          <Pie
-                            data={data}
-                            innerRadius={74}
-                            outerRadius={80}
-                            startAngle={180}
-                            endAngle={-180}
-                            dataKey="value"
-                            stroke="none"
-                          >
-                            {data.map((entry, index) => (
-                              <Cell
-                                key={`cell-${index}`}
-                                fill={COLORS[index]}
-                              />
-                            ))}
-                          </Pie>
-                        </PieChart>
-
-                        {/* Center Content */}
-                        <div
-                          style={{
-                            position: "absolute",
-                            top: 0,
-                            left: 0,
-                            width: "180px",
-                            height: "180px",
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            justifyContent: "center",
-                          }}
-                        >
-                          <img
-                            src={LockStreak}
-                            alt="Badge"
-                            style={{
-                              height: "90%",
-                              width: "90%",
-                              opacity: 0.2,
-                              position: "absolute",
-                            }}
-                          />
-                          <img
-                            src={Padlock}
-                            alt="Lock"
-                            style={{
-                              height: "40px",
-                              width: "40px",
-                              zIndex: 2,
-                            }}
-                          />
-                        </div>
-                      </div>
-                      <ModelBottomContainer>
-                        <ModelDays theme={theme}>
-                          <span style={{ fontSize: "40px" }}>
-                            {streakValue}
-                          </span>
-                          <span style={{ fontSize: "20px" }}>/50Days</span>
-                        </ModelDays>
-                        <ModelMessage theme={theme}>
-                          Stay consistent! Unlock this badge at 50 days
-                        </ModelMessage>
-                      </ModelBottomContainer>
-                    </>
-                  )}
-
-                  {/* Case 2: streakValue between 1 and 49 */}
-                  {streakValue > 0 && streakValue < 50 && (
-                    <>
-                      <div
-                        style={{
-                          width: 180,
-                          height: 180,
-                          position: "relative",
-                          margin: "auto",
-                        }}
-                      >
-                        <PieChart width={180} height={180}>
-                          <Pie
-                            data={data}
-                            innerRadius={74}
-                            outerRadius={80}
-                            startAngle={180}
-                            endAngle={-180}
-                            dataKey="value"
-                            stroke="none"
-                          >
-                            {data.map((entry, index) => (
-                              <Cell
-                                key={`cell-${index}`}
-                                fill={COLORS[index]}
-                              />
-                            ))}
-                          </Pie>
-                        </PieChart>
-
-                        {/* Center Content */}
-                        <div
-                          style={{
-                            position: "absolute",
-                            top: 0,
-                            left: 0,
-                            width: "180px",
-                            height: "180px",
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            justifyContent: "center",
-                          }}
-                        >
-                          <img
-                            src={LockStreak}
-                            alt="Badge"
-                            style={{
-                              height: "90%",
-                              width: "90%",
-                              opacity: 0.2,
-                              position: "absolute",
-                            }}
-                          />
-                          <img
-                            src={Padlock}
-                            alt="Lock"
-                            style={{
-                              height: "40px",
-                              width: "40px",
-                              zIndex: 2,
-                            }}
-                          />
-                        </div>
-                      </div>
-
-                      <ModelBottomContainer>
-                        <ModelDays theme={theme}>
-                          <span style={{ fontSize: "40px" }}>
-                            {streakValue}
-                          </span>
-                          <span style={{ fontSize: "20px" }}>/50Days</span>
-                        </ModelDays>
-                        <ModelMessage theme={theme}>
-                          Stay consistent! Unlock this badge at 50 days
-                        </ModelMessage>
-                      </ModelBottomContainer>
-                    </>
-                  )}
-
-                  {/* Case 3: streakValue >= 50  */}
-                  {streakValue >= 50 && badges === 0 && (
-                    <>
-                      <div
-                        style={{
-                          width: 200,
-                          height: 200,
-                          position: "relative",
-                          margin: "auto",
-                        }}
-                      >
-                        {/* Badge image in the center */}
-                        <img
-                          src={LockStreak}
-                          alt="Badge"
-                          style={{
-                            height: "200px",
-                            width: "200px",
-                            position: "absolute",
-                            top: "50%",
-                            left: "50%",
-                            transform: "translate(-50%, -50%)",
-                            cursor: "pointer",
-                          }}
-                          onClick={() => setSelectedBadge(badgesList[1])}
-                        />
-
-                        {/* Stars */}
-                        <img
-                          src={star}
-                          alt="Star"
-                          style={{
-                            height: "20px",
-                            width: "20px",
-                            position: "absolute",
-                            top: "50%",
-                            left: "0%",
-                          }}
-                        />
-                        <img
-                          src={star}
-                          alt="Star"
-                          style={{
-                            height: "30px",
-                            width: "30px",
-                            position: "absolute",
-                            top: "8%",
-                            right: "10%",
-                          }}
-                        />
-                        <img
-                          src={star}
-                          alt="Star"
-                          style={{
-                            height: "50px",
-                            width: "50px",
-                            position: "absolute",
-                            bottom: "15%",
-                            left: "0%",
-                          }}
-                        />
-                      </div>
-                      <ModelBottomContainer>
-                        <ModelDays theme={theme}>
-                          <span style={{ fontSize: "40px" }}>
-                            {streakValue}
-                          </span>
-                          <span style={{ fontSize: "20px" }}>/50Days</span>
-                        </ModelDays>
-                        <ModelMessage theme={theme}>
-                          Congratulations! You've unlocked the 50-Day Streak
-                          Badge!
-                        </ModelMessage>
-                      </ModelBottomContainer>
-                      <BadgeModal
-                        open={!!selectedBadge}
-                        onClose={() => setSelectedBadge(null)}
-                        badge={badgesList[1]}
                       />
-                    </>
-                  )}
 
-                  {/* Case 4: streakValue >= 50 and badges > 0 */}
-                  {streakValue >= 50 && badges > 0 && (
-                    <>
-                      <ModelBadges>
-                        {badgesList.map((badge, index) =>
-                          index === 1 ? (
-                            <ModelBadgeDetails
-                              key={badge.id}
-                              onClick={() => setSelectedBadge(badge)}
-                            >
-                              <CenterBadge src={badge.img} alt={badge.name} />
-                              <BadgeName theme={theme}>{badge.name}</BadgeName>
-                            </ModelBadgeDetails>
-                          ) : (
-                            <ModelBadgeDetailsSmall
-                              key={badge.id}
-                              onClick={() => setSelectedBadge(badge)}
-                            >
-                              <SmallBadge src={badge.img} alt={badge.name} />
-                              <BadgeName theme={theme}>{badge.name}</BadgeName>
-                            </ModelBadgeDetailsSmall>
-                          )
-                        )}
-                      </ModelBadges>
-                      <BadgesCount theme={theme}>
-                        {badges} Badges Earned
-                      </BadgesCount>
-
-                      <BadgeModal
-                        open={!!selectedBadge}
-                        onClose={() => setSelectedBadge(null)}
-                        badge={selectedBadge}
+                      {/* Stars */}
+                      <img
+                        src={star}
+                        alt="Star"
+                        style={{
+                          height: "13px",
+                          width: "13px",
+                          position: "absolute",
+                          top: "50%",
+                          left: "0%",
+                        }}
                       />
-                    </>
-                  )}
+                      <img
+                        src={star}
+                        alt="Star"
+                        style={{
+                          height: "17px",
+                          width: "17px",
+                          position: "absolute",
+                          top: "10%",
+                          right: "10%",
+                        }}
+                      />
+                      <img
+                        src={star}
+                        alt="Star"
+                        style={{
+                          height: "38px",
+                          width: "38px",
+                          position: "absolute",
+                          bottom: "18%",
+                          left: "2%",
+                        }}
+                      />
+                    </div>
+                    <ModelBottomContainer>
+                      <BadgeBottomSection badge={badge} />
+                      <Celebrate onClick={() => setSelectedBadge(badge)}>
+                        Let's Celebrate
+                      </Celebrate>
+                    </ModelBottomContainer>
+                    <BadgeModal
+                      open={!!selectedBadge}
+                      onClose={() => setSelectedBadge(null)}
+                      badge={badge}
+                    />
+                  </>
                 </ModalContent>
               </ModalOverlay>
             )}
@@ -526,7 +332,6 @@ const ProfileCard = () => {
                   </LanguageItem>
                 ))}
                 <RightArrowContainer theme={theme}>
-                  {/* <RightArrowIcon icon={faArrowRight} /> */}
                   <img
                     src={theme === "light" ? arrowRight : arrowRightDark}
                     alt="arrow right"
@@ -554,7 +359,6 @@ const ProfileCard = () => {
                       </SkillItem>
                     ))}
                     <RightArrowContainer theme={theme}>
-                      {/* <RightArrowIcon icon={faArrowRight} /> */}
                       <img
                         src={theme === "light" ? arrowRight : arrowRightDark}
                         alt="arrow right"

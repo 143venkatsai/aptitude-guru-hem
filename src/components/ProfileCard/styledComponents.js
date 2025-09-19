@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 export const ProfileCardContainer = styled.section`
   display: flex;
   flex-direction: column;
-  border: ${(props) => (props.theme === "light" ? " 1px solid #e4e4e7" : "")};
+  border: ${(props) => (props.theme === "light" ? "1px solid #e4e4e7" : "")};
   background-color: ${(props) =>
     props.theme === "light" ? "#fff" : "#303030"};
   border-radius: 16px;
@@ -132,7 +132,7 @@ export const CertificateCount = styled.p`
   margin: 0rem;
 `;
 
-export const BadgeContainer = styled.div`
+export const BadgeContainer = styled(NavLink)`
   background-color: #fff6ea;
   padding: 0.5rem;
   display: flex;
@@ -355,14 +355,6 @@ export const ModelDays = styled.p`
   text-align: center;
 `;
 
-export const ModelMessage = styled.p`
-  font-size: 14px;
-  font-weight: 500;
-  color: #767676;
-  color: ${(props) => (props.theme === "light" ? "#767676" : "#fff")};
-  text-align: center;
-`;
-
 export const ModelImage = styled.img`
   margin: auto;
   height: 200px;
@@ -374,6 +366,33 @@ export const ModelBadges = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: auto;
+`;
+
+export const ModelName = styled.h1`
+  font-size: 30px;
+  font-weight: 600;
+  font-family: "Work Sans", sans-serif;
+  color: ${(props) => (props.theme === "light" ? "#666666" : "#fff")};
+  margin-top: 15px;
+`;
+
+export const ModelMessage = styled.p`
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "Work Sans", snas-serif;
+  color: #767676;
+  color: ${(props) => (props.theme === "light" ? "#767676" : "#fff")};
+  text-align: center;
+`;
+
+export const Celebrate = styled.p`
+  margin-top: 24px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "Work Sans", snas-serif;
+  color: #2583c0;
+  cursor: pointer;
 `;
 
 export const CenterBadge = styled.img`

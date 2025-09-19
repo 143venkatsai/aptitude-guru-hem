@@ -5,6 +5,8 @@ import CertificateBackgroundImage from "../../assets/CertificateBackgroundImage.
 export const BackgroundContainer = styled.div`
   width: 1883px;
   height: 1225px;
+  // width: 400px;
+  // height: auto;
   background-image: url(${CertificateBackgroundImage});
   background-size: cover;
   background-position: center;
@@ -17,6 +19,9 @@ export const BackgroundContainer = styled.div`
   @media (min-width: 1024px) {
     // margin: 20px 100px;
   }
+
+  transform: scale(0.15);
+  // transform: none;
 `;
 
 export const LogoImage = styled.img`

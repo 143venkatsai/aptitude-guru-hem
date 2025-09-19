@@ -4,9 +4,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Assessments from "./components/Assessments";
 import ProfileSection from "./components/ProfileSection";
+import Certificates from "./components/Cerificates/index.jsx";
+import Badges from "./components/Badges/index.jsx";
 
 import { ThemeProvider } from "./context/ThemeContext.jsx";
-import Certificates from "./components/Cerificates/index.jsx";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route exact path="/assessments" element={<Assessments />} />
           <Route exact path="/profile" element={<ProfileSection />} />
           <Route exact path="/certificates" element={<Certificates />} />
+          <Route exact path="/badges" element={<Badges />} />
         </Routes>
       </Router>
     </ThemeProvider>
