@@ -137,7 +137,7 @@ export const ViewOverlay = styled.div`
   color: #fff;
   font-size: 20px;
   font-weight: 500;
-  font-family:Work Sans", sans-serif;
+  font-family: "Work Sans", sans-serif;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease-in-out;
