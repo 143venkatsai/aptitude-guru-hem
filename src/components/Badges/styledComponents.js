@@ -3,15 +3,22 @@ import styled from "styled-components";
 export const BadgesContainer = styled.section`
   display: flex;
   flex-direction: column;
-  padding: 1rem 1rem;
-  padding-top: 2rem;
-  gap: 1rem;
+  padding: 1.5rem 1rem;
+  min-height: 100vh;
   background-color: ${(props) =>
     props.theme === "light" ? "#fff" : "#262626"};
   @media (min-width: 1024px) {
-    padding: 1rem 5rem;
-    padding-top: 2rem;
+    padding: 54px 100px;
   }
+`;
+
+export const BadgesTopContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 32px;
+  color: ${(props) => (props.theme === "light" ? "#000" : "#fff")};
 `;
 
 export const BadgesHeading = styled.h1`
@@ -37,8 +44,9 @@ export const BadgesList = styled.ul`
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
-  gap: 20px;
+  gap: 60px;
   border-left: none;
+  border-top: 1px solid #dcdcdc;
   padding: 2rem 0rem;
   @media (min-width: 786px) {
     display: flex;
@@ -68,6 +76,7 @@ export const BadgeName = styled.p`
   font-weight: 600;
   font-family: "Work Sans", sans-serif;
   margin-top: 12px;
+  color: ${(props) => (props.theme === "light" ? "#000" : "#fff")};
 `;
 
 export const ModelBottomContainer = styled.div`
@@ -94,9 +103,8 @@ export const ModelMessage = styled.p`
 export const OnGoingContainer = styled.div`
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #dcdcdc;
   padding-bottom: 30px;
   @media (min-width: 786px) {
-    border-bottom: none;
+    margin: 0px 40px 0px 0px;
   }
 `;

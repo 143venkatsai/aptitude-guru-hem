@@ -10,6 +10,7 @@ import {
   BadgesContainer,
   BadgesHeading,
   BadgesList,
+  BadgesTopContainer,
   ModelBottomContainer,
   ModelDays,
   ModelMessage,
@@ -28,15 +29,17 @@ const data = [
   { name: "remaining", value: 50 - streakValue },
 ];
 
-const activeBadges = ["50_DAYS"];
+const activeBadges = ["50_DAYS", "PYTHON", "JAVA"];
 
 import { badgesData } from "../../mockData/badgesData";
 import BadgeModal from "../BadgeModel";
+import { useNavigate } from "react-router-dom";
+import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 
 const Badges = () => {
   const [selectedBadge, setSelectedBadge] = useState(null);
-
   const [filteredBadegs, setFilterBadges] = useState(activeBadges);
+  const navigate = useNavigate();
   const { theme, filterBadges } = useContext(ThemeContext);
   console.log(filterBadges);
 
@@ -116,7 +119,7 @@ const Badges = () => {
         </ModelDays>
 
         <ModelMessage theme={theme}>
-          Stay consistent! Unlock this badge at 50 days
+          Stay consistent! Unlock this <br /> badge at 50 days
         </ModelMessage>
       </ModelBottomContainer>
     </OnGoingContainer>
@@ -126,7 +129,14 @@ const Badges = () => {
     <>
       <Header />
       <BadgesContainer theme={theme}>
-        <BadgesHeading>Badges List</BadgesHeading>
+        <BadgesTopContainer theme={theme}>
+          <MdOutlineKeyboardArrowLeft
+            style={{ height: "24", width: "24px", cursor: "pointer" }}
+            onClick={() => navigate(-1)}
+          />
+          <BadgesHeading>Badges List</BadgesHeading>
+        </BadgesTopContainer>
+
         <AllBadgesContainer>
           <OnGoingCourses />
           <BadgesList>
@@ -137,7 +147,7 @@ const Badges = () => {
                   alt={badge.id}
                   onClick={() => setSelectedBadge(badge)}
                 />
-                <BadgeName>{badge.name}</BadgeName>
+                <BadgeName theme={theme}>{badge.name}</BadgeName>
               </BadgeItem>
             ))}
           </BadgesList>

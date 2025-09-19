@@ -114,7 +114,7 @@ const skills = [
   },
 ];
 
-const activeBadges = ["50_DAYS"];
+const activeBadges = ["PYTHON"];
 
 import { badgesData } from "../../mockData/badgesData";
 

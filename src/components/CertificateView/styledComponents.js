@@ -3,95 +3,89 @@ import styled from "styled-components";
 import CertificateBackgroundImage from "../../assets/CertificateBackgroundImage.jpg";
 
 export const BackgroundContainer = styled.div`
-  width: 1883px;
-  height: 1225px;
-  // width: 400px;
-  // height: auto;
   background-image: url(${CertificateBackgroundImage});
   background-size: cover;
   background-position: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  //   margin: 0rem 1rem;
-  padding: 129px 0px 70px 0px;
-  margin-bottom: 20px;
+  padding: 23px 0px 13px 0px;
+  width: 100%;
+  // border-top-left-radius: 12px;
+  // border-top-right-radius: 12px;
   @media (min-width: 1024px) {
-    // margin: 20px 100px;
+    width: 345px;
+    height: 227px;
   }
-
-  transform: scale(0.15);
-  // transform: none;
 `;
 
 export const LogoImage = styled.img`
-  height: 80px;
-  width: 320px;
+  height: 14px;
+  width: 58px;
 `;
 
 export const CertificateTitle = styled.h1`
   color: #ce2d2c;
-  font-size: 52px;
+  font-size: 9.28px;
   font-weight: 700;
   font-family: "Raleway", sans-serif;
-  letter-spacing: 5.2px;
+  letter-spacing: 0.928px;
   line-height: 100%;
-  margin-top: 24px;
+  margin-top: 4px;
 `;
 
 export const Certify = styled.p`
-  font-size: 32px;
+  font-size: 5.71px;
   font-weight: 400;
   color: #2d2d37;
-  letter-spacing: 3.2px;
+  letter-spacing: 0.571px;
   font-family: "Raleway", sans-serif;
-  margin-top: 30px;
+  margin-top: 4px;
 `;
 
 export const CertificateHolder = styled.h1`
   color: #18191f;
-  font-size: 90px;
+  font-size: 16.07px;
   font-weight: 700;
   font-family: "Dancing Script", cursive;
-  margin-top: 18px;
-  padding-bottom: 1.5px;
-  border-bottom: 2px solid #2d2d3780;
+  margin-top: 0px;
+  padding-bottom: 5px;
+  border-bottom: 0.1px solid #2d2d3780;
 `;
 
 export const InstituteName = styled.h2`
   color: #2d2d37;
-  font-size: 42px;
+  font-size: 8.3px;
   font-weight: 700;
   font-family: "Raleway", sans-serif;
-  margin-top: 8px;
-  letter-spacing: 4.2px;
+  margin-top: 0.7px;
+  letter-spacing: 0.83px;
 `;
 
 export const TrainingDetails = styled.p`
   color: #2d2d37;
-  font-size: 32px;
+  font-size: 5.7px;
   text-align: center;
   font-family: "Raleway", sans-serif;
-  margin-top: 25px;
-  letter-spacing: 3.2px;
+  margin-top: 3.57px;
+  letter-spacing: 0.57px;
 `;
 
 export const Awarded = styled.p`
   color: #ce2d2c;
-  font-size: 38px;
+  font-size: 6.78px;
   font-weight: 700;
   text-align: center;
   font-family: "Raleway", sans-serif;
-  margin-top: 22px;
-  letter-spacing: 3.8px;
+  margin-top: 3.07px;
+  letter-spacing: 0.678px;
 `;
 
 export const CertificateBottom = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 114px;
-  margin-top: -10px;
+  gap: 14px;
 `;
 
 export const SignatureContainer = styled.div`
@@ -102,32 +96,32 @@ export const SignatureContainer = styled.div`
 
 export const SignatureHolder = styled.p`
   color: #2d2d37;
-  font-size: 24px;
+  font-size: 4.29px;
   font-weight: 600;
   text-align: center;
   font-family: "Raleway", sans-serif;
-  letter-spacing: 2.4px;
+  letter-spacing: 0.429px;
+  margin-top: 2px;
 `;
 
 export const SealImage = styled.img`
-  height: 147px;
-  width: 160px;
+  height: 26px;
+  width: 26px;
   margin-top: auto;
 `;
 
 export const SignatureWrapper = styled.div`
-  border-bottom: 2px solid #2d2d3780;
-  margin-bottom: 8px;
+  border-bottom: 0.1px solid #2d2d3780;
 `;
 
 export const SignatureOne = styled.img`
-  height: 142px;
-  width: 225px;
-  margin-bottom: -40px;
+  height: 25px;
+  width: 40px;
+  margin-bottom: -5px;
 `;
 
 export const SignatureTwo = styled.img`
-  height: 142px;
-  width: 305px;
-  margin-bottom: -40px;
+  height: 25px;
+  width: 54px;
+  margin-bottom: -5px;
 `;

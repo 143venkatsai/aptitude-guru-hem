@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Awarded,
   BackgroundContainer,
@@ -19,14 +19,11 @@ import {
 
 import CertificateLogo from "../../assets/CertificateLogo.png";
 import seal1 from "../../assets/seal1.png";
-import sign1 from "../../assets/sign1.png";
-import sign2 from "../../assets/sign2.png";
+import sign3 from "../../assets/sign3.png";
+import sign4 from "../../assets/sign4.png";
 
-// import { studentData } from "../../mockData/studentData";
-
-const CertificateView = ({ studentDetails, scale }) => {
-  // const [studentDetails, setSudentDetails] = useState(studentData);
-  console.log(studentDetails);
+const CertificateView = ({ certificateDetails }) => {
+  console.log(certificateDetails);
   const {
     studentName,
     instituteName,
@@ -35,17 +32,10 @@ const CertificateView = ({ studentDetails, scale }) => {
     endDate,
     hours,
     awardDate,
-  } = studentDetails;
+  } = certificateDetails;
 
   return (
-    <div
-    // style={{
-    //   transform: `scale(${scale})`,
-    //   transformOrigin: "top left",
-    //   width: `${1883 * scale}px`,
-    //   height: `${1225 * scale}px`,
-    // }}
-    >
+    <>
       <BackgroundContainer>
         <LogoImage src={CertificateLogo} alt="AGH Logo" />
         <CertificateTitle>Certificate of Completion</CertificateTitle>
@@ -69,7 +59,7 @@ const CertificateView = ({ studentDetails, scale }) => {
         <CertificateBottom>
           <SignatureContainer>
             <SignatureWrapper>
-              <SignatureOne src={sign1} alt="See Sairam" />
+              <SignatureOne src={sign3} alt="See Sairam" />
             </SignatureWrapper>
 
             <SignatureHolder>
@@ -80,7 +70,7 @@ const CertificateView = ({ studentDetails, scale }) => {
           <SealImage src={seal1} alt="Seal Logo" />
           <SignatureContainer>
             <SignatureWrapper>
-              <SignatureTwo src={sign2} alt="S.N Hemchandar" />
+              <SignatureTwo src={sign4} alt="S.N Hemchandar" />
             </SignatureWrapper>
 
             <SignatureHolder>
@@ -90,7 +80,7 @@ const CertificateView = ({ studentDetails, scale }) => {
           </SignatureContainer>
         </CertificateBottom>
       </BackgroundContainer>
-    </div>
+    </>
   );
 };
 
