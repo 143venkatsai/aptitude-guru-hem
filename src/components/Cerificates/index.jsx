@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
 import { useNavigate } from "react-router-dom";
 import { SlCalender } from "react-icons/sl";
 import { FiDownload } from "react-icons/fi";
@@ -12,6 +11,7 @@ import { studentData } from "../../mockData/studentData";
 
 import Header from "../Header";
 import CertificateView from "../CertificateView";
+import CertificateModel from "../CertificateModel";
 
 import {
   CertificateDetails,
@@ -104,7 +104,7 @@ const Certificates = () => {
             <CloseButton onClick={() => setSelectedCertificate(null)}>
               ✕
             </CloseButton>
-            <CertificateView certificateDetails={selectedCertificate} />
+            <CertificateModel certificateDetails={selectedCertificate} />
           </ModalContent>
         </ModalOverlay>
       )}

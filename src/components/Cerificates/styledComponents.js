@@ -154,12 +154,12 @@ export const ModalOverlay = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  background: #fff;
+  // background: #fff;
   padding: 20px;
   border-radius: 12px;
-  max-width: 90%;
-  max-height: 45%;
-  overflow: auto;
+  // max-width: 100%;
+  // max-height: 90%;
+  // overflow: auto;
 `;
 
 export const CloseButton = styled.button`

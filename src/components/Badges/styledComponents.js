@@ -47,7 +47,7 @@ export const BadgesList = styled.ul`
   gap: 60px;
   border-left: none;
   border-top: 1px solid #dcdcdc;
-  padding: 2rem 0rem;
+  padding: 32px 0px;
   @media (min-width: 786px) {
     display: flex;
     flex-direction: row;
@@ -55,7 +55,7 @@ export const BadgesList = styled.ul`
     gap: 50px;
     border-left: 1px solid #dcdcdc;
     border-top: none;
-    padding: 0rem 4rem;
+    padding: 0rem 60px;
   }
 `;
 
@@ -66,17 +66,24 @@ export const BadgeItem = styled.li`
 `;
 
 export const BadgeImage = styled.img`
-  height: 112px;
-  width: 116px;
+  height: 125px;
+  width: 129px;
   cursor: pointer;
+  @media (min-width: 1024px) {
+    width: 144px;
+    height: 139px;
+  }
 `;
 
 export const BadgeName = styled.p`
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   font-family: "Work Sans", sans-serif;
   margin-top: 12px;
   color: ${(props) => (props.theme === "light" ? "#000" : "#fff")};
+  @media (min-width: 1024px) {
+    font-size: 20px;
+  }
 `;
 
 export const ModelBottomContainer = styled.div`
