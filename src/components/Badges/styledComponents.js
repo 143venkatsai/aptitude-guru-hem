@@ -3,12 +3,12 @@ import styled from "styled-components";
 export const BadgesContainer = styled.section`
   display: flex;
   flex-direction: column;
-  padding: 1.5rem 1rem;
+  padding: 27px 1rem;
   min-height: 100vh;
   background-color: ${(props) =>
     props.theme === "light" ? "#fff" : "#262626"};
   @media (min-width: 1024px) {
-    padding: 54px 100px;
+    padding: 32px 99px;
   }
 `;
 
@@ -19,6 +19,9 @@ export const BadgesTopContainer = styled.div`
   gap: 16px;
   padding-bottom: 32px;
   color: ${(props) => (props.theme === "light" ? "#000" : "#fff")};
+  @media (min-width: 1024px) {
+    padding-bottom: 48px;
+  }
 `;
 
 export const BadgesHeading = styled.h1`

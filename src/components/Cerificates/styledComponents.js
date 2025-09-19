@@ -5,12 +5,12 @@ import CertificateBackgroundImage from "../../assets/CertificateBackgroundImage.
 export const CertificatesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1.5rem 1rem;
+  padding: 27px 1rem;
   min-height: 100vh;
   background-color: ${(props) =>
     props.theme === "light" ? "#fff" : "#262626"};
   @media (min-width: 1024px) {
-    padding: 54px 100px;
+    padding: 32px 99px;
   }
 `;
 
@@ -21,6 +21,9 @@ export const CertificatesTopContainer = styled.div`
   gap: 16px;
   padding-bottom: 32px;
   color: ${(props) => (props.theme === "light" ? "#000" : "#fff")};
+  @media (min-width: 1024px) {
+    padding-bottom: 48px;
+  }
 `;
 
 export const CertificatesHeading = styled.h1`
@@ -133,7 +136,8 @@ export const ViewOverlay = styled.div`
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 500;
+  font-family:Work Sans", sans-serif;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease-in-out;
