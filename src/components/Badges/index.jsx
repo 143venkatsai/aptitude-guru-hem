@@ -115,7 +115,7 @@ const Badges = () => {
       <ModelBottomContainer>
         <ModelDays theme={theme}>
           <span style={{ fontSize: "40px" }}>{data[0].value}</span>
-          <span style={{ fontSize: "20px" }}>/50Days</span>
+          <span style={{ fontSize: "20px" }}>/50 Days</span>
         </ModelDays>
 
         <ModelMessage theme={theme}>
