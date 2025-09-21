@@ -64,7 +64,7 @@ const testDetails = [
     duration: 50,
     totalMarks: 20,
     negativeMarks: 0,
-    score: "",
+    score: 0,
     result: "",
     status: "Completed",
     updatedAt: "07-05-2025",
