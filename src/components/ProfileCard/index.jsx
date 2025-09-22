@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { PieChart, Pie, Cell } from "recharts";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import ThemeContext from "../../context/ThemeContext";
@@ -78,23 +78,31 @@ import {
   ProfileBranch,
   ModelName,
   Celebrate,
+  RightArrow,
+  ScrollContainer,
 } from "./styledComponents";
+
+import "../../index.css";
 
 const Languages = [
   { id: 1, name: "Java" },
   { id: 2, name: "C++" },
   { id: 3, name: "Java Script" },
+  { id: 4, name: "Type Sscript" },
+  { id: 5, name: "React.js" },
+  { id: 6, name: "MongoDB" },
 ];
 
 const skills = [
   {
     id: 1,
-    value: "Advanced",
+    value: "Advance",
     color: "#FF0F31",
     skill: [
       { id: 1, name: "Array" },
       { id: 2, name: "String" },
-      { id: 3, name: "Hash Table" },
+      { id: 3, name: "Hash Map" },
+      { id: 4, name: "Dynamic Programming" },
     ],
   },
   {
@@ -102,15 +110,24 @@ const skills = [
     value: "Intermediate",
     color: "#FCAB13",
     skill: [
-      { id: 1, name: "Sliding Window" },
-      { id: 2, name: "Hash Table" },
+      { id: 1, name: "Hash Map" },
+      { id: 2, name: "Graph" },
+      { id: 3, name: "Tree" },
+      { id: 4, name: "Hash Table" },
+      { id: 5, name: "Sliding Window" },
     ],
   },
   {
     id: 3,
     value: "Fundamental",
     color: "#00B315",
-    skill: [{ id: 1, name: "Dynamic Programming" }],
+    skill: [
+      { id: 1, name: "Graph" },
+      { id: 2, name: "Tree" },
+      { id: 3, name: "Linked List" },
+      { id: 4, name: "Sliding Window" },
+      { id: 5, name: "Hash Table" },
+    ],
   },
 ];
 
@@ -122,6 +139,9 @@ const ProfileCard = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [badge, setBadge] = useState(null);
   const [selectedBadge, setSelectedBadge] = useState(null);
+  const [expandedLanguages, setExpandedLanguages] = useState(false);
+  const [expandedGroups, setExpandedGroups] = useState({});
+
   const { theme } = useContext(ThemeContext);
 
   const hasLanguages = Languages.length > 0;
@@ -150,6 +170,13 @@ const ProfileCard = () => {
       }
     }
   }, [activeBadges]);
+
+  const toggleGroup = (id) => {
+    setExpandedGroups((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
 
   const BadgeBottomSection = ({ badge }) => {
     if (!badge) return null;
@@ -322,24 +349,44 @@ const ProfileCard = () => {
         </ProfileCertificates>
 
         {!showEmpty ? (
-          <>
+          <ScrollContainer>
             <LanguagesContainer theme={theme}>
               <LanguageTitle theme={theme}>Languages</LanguageTitle>
-              <LanguageList>
-                {Languages.map((language) => (
-                  <LanguageItem theme={theme} key={language.id}>
-                    {language.name}
-                  </LanguageItem>
-                ))}
-                <RightArrowContainer theme={theme}>
-                  <img
+              <LanguageList as={motion.div} layout>
+                <AnimatePresence>
+                  {(expandedLanguages ? Languages : Languages.slice(0, 3)).map(
+                    (language) => (
+                      <motion.div
+                        key={language.id}
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <LanguageItem theme={theme}>
+                          {language.name}
+                        </LanguageItem>
+                      </motion.div>
+                    )
+                  )}
+                </AnimatePresence>
+
+                <RightArrowContainer
+                  theme={theme}
+                  onClick={() => setExpandedLanguages((prev) => !prev)}
+                  style={{ cursor: "pointer" }}
+                  whileTap={{ scale: 0.9 }}
+                  layout
+                >
+                  <motion.img
                     src={theme === "light" ? arrowRight : arrowRightDark}
-                    alt="arrow right"
+                    alt="toggle languages"
                     style={{
                       height: theme === "light" ? "20px" : "12px",
                       width: theme === "light" ? "10px" : "6px",
                     }}
-                    theme={theme}
+                    animate={{ rotate: expandedLanguages ? -90 : 90 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
                   />
                 </RightArrowContainer>
               </LanguageList>
@@ -347,33 +394,56 @@ const ProfileCard = () => {
 
             <SkillsSection>
               <SkillsHeading theme={theme}>Skills</SkillsHeading>
-              {skills.map((group) => (
-                <SkillContainer key={group.id}>
-                  <SkillTitle style={{ color: group.color }}>
-                    {group.value}
-                  </SkillTitle>
-                  <SkillsList>
-                    {group.skill.map((item) => (
-                      <SkillItem key={item.id} theme={theme}>
-                        {item.name}
-                      </SkillItem>
-                    ))}
-                    <RightArrowContainer theme={theme}>
-                      <img
-                        src={theme === "light" ? arrowRight : arrowRightDark}
-                        alt="arrow right"
-                        style={{
-                          height: theme === "light" ? "20px" : "12px",
-                          width: theme === "light" ? "10px" : "6px",
-                        }}
+              {skills.map((group) => {
+                const isExpanded = expandedGroups[group.id];
+                const visibleSkills = isExpanded
+                  ? group.skill
+                  : group.skill.slice(0, 3);
+
+                return (
+                  <SkillContainer key={group.id}>
+                    <SkillTitle style={{ color: group.color }}>
+                      {group.value}
+                    </SkillTitle>
+                    <SkillsList as={motion.div} layout>
+                      <AnimatePresence>
+                        {visibleSkills.map((item) => (
+                          <motion.div
+                            key={item.id}
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ duration: 0.1 }}
+                          >
+                            <SkillItem theme={theme}>{item.name}</SkillItem>
+                          </motion.div>
+                        ))}
+                      </AnimatePresence>
+
+                      <RightArrowContainer
                         theme={theme}
-                      />
-                    </RightArrowContainer>
-                  </SkillsList>
-                </SkillContainer>
-              ))}
+                        onClick={() => toggleGroup(group.id)}
+                        style={{ cursor: "pointer" }}
+                        whileTap={{ scale: 0.9 }}
+                        layout
+                      >
+                        <motion.img
+                          src={theme === "light" ? arrowRight : arrowRightDark}
+                          alt="toggle languages"
+                          style={{
+                            height: theme === "light" ? "20px" : "12px",
+                            width: theme === "light" ? "10px" : "6px",
+                          }}
+                          animate={{ rotate: isExpanded ? -90 : 90 }}
+                          transition={{ duration: 0.4, ease: "easeInOut" }}
+                        />
+                      </RightArrowContainer>
+                    </SkillsList>
+                  </SkillContainer>
+                );
+              })}
             </SkillsSection>
-          </>
+          </ScrollContainer>
         ) : (
           <ProfileEmptyContainer>
             <EmptyImage src={chatGpt1} about="Profile Empty" />

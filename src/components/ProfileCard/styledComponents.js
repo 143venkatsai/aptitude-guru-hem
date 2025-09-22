@@ -197,8 +197,8 @@ export const LanguageList = styled.ul`
   list-style: none;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 0.5rem;
-  //   margin-top: 10px;
 `;
 
 export const LanguageItem = styled.li`
@@ -210,7 +210,7 @@ export const LanguageItem = styled.li`
   color: ${(props) => (props.theme === "light" ? " #6f6e6d" : "#dcdcdc")};
 `;
 
-export const RightArrowContainer = styled.div`
+export const RightArrowContainer = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -219,6 +219,15 @@ export const RightArrowContainer = styled.div`
   border-radius: 45%;
   background-color: ${(props) =>
     props.theme === "light" ? " #f2f3f4" : "#434343"};
+`;
+
+// RightArrowContainer.defaultProps = {
+//   layout: true,
+//   transition: { duration: 0.4, ease: "easeInOut" },
+// };
+
+export const RightArrow = styled(motion.img)`
+  transform: rotate(90deg);
 `;
 
 export const RightArrowIcon = styled(FontAwesomeIcon)`
@@ -444,4 +453,14 @@ export const BadgesCount = styled.p`
   margin-top: 32px;
 `;
 
-// Streak Value >= 50
+export const ScrollContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
