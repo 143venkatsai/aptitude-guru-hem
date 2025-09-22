@@ -222,15 +222,20 @@ export const ViewButton = styled.div`
   gap: 4px;
   width: 155px;
   height: 48px;
-  color: #fc2947;
-  border: 1px solid #fc2947;
+  color: ${(props) => (props.theme === "light" ? "#fc2947" : "#ececec ")};
+  border: 1px solid
+    ${(props) => (props.theme === "light" ? "#fc2947" : "transpaent")};
+  background-color: ${(props) =>
+    props.theme === "light" ? "#fff" : "#434343"};
   border-radius: 4px;
   cursor: pointer;
   @media (min-width: 1024px) {
+    color: ${(props) => (props.theme === "light" ? "#434343" : "#ececec ")};
     width: 246px;
     height: 42px;
     gap: 12px;
-    background-color: #ececec;
+    background-color: ${(props) =>
+      props.theme === "light" ? "#ececec" : "#434343"};
     border: none;
   }
 `;

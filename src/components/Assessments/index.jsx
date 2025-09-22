@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FiDownload } from "react-icons/fi";
+import { RiArrowRightSLine } from "react-icons/ri";
 
 import {
   AssessmentContainer,
@@ -131,8 +133,14 @@ const Assessments = () => {
             </PopupTopContainer>
             <AssessmentModel certficateData={data} />
             <PopupButtons>
-              <DownloadButton>Download</DownloadButton>
-              <ViewButton>View All</ViewButton>
+              <DownloadButton>
+                Download{" "}
+                <FiDownload style={{ width: "16px", height: "16px" }} />
+              </DownloadButton>
+              <ViewButton theme={theme}>
+                View All{" "}
+                <RiArrowRightSLine style={{ width: "20px", height: "20px" }} />
+              </ViewButton>
             </PopupButtons>
             <Medal src={medal} />
             <GifVideoOne>
