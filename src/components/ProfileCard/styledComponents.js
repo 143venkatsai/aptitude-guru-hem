@@ -456,11 +456,13 @@ export const BadgesCount = styled.p`
 export const ScrollContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 400px;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  &::-webkit-scrollbar {
-    display: none;
+  @media (min-width: 1024px) {
+    height: 400px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
