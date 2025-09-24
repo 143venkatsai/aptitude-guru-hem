@@ -159,11 +159,6 @@ const Assessments = () => {
                 alt="Celebration Animation"
                 style={{ width: "240px", height: "180px" }}
               />
-              {/* <img
-                src={video}
-                alt="Celebration Animation"
-                style={{ width: "200px", height: "180px" }}
-              /> */}
             </GifVideoOne>
             <GifVideoOneSm>
               <img
