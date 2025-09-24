@@ -233,6 +233,7 @@ const Header = () => {
                       width: 30,
                       backgroundColor: theme === "light" ? "#FD6A7F" : "",
                       borderRadius: "50%",
+                      transition: "0.3s ease-in-out",
                     }}
                   >
                     <MdOutlineLightMode
@@ -251,6 +252,7 @@ const Header = () => {
                       width: 30,
                       backgroundColor: theme === "dark" ? "#FD6A7F" : "",
                       borderRadius: "50%",
+                      transition: "0.3s ease-in-out",
                     }}
                   >
                     <MdOutlineDarkMode
